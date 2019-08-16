@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -295,6 +295,23 @@ wv <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia"</span>, <span class="dt">caption=</span><span class="st">"Source: The Washington Post, ARCOS"</span>)</code></pre></div>
 <p><img src="county-analysis_files/figure-html/facet_map-1.png" width="864"></p>
 <p>Looks nice. You should probably <a href="file://localhost/Users/trana/Documents/Github/2019/08/arcos/docs/articles/annual-maps.html">adjust for population</a> next.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/county_population.html">county_population</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="co"># isolate the columns so it doesn't conflict in a join (there are doubles, that's why)</span>
+<span class="st">    </span><span class="kw">select</span>(countyfips, year, population)
+
+<span class="kw">left_join</span>(wv, population) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">per_person=</span>DOSAGE_UNIT<span class="op">/</span>population) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">geometry=</span>geometry, <span class="dt">fill =</span> per_person, <span class="dt">color =</span> per_person)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol=</span><span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="dv">26915</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">'transparent'</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia per person"</span>, <span class="dt">caption=</span><span class="st">"Source: The Washington Post, ARCOS"</span>)</code></pre></div>
+<p><img src="county-analysis_files/figure-html/pop-1.png" width="864"></p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

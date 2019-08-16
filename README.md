@@ -20,13 +20,11 @@ library(arcos)
 
 ### Tips on how to use the API in R
 
-* [Annual maps]()
+* [Annual maps](https://wpinvestigative.github.io/arcos/articles/annual-maps.html)
 
-* [County analysis]()
+* [County analysis](https://wpinvestigative.github.io/arcos/articles/county-analysis.html)
 
-* [Per capita pharmacies]()
-
-* [Top charts]()
+* [Per capita pharmacies](https://wpinvestigative.github.io/arcos/articles/per-capita-pharmacies.html)
 
 
 ### Guidelines for using this data
