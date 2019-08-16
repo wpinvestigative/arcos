@@ -1,0 +1,9 @@
+"0","population <- population %>% "
+"0","  group_by(BUYER_COUNTY, BUYER_STATE, countyfips) %>% "
+"0","  summarize(average_population=mean(population, na.rm=T)) %>% "
+"0","  ## Have to quickly rename these columns to make them lower case so they'll join easily to the other data frame"
+"0","  rename(buyer_county=BUYER_COUNTY, buyer_state=BUYER_STATE)"
+"0","wv_joined <- left_join(west_virginia, population)"
+"2","Joining, by = c(""buyer_state"", ""buyer_county"")
+"
+"0","datatable(wv_joined)"

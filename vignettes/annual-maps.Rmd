@@ -1,0 +1,139 @@
+---
+title: "Annual maps"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{annual-maps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+How to make some quick maps with the ARCOS api.
+
+First, let's load some packages.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+packages <- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
+}
+
+# These are all the packages you'll need to run everything below 
+
+library(tidyverse)
+library(arcos)
+library(jsonlite)
+library(knitr)
+library(geofacet)
+library(scales)
+```
+
+```
+packages <- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
+}
+
+# These are all the packages you'll need to run everything below 
+
+library(tidyverse)
+library(arcos)
+library(jsonlite)
+library(knitr)
+library(geofacet)
+library(scales)
+```
+
+```{r setup}
+states <- combined_buyer_annual(key="WaPo")
+
+kable(head(states))
+```
+
+We've pulled every pharmacy across the country and how many pills they sold per year.
+
+Let's aggregate and combine by states and year.
+
+```{r dplyr}
+annual_states <- states %>% 
+  group_by(BUYER_STATE, year) %>% 
+  summarize(pills=sum(DOSAGE_UNIT)) %>% 
+  filter(!is.na(BUYER_STATE))
+
+kable(head(annual_states))
+```
+
+Looks good. Let's use the geofacet package to map out the annual pill trends.
+
+```{r map, warning=F, message=F, fig.width=9, fig.height=7}
+ggplot(annual_states, aes(year, pills)) +
+  geom_col() +
+  facet_geo(~ BUYER_STATE, grid = "us_state_grid2") +
+    scale_x_continuous(labels = function(x) paste0("'", substr(x, 3, 4))) +
+  scale_y_continuous(label=comma) +
+  labs(title = "Annual oxycodone and hydrocodone pills by state",
+    caption = "Source: The Washington Post, ARCOS",
+    x = "",
+    y = "Dosage units") +
+  theme(strip.text.x = element_text(size = 6))
+```
+
+This is nice but Florida, California, and Texas stand out because of their higher population.
+
+We should normalize this with population.
+
+Get the annual state population with `state_population()`.
+
+```{r population, warning=F, message=F}
+population <- state_population(key="WaPo")
+
+kable(head(population))
+```
+
+Now, we join the two data sets.
+
+**Adjust for population**.
+
+```{r join}
+annual_states_joined <- left_join(annual_states, population) %>% 
+  filter(!is.na(population))
+
+kable(head(annual_states_joined))
+```
+
+Do some math...
+
+```{r math}
+annual_states_joined <- annual_states_joined %>% 
+  mutate(pills_per=pills/population)
+
+kable(head(annual_states_joined))
+```
+
+Map it out again this time per capita.
+
+```{r map2, warning=F, message=F, fig.width=9, fig.height=7}
+
+ggplot(annual_states_joined, aes(year, pills_per)) +
+  geom_col() +
+  facet_geo(~ BUYER_STATE, grid = "us_state_grid2") +
+    scale_x_continuous(labels = function(x) paste0("'", substr(x, 3, 4))) +
+  scale_y_continuous(label=comma) +
+  labs(title = "Annual oxycodone and hydrocodone pills per person by state",
+    caption = "Source: The Washington Post, ARCOS",
+    x = "",
+    y = "Dosage units") +
+  theme(strip.text.x = element_text(size = 6))
+```
+
+West Virginia was known but South Carolina stands out.
+
+That's because a mail order pharmarcy is listed there. 
+
+Fortunately, there's [a way to filter out those pharmacies](file://localhost/Users/trana/Documents/Github/2019/08/arcos/docs/articles/per-capita-pharmacies.html) because the Post compiled a list of pharmacies that were misidentified. 
+
+Keep that in mind when doing these.

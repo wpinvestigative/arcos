@@ -1,0 +1,3 @@
+"0","wv_joined <- wv_joined %>% "
+"0","  mutate(per_person=total_dosage_unit/average_population/7)"
+"0","datatable(wv_joined)"

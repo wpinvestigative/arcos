@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1565898011667.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CEB37F5B",
+    "lastKnownWriteTime" : 1565798990,
+    "last_content_update" : 1565798990,
+    "path" : "~/Documents/Github/2019/08/arcos/tests/testthat/test-arcos.R",
+    "project_path" : "tests/testthat/test-arcos.R",
+    "properties" : {
+        "cursorPosition" : "3,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

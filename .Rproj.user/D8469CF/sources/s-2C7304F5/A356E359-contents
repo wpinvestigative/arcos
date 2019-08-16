@@ -1,0 +1,30 @@
+secretkey <- "5uper5ecretkey"
+
+#YAY!
+pharm_cbsa(county = "Mingo", state = "WV", key = secretkey)
+county_raw(county = "Mingo", state = "WV", key = secretkey)
+county_raw_fips(fips = "01001", key = secretkey)
+pharm_counties(county = "Mingo", state = "WV", key = secretkey)
+pharm_latlon(county = "Mingo", state = "WV", key = secretkey)
+pharm_tracts(county = "Mingo", state = "WV", key = secretkey)
+pharmacy_raw(buyer_dea_no = "AB0454176", key =  secretkey)
+summarized_county_annual(county = "Mingo", state = "WV", key = secretkey)
+summarized_county_monthly(county = "Mingo", state = "WV", key = secretkey)
+buyer_details(county = "Mingo", state = "WV", key = secretkey)
+county_population(county = "Mingo", state = "WV", key = secretkey)
+buyer_addresses(county = "Mingo", state = "WV", key = secretkey)
+reporter_addresses(state = "WV", key = secretkey)
+reporter_addresses(county="Harris", state = "TX", key = secretkey)
+
+#15...
+
+#7 more...
+
+total_pharmacies_county(county="Harris", state = "TX", key = secretkey)
+total_manufacturers_county*
+total_distributors_county*
+total_pharmacies_state*
+total_manufacturers_state*
+total_distributors_state*
+combined_buyer_annual
+combined_buyer_monthly

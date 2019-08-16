@@ -1,0 +1,165 @@
+---
+title: "Per capita pharmacies"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{per-capita-pharmacies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Here's our process for calculating pills per person within a county— figures that end up in many of our [articles](https://www.washingtonpost.com/investigations/the-opioid-crisis-15-percent-of-the-pharmacies-handled-nearly-half-of-the-pills/2019/08/12/b24bd4ee-b3c7-11e9-8f6c-7828e68cb15f_story.html).
+
+First, let's load up the packages we need.
+
+There's a lot of new ones listed here so we can make fancy tables.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+packages <- c("scales", "tidyverse", "lubridate", "data.table", "formattable", "sringr", "knitr")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
+}
+
+
+library(arcos)
+library(tidyverse)
+library(lubridate)
+library(data.table)
+library(formattable)
+library(stringr)
+library(scales)
+library(knitr)
+```
+
+```
+packages <- c("scales", "tidyverse", "lubridate", "data.table", "formattable", "sringr", "knitr")
+if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
+}
+
+library(arcos)
+library(tidyverse)
+library(lubridate)
+library(data.table)
+library(formattable)
+library(vroom)
+library(stringr)
+library(scales)
+library(knitr)
+```
+
+Let's look at all pharmacies in West Virginia and their total oxycodone and hydrocodone pill orders.
+
+And use the `total_pharmacies_state()` function.
+
+```{r pull_data}
+west_virginia <- total_pharmacies_state(state="WV", key="WaPo")
+
+kable(head(west_virginia))
+```
+
+Looks nice. We've got total_dosage_unit and total_records. We can ignore total_records for this example.
+
+Each pharmacy is listed, as well as which county it resides in.
+
+To help normalize the number of pills ordered, we need to get each county's population in West Virginia.
+
+We can use the `county_population()` function.
+
+```{r population}
+population <- county_population(state="WV", key="WaPo")
+
+kable(head(population))
+```
+
+
+Alright, we have population tables but they're annual figures.
+
+We have one number for dosage per pharmacy. We don't need seven years of population data.
+
+So we'll average it out.
+
+And then join it to the pharmacy list.
+
+```{r population_refined}
+population <- population %>% 
+  group_by(BUYER_COUNTY, BUYER_STATE, countyfips) %>% 
+  # Figure out the average population between available years
+  summarize(average_population=mean(population, na.rm=T)) %>% 
+  ## Have to quickly rename these columns to make them lower case so they'll join easily to the other data frame
+  rename(buyer_county=BUYER_COUNTY, buyer_state=BUYER_STATE)
+
+## Join the data
+wv_joined <- left_join(west_virginia, population)
+
+kable(head(wv_joined))
+```
+
+Now that we've joined the county population data to each pharmacy, we can do some math to figure out the pills per person per year.
+
+That's pills / average population / 7
+
+```{r join}
+wv_joined <- wv_joined %>% 
+  mutate(per_person=total_dosage_unit/average_population/7)
+
+kable(head(wv_joined))
+```
+
+Let's make sure we're only dealing with chain and retail pharmacies.
+
+This requires some supplemental data from `buyer_addresses()` and `not_pharmacies()`
+
+```{r colors}
+
+## Get a list of addresses because it includes BUYER_BUS_ACT information
+pharmacy_list <- buyer_addresses(state="WV", key="WaPo")
+
+# We just want the BUYER_BUS_ACT to tell if these are practitioners are retail pharmacies
+# This will help us filter out the appropriate pharmacies
+
+pharmacy_list <- pharmacy_list %>% 
+  select(buyer_dea_no=BUYER_DEA_NO, BUYER_BUS_ACT)
+
+# Join to the original data set
+wv_joined <- left_join(wv_joined, pharmacy_list)
+
+# Filter the data so we only have retail and chain pharmacies
+wv_joined <- wv_joined %>% 
+  filter(BUYER_BUS_ACT=="RETAIL PHARMACY" | BUYER_BUS_ACT=="CHAIN PHARMACY")
+
+# Just in case, let's get the BUYER_DEA_NO of pharmacies that aren't really pharmacies
+not_pharms <- not_pharmacies(key="WaPo") %>% pull(BUYER_DEA_NO)
+
+# Filter those out, too, if they're in there
+wv_joined <- wv_joined %>% 
+  filter(!buyer_dea_no %in% not_pharms)
+
+# clean up column names so we can make a pretty table
+wv_joined <- wv_joined %>% 
+  select(Pharmacy=buyer_name, City=buyer_city, County=buyer_county, `County population`=average_population,
+         Pills=total_dosage_unit, `Pills per person`=per_person) %>% 
+  mutate(`County population`=round(`County population`),
+         `Pills per person`=round(`Pills per person`, 1)) %>% 
+  arrange(desc(`Pills per person`)) %>% 
+  slice(1:100)
+
+# Create some custome colors
+customGreen0 = "#DeF7E9"
+customGreen = "#71CA97"
+customRed = "#ff7f7f"
+
+# produce a table
+wv_joined %>% 
+  formattable(align=c("l", "l", "l", "r", "r", "r"),
+              list(Pharmacy = formatter("span", style = ~ style(color="grey", font.weight = "bold")),
+                   Pills=color_tile(customGreen0, customGreen),
+                   `Pills per person` = normalize_bar(customRed)
+                   ))
+```
+
+
