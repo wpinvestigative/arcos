@@ -5,7 +5,7 @@ Version: 0.8.0
 Date: 2019-08-09
 Authors@R: c(
       person(given="Steven", family="Rich", email="steven.rich@washpost.com",role=c("aut", "ctb")),
-      person(given="Andrew", middle="Ba", family="Tran", email="andrew.tran@washpost.com", role=c("aut", "cre")),
+      person(given="Andrew", family="Ba Tran", email="andrew.tran@washpost.com", role=c("aut", "cre")),
       person(given="Aaron", family="Williams", email="aaron.williams@washpost.com", role=c("aut", "ctb")),
       person(given="Jason", family="Holt", email="jason.holt@washpost.com", role=c("ctb"))
     )

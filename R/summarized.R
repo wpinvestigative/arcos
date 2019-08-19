@@ -16,12 +16,12 @@
 #' @export
 
 summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/combined_county_annual"
+  url <- "https://arcos-api.ext.nile.works/v1/combined_county_annual"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -59,12 +59,12 @@ summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo")
 #' @export
 
 summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/combined_county_monthly"
+  url <- "https://arcos-api.ext.nile.works/v1/combined_county_monthly"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -102,12 +102,12 @@ summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo"
 #' @export
 
 buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/buyer_details"
+  url <- "https://arcos-api.ext.nile.works/v1/buyer_details"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -145,12 +145,12 @@ buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/total_pharmacies_county"
+  url <- "https://arcos-api.ext.nile.works/v1/total_pharmacies_county"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -188,12 +188,12 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
 #' @export
 
 total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/total_manufacturers_county"
+  url <- "https://arcos-api.ext.nile.works/v1/total_manufacturers_county"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -231,12 +231,12 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
 #' @export
 
 total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/total_distributors_county"
+  url <- "https://arcos-api.ext.nile.works/v1/total_distributors_county"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -275,7 +275,7 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
 #' @export
 
 total_pharmacies_state <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/total_pharmacies_state"
+  url <- "https://arcos-api.ext.nile.works/v1/total_pharmacies_state"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -311,7 +311,7 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
 #' @export
 
 total_manufacturers_state <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/total_manufacturers_state"
+  url <- "https://arcos-api.ext.nile.works/v1/total_manufacturers_state"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -346,7 +346,7 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
 #' @export
 
 total_distributors_state <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/total_distributors_state"
+  url <- "https://arcos-api.ext.nile.works/v1/total_distributors_state"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -381,12 +381,12 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
 #' @export
 
 combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/combined_buyer_annual"
+  url <- "https://arcos-api.ext.nile.works/v1/combined_buyer_annual"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -425,7 +425,7 @@ combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 combined_buyer_monthly <- function(county = "Mingo", state = "WV", year=2012, key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/combined_buyer_monthly"
+  url <- "https://arcos-api.ext.nile.works/v1/combined_buyer_monthly"
 
 
   if (!missing(year)) {
@@ -436,7 +436,7 @@ combined_buyer_monthly <- function(county = "Mingo", state = "WV", year=2012, ke
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }

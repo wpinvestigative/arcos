@@ -20,12 +20,12 @@
 county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 
-  url <- "https://arcos-api.ext.nile.works/county_data"
+  url <- "https://arcos-api.ext.nile.works/v1/county_data"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
     county_name <- str_to_upper(county)
-    county_name <- gsub("-", " ", county_name)
+    #county_name <- gsub("-", " ", county_name)
     county_name <- gsub("%20", " ", county_name)
     url <- param_set(url, key = "county", value = county_name)
   }
@@ -63,7 +63,7 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 county_raw_fips <- function(fips="01001", key="WaPo") {
 
-  url <- "https://arcos-api.ext.nile.works/county_fips_data"
+  url <- "https://arcos-api.ext.nile.works/v1/county_fips_data"
 
   if (missing(key)) {
     print("Error: API key needed.")
@@ -102,7 +102,7 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
 pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
 
 
-  url <- "https://arcos-api.ext.nile.works/pharmacy_data"
+  url <- "https://arcos-api.ext.nile.works/v1/pharmacy_data"
 
   if (missing(key)) {
     print("Error: API key needed.")
@@ -138,7 +138,7 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
 raw_data <- function(key="WaPo") {
 
 
-  url <- "https://arcos-api.ext.nile.works/all_the_data"
+  url <- "https://arcos-api.ext.nile.works/v1/all_the_data"
 
   if (missing(key)) {
     print("Error: API key needed.")
