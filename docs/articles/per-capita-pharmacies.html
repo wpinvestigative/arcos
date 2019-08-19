@@ -116,13 +116,6 @@ library(knitr)</code></pre>
 <p>Let’s look at all pharmacies in West Virginia and their total oxycodone and hydrocodone pill orders.</p>
 <p>And use the <code><a href="../reference/total_pharmacies_state.html">total_pharmacies_state()</a></code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">west_virginia &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_state.html">total_pharmacies_state</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-<span class="co">#&gt; Observations: 975</span>
-<span class="co">#&gt; Variables: 7</span>
-<span class="co">#&gt; chr [5]: buyer_state, buyer_county, buyer_dea_no, buyer_name, buyer_city</span>
-<span class="co">#&gt; dbl [2]: total_dosage_unit, total_records</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call `spec()` for a copy-pastable column specification</span>
-<span class="co">#&gt; Specify the column types with `col_types` to quiet this message</span>
 
 <span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(west_virginia))</code></pre></div>
 <table class="table">

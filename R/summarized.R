@@ -161,7 +161,8 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    df <- vroom(url)
+    #df <- vroom(url)
+    df <- fromJSON(url)
     return(df)
   } else {
     print("Error: API key needed.")
@@ -204,7 +205,8 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    df <- vroom(url)
+    #df <- vroom(url)
+    df <- fromJSON(url)
     return(df)
   } else {
     print("Error: API key needed.")
@@ -247,7 +249,9 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    df <- vroom(url)
+
+    #df <- vroom(url)
+    df <- fromJSON(url)
     return(df)
   } else {
     print("Error: API key needed.")
@@ -283,7 +287,10 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    df <- vroom(url)
+
+    #df <- vroom(url)
+
+    df <- fromJSON(url)
     return(df)
   } else {
     print("Error: API key needed.")
@@ -319,7 +326,9 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    df <- vroom(url)
+
+    #df <- vroom(url)
+    df <- fromJSON(url)
     return(df)
   } else {
     print("Error: API key needed.")
@@ -354,7 +363,10 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    df <- vroom(url)
+
+    #df <- vroom(url)
+    df <- fromJSON(url)
+
     return(df)
   } else {
     print("Error: API key needed.")

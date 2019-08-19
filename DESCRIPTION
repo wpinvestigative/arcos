@@ -13,10 +13,12 @@ URL: https://github.com/wpinvestigative/arcos
 BugReports: https://github.com/wpinvestigative/arcos/issues
 Description: Accesses raw and summarized data from the 
     Drug Enforcement Administration’s 
-    Automation of Reports and Consolidated Orders System, known as ARCOS, 
-    prepared by Washington Post journalists. Based on the ARCOS API created
-    by the Post. https://arcos-api.ext.nile.works/__swagger__/
-License: ODbL + file LICENSE
+    Automation of Reports and Consolidated Orders System, a database
+    that monitors controlled substances transactions between manufacturors 
+    and distributors known as ARCOS, made public and prepared by 
+    Washington Post journalists as the ARCOS API: 
+    https://arcos-api.ext.nile.works/__swagger__/
+License: ODbL + LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:

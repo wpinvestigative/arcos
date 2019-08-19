@@ -113,13 +113,6 @@ library(scales)</code></pre>
 <p>First, let’s look at the pharmacies in Mingo, West Virginia.</p>
 <p>The total pills per pharmacy in a county can be pulled in with <code><a href="../reference/total_pharmacies_county.html">total_pharmacies_county()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mingo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span>(<span class="dt">county =</span> <span class="st">"Mingo"</span>, <span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-<span class="co">#&gt; Observations: 16</span>
-<span class="co">#&gt; Variables: 7</span>
-<span class="co">#&gt; chr [5]: buyer_state, buyer_county, buyer_dea_no, buyer_name, buyer_city</span>
-<span class="co">#&gt; dbl [2]: total_dosage_unit, total_records</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Call `spec()` for a copy-pastable column specification</span>
-<span class="co">#&gt; Specify the column types with `col_types` to quiet this message</span>
 
 <span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(mingo))</code></pre></div>
 <table class="table">
