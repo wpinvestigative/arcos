@@ -1,7 +1,7 @@
 Package: arcos
 Type: Package
 Title: Load ARCOS prescription data
-Version: 0.8.0
+Version: 0.8.2
 Date: 2019-08-09
 Authors@R: c(
       person(given="Steven", family="Rich", email="steven.rich@washpost.com",role=c("aut", "ctb")),
