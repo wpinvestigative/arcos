@@ -113,7 +113,7 @@ wv %>%
   labs(title="Oxycodone and hydrocodone pills in West Virginia", caption="Source: The Washington Post, ARCOS")
 ```
 
-Looks nice. You should probably [adjust for population](file://localhost/Users/trana/Documents/Github/2019/08/arcos/docs/articles/annual-maps.html) next.
+Looks nice. You should probably [adjust for population](https://wpinvestigative.github.io/arcos/articles/annual-maps.html) next.
 
 ```{r pop, warning=F, message=F, fig.width=9, fig.height=7}
 

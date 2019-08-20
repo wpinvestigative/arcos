@@ -1,6 +1,6 @@
 Package: arcos
 Type: Package
-Title: Load ARCOS prescription data
+Title: Load ARCOS Prescription Data Prepared by the Washington Post
 Version: 0.8.2
 Date: 2019-08-09
 Authors@R: c(
@@ -11,14 +11,12 @@ Authors@R: c(
     )
 URL: https://github.com/wpinvestigative/arcos
 BugReports: https://github.com/wpinvestigative/arcos/issues
-Description: Accesses raw and summarized data from the 
-    Drug Enforcement Administration’s 
-    Automation of Reports and Consolidated Orders System, a database
-    that monitors controlled substances transactions between manufacturors 
-    and distributors known as ARCOS, made public and prepared by 
-    Washington Post journalists as the ARCOS API: 
-    https://arcos-api.ext.nile.works/__swagger__/
-License: ODbL + LICENSE
+Description: A wrapper for the ARCOS API <https://arcos-api.ext.nile.works/__swagger__/>
+        that returns raw and summarized data frames from the 
+        Drug Enforcement Administration’s Automation of Reports and Consolidated Orders System, 
+        a database that monitors controlled substances transactions between manufacturers and 
+        distributors which was made public by The Washington Post and The Charleston Gazette-Mail.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
@@ -30,7 +28,13 @@ Suggests:
     sf,
     tigris,
     testthat (>= 2.1.0),
-    rmarkdown
+    rmarkdown,
+    data.table,
+    formattable,
+    geofacet,
+    lubridate,
+    scales,
+    viridis
 Imports:
     stringr,
     magrittr,

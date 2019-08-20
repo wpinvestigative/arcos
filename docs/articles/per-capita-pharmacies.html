@@ -115,9 +115,9 @@ library(scales)
 library(knitr)</code></pre>
 <p>Let’s look at all pharmacies in West Virginia and their total oxycodone and hydrocodone pill orders.</p>
 <p>And use the <code><a href="../reference/total_pharmacies_state.html">total_pharmacies_state()</a></code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">west_virginia &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_state.html">total_pharmacies_state</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(west_virginia))</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>west_virginia &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_state.html">total_pharmacies_state</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(west_virginia))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">buyer_state</th>
@@ -189,9 +189,9 @@ library(knitr)</code></pre>
 <p>Each pharmacy is listed, as well as which county it resides in.</p>
 <p>To help normalize the number of pills ordered, we need to get each county’s population in West Virginia.</p>
 <p>We can use the <code><a href="../reference/county_population.html">county_population()</a></code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/county_population.html">county_population</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(population))</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/county_population.html">county_population</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(population))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_COUNTY</th>
@@ -284,18 +284,18 @@ library(knitr)</code></pre>
 <p>We have one number for dosage per pharmacy. We don’t need seven years of population data.</p>
 <p>So we’ll average it out.</p>
 <p>And then join it to the pharmacy list.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span>population <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(BUYER_COUNTY, BUYER_STATE, countyfips) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># Figure out the average population between available years</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">average_population=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(population, <span class="dt">na.rm=</span>T)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>## Have to quickly rename these columns to make them lower case so they'll join easily to the other data frame
-<span class="st">  </span><span class="kw">rename</span>(<span class="dt">buyer_county=</span>BUYER_COUNTY, <span class="dt">buyer_state=</span>BUYER_STATE)
-
-## Join the data
-wv_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(west_virginia, population)
-<span class="co">#&gt; Joining, by = c("buyer_state", "buyer_county")</span>
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(wv_joined))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>population &lt;-<span class="st"> </span>population <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">group_by</span>(BUYER_COUNTY, BUYER_STATE, countyfips) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="co"># Figure out the average population between available years</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">average_population=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(population, <span class="dt">na.rm=</span>T)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="co">## Have to quickly rename these columns to make them lower case so they'll join easily to the other data frame</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">buyer_county=</span>BUYER_COUNTY, <span class="dt">buyer_state=</span>BUYER_STATE)</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">## Join the data</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>wv_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(west_virginia, population)</span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; Joining, by = c("buyer_state", "buyer_county")</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(wv_joined))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">buyer_state</th>
@@ -379,10 +379,10 @@ wv_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(west_v
 </table>
 <p>Now that we’ve joined the county population data to each pharmacy, we can do some math to figure out the pills per person per year.</p>
 <p>That’s pills / average population / 7</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">per_person=</span>total_dosage_unit<span class="op">/</span>average_population<span class="op">/</span><span class="dv">7</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(wv_joined))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">per_person=</span>total_dosage_unit<span class="op">/</span>average_population<span class="op">/</span><span class="dv">7</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(wv_joined))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">buyer_state</th>
@@ -473,52 +473,52 @@ wv_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(west_v
 </table>
 <p>Let’s make sure we’re only dealing with chain and retail pharmacies.</p>
 <p>This requires some supplemental data from <code><a href="../reference/buyer_addresses.html">buyer_addresses()</a></code> and <code><a href="../reference/not_pharmacies.html">not_pharmacies()</a></code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-## Get a list of addresses because it includes BUYER_BUS_ACT information
-pharmacy_list &lt;-<span class="st"> </span><span class="kw"><a href="../reference/buyer_addresses.html">buyer_addresses</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="co"># We just want the BUYER_BUS_ACT to tell if these are practitioners are retail pharmacies</span>
-<span class="co"># This will help us filter out the appropriate pharmacies</span>
-
-pharmacy_list &lt;-<span class="st"> </span>pharmacy_list <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="dt">buyer_dea_no=</span>BUYER_DEA_NO, BUYER_BUS_ACT)
-
-<span class="co"># Join to the original data set</span>
-wv_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(wv_joined, pharmacy_list)
-<span class="co">#&gt; Joining, by = "buyer_dea_no"</span>
-
-<span class="co"># Filter the data so we only have retail and chain pharmacies</span>
-wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(BUYER_BUS_ACT<span class="op">==</span><span class="st">"RETAIL PHARMACY"</span> <span class="op">|</span><span class="st"> </span>BUYER_BUS_ACT<span class="op">==</span><span class="st">"CHAIN PHARMACY"</span>)
-
-<span class="co"># Just in case, let's get the BUYER_DEA_NO of pharmacies that aren't really pharmacies</span>
-not_pharms &lt;-<span class="st"> </span><span class="kw"><a href="../reference/not_pharmacies.html">not_pharmacies</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(BUYER_DEA_NO)
-
-<span class="co"># Filter those out, too, if they're in there</span>
-wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span>buyer_dea_no <span class="op">%in%</span><span class="st"> </span>not_pharms)
-
-<span class="co"># clean up column names so we can make a pretty table</span>
-wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(<span class="dt">Pharmacy=</span>buyer_name, <span class="dt">City=</span>buyer_city, <span class="dt">County=</span>buyer_county, <span class="st">`</span><span class="dt">County population</span><span class="st">`</span>=average_population,
-         <span class="dt">Pills=</span>total_dosage_unit, <span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>=per_person) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">County population</span><span class="st">`</span>=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="st">`</span><span class="dt">County population</span><span class="st">`</span>),
-         <span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>, <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)
-
-<span class="co"># Create some custome colors</span>
-customGreen0 =<span class="st"> "#DeF7E9"</span>
-customGreen =<span class="st"> "#71CA97"</span>
-customRed =<span class="st"> "#ff7f7f"</span>
-
-<span class="co"># produce a table</span>
-wv_joined <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">formattable</span>(<span class="dt">align=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>),
-              <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">Pharmacy =</span> <span class="kw">formatter</span>(<span class="st">"span"</span>, <span class="dt">style =</span> <span class="op">~</span><span class="st"> </span><span class="kw">style</span>(<span class="dt">color=</span><span class="st">"grey"</span>, <span class="dt">font.weight =</span> <span class="st">"bold"</span>)),
-                   <span class="dt">Pills=</span><span class="kw">color_tile</span>(customGreen0, customGreen),
-                   <span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span> =<span class="st"> </span><span class="kw">normalize_bar</span>(customRed)
-                   ))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">## Get a list of addresses because it includes BUYER_BUS_ACT information</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>pharmacy_list &lt;-<span class="st"> </span><span class="kw"><a href="../reference/buyer_addresses.html">buyer_addresses</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co"># We just want the BUYER_BUS_ACT to tell if these are practitioners are retail pharmacies</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># This will help us filter out the appropriate pharmacies</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>pharmacy_list &lt;-<span class="st"> </span>pharmacy_list <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">buyer_dea_no=</span>BUYER_DEA_NO, BUYER_BUS_ACT)</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co"># Join to the original data set</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>wv_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(wv_joined, pharmacy_list)</span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; Joining, by = "buyer_dea_no"</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co"># Filter the data so we only have retail and chain pharmacies</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(BUYER_BUS_ACT<span class="op">==</span><span class="st">"RETAIL PHARMACY"</span> <span class="op">|</span><span class="st"> </span>BUYER_BUS_ACT<span class="op">==</span><span class="st">"CHAIN PHARMACY"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18"></a></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co"># Just in case, let's get the BUYER_DEA_NO of pharmacies that aren't really pharmacies</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>not_pharms &lt;-<span class="st"> </span><span class="kw"><a href="../reference/not_pharmacies.html">not_pharmacies</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(BUYER_DEA_NO)</span>
+<span id="cb6-21"><a href="#cb6-21"></a></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co"># Filter those out, too, if they're in there</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a>wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span>buyer_dea_no <span class="op">%in%</span><span class="st"> </span>not_pharms)</span>
+<span id="cb6-25"><a href="#cb6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="co"># clean up column names so we can make a pretty table</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a>wv_joined &lt;-<span class="st"> </span>wv_joined <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-28"><a href="#cb6-28"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">Pharmacy=</span>buyer_name, <span class="dt">City=</span>buyer_city, <span class="dt">County=</span>buyer_county, <span class="st">`</span><span class="dt">County population</span><span class="st">`</span>=average_population,</span>
+<span id="cb6-29"><a href="#cb6-29"></a>         <span class="dt">Pills=</span>total_dosage_unit, <span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>=per_person) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">County population</span><span class="st">`</span>=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="st">`</span><span class="dt">County population</span><span class="st">`</span>),</span>
+<span id="cb6-31"><a href="#cb6-31"></a>         <span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>, <span class="dv">1</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-32"><a href="#cb6-32"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)</span>
+<span id="cb6-34"><a href="#cb6-34"></a></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="co"># Create some custome colors</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a>customGreen0 =<span class="st"> "#DeF7E9"</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>customGreen =<span class="st"> "#71CA97"</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a>customRed =<span class="st"> "#ff7f7f"</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co"># produce a table</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a>wv_joined <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-42"><a href="#cb6-42"></a><span class="st">  </span><span class="kw">formattable</span>(<span class="dt">align=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>),</span>
+<span id="cb6-43"><a href="#cb6-43"></a>              <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">Pharmacy =</span> <span class="kw">formatter</span>(<span class="st">"span"</span>, <span class="dt">style =</span> <span class="op">~</span><span class="st"> </span><span class="kw">style</span>(<span class="dt">color=</span><span class="st">"grey"</span>, <span class="dt">font.weight =</span> <span class="st">"bold"</span>)),</span>
+<span id="cb6-44"><a href="#cb6-44"></a>                   <span class="dt">Pills=</span><span class="kw">color_tile</span>(customGreen0, customGreen),</span>
+<span id="cb6-45"><a href="#cb6-45"></a>                   <span class="st">`</span><span class="dt">Pills per person</span><span class="st">`</span> =<span class="st"> </span><span class="kw">normalize_bar</span>(customRed)</span>
+<span id="cb6-46"><a href="#cb6-46"></a>                   ))</span></code></pre></div>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:left;">

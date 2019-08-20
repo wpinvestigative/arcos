@@ -45,8 +45,9 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 #' Get the core-based statistical area GEOID for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)
 #'
-#' @param county Filter the data to only this county (e.g. 'Mingo')
-#' @param state Filter the data to county within this state (e.g. 'WV')
+#' @param geoid Filter the data to only this cbsa GEOD (e.g. '26580')
+#' @param county If geoid not included, filter the data to only this county (e.g. 'Mingo')
+#' @param state If geoid not included, filter the data to county within this state (e.g. 'WV')
 #' @param key Key needed to make query successful
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
@@ -54,13 +55,13 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @examples \dontrun{
 #' library(arcos)
 #'
-#' mingo_wv <- pharm_cbsa(county = "Mingo", state="WV", key="WaPo")
+#' mingo_wv <- pharm_cbsa(geoid="26580", key="WaPo")
 #'
 #' head(mingo_wv)
 #' }
 #' @export
 
-pharm_cbsa <- function(county = "Mingo", state = "WV", key="WaPo") {
+pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo") {
   url <- "https://arcos-api.ext.nile.works/v1/pharmacy_cbsa"
 
   if (!missing(county)) {
@@ -73,6 +74,10 @@ pharm_cbsa <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
+  }
+
+  if (!missing(geoid)) {
+    url <- param_set( "https://arcos-api.ext.nile.works/v1/pharmacy_cbsa", key = "geoid", value = geoid)
   }
 
   if (!missing(key)) {

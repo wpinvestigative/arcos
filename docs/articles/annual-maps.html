@@ -111,9 +111,9 @@ library(jsonlite)
 library(knitr)
 library(geofacet)
 library(scales)</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/combined_buyer_annual.html">combined_buyer_annual</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(states))</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/combined_buyer_annual.html">combined_buyer_annual</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(states))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_DEA_NO</th>
@@ -176,12 +176,12 @@ library(scales)</code></pre>
 </table>
 <p>We’ve pulled every pharmacy across the country and how many pills they sold per year.</p>
 <p>Let’s aggregate and combine by states and year.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">annual_states &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(BUYER_STATE, year) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pills=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(DOSAGE_UNIT)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(BUYER_STATE))
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(annual_states))</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>annual_states &lt;-<span class="st"> </span>states <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">group_by</span>(BUYER_STATE, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">pills=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(DOSAGE_UNIT)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(BUYER_STATE))</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(annual_states))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -222,23 +222,23 @@ library(scales)</code></pre>
 </tbody>
 </table>
 <p>Looks good. Let’s use the geofacet package to map out the annual pill trends.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(annual_states, <span class="kw">aes</span>(year, pills)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_geo</span>(<span class="op">~</span><span class="st"> </span>BUYER_STATE, <span class="dt">grid =</span> <span class="st">"us_state_grid2"</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> <span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"'"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substr">substr</a></span>(x, <span class="dv">3</span>, <span class="dv">4</span>))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Annual oxycodone and hydrocodone pills by state"</span>,
-    <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,
-    <span class="dt">x =</span> <span class="st">""</span>,
-    <span class="dt">y =</span> <span class="st">"Dosage units"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">6</span>))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">ggplot</span>(annual_states, <span class="kw">aes</span>(year, pills)) <span class="op">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">facet_geo</span>(<span class="op">~</span><span class="st"> </span>BUYER_STATE, <span class="dt">grid =</span> <span class="st">"us_state_grid2"</span>) <span class="op">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> <span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"'"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substr">substr</a></span>(x, <span class="dv">3</span>, <span class="dv">4</span>))) <span class="op">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Annual oxycodone and hydrocodone pills by state"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="dt">x =</span> <span class="st">""</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="dt">y =</span> <span class="st">"Dosage units"</span>) <span class="op">+</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">6</span>))</span></code></pre></div>
 <p><img src="annual-maps_files/figure-html/map-1.png" width="864"></p>
 <p>This is nice but Florida, California, and Texas stand out because of their higher population.</p>
 <p>We should normalize this with population.</p>
 <p>Get the annual state population with <code><a href="../reference/state_population.html">state_population()</a></code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/state_population.html">state_population</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(population))</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/state_population.html">state_population</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(population))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -280,11 +280,11 @@ library(scales)</code></pre>
 </table>
 <p>Now, we join the two data sets.</p>
 <p><strong>Adjust for population</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">annual_states_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(annual_states, population) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(population))
-<span class="co">#&gt; Joining, by = c("BUYER_STATE", "year")</span>
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(annual_states_joined))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>annual_states_joined &lt;-<span class="st"> </span><span class="kw">left_join</span>(annual_states, population) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(population))</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; Joining, by = c("BUYER_STATE", "year")</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(annual_states_joined))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -332,10 +332,10 @@ library(scales)</code></pre>
 </tbody>
 </table>
 <p>Do some math…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">annual_states_joined &lt;-<span class="st"> </span>annual_states_joined <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pills_per=</span>pills<span class="op">/</span>population)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(annual_states_joined))</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>annual_states_joined &lt;-<span class="st"> </span>annual_states_joined <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pills_per=</span>pills<span class="op">/</span>population)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(annual_states_joined))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -390,22 +390,18 @@ library(scales)</code></pre>
 </tbody>
 </table>
 <p>Map it out again this time per capita.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw">ggplot</span>(annual_states_joined, <span class="kw">aes</span>(year, pills_per)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_geo</span>(<span class="op">~</span><span class="st"> </span>BUYER_STATE, <span class="dt">grid =</span> <span class="st">"us_state_grid2"</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> <span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"'"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substr">substr</a></span>(x, <span class="dv">3</span>, <span class="dv">4</span>))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Annual oxycodone and hydrocodone pills per person by state"</span>,
-    <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,
-    <span class="dt">x =</span> <span class="st">""</span>,
-    <span class="dt">y =</span> <span class="st">"Dosage units"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">6</span>))</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">ggplot</span>(annual_states_joined, <span class="kw">aes</span>(year, pills_per)) <span class="op">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">facet_geo</span>(<span class="op">~</span><span class="st"> </span>BUYER_STATE, <span class="dt">grid =</span> <span class="st">"us_state_grid2"</span>) <span class="op">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> <span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="st">"'"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substr">substr</a></span>(x, <span class="dv">3</span>, <span class="dv">4</span>))) <span class="op">+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Annual oxycodone and hydrocodone pills per person by state"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="dt">x =</span> <span class="st">""</span>,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="dt">y =</span> <span class="st">"Dosage units"</span>) <span class="op">+</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">6</span>))</span></code></pre></div>
 <p><img src="annual-maps_files/figure-html/map2-1.png" width="864"></p>
-<p>West Virginia was known but South Carolina stands out.</p>
-<p>That’s because a mail order pharmarcy is listed there.</p>
-<p>Fortunately, there’s <a href="file://localhost/Users/trana/Documents/Github/2019/08/arcos/docs/articles/per-capita-pharmacies.html">a way to filter out those pharmacies</a> because the Post compiled a list of pharmacies that were misidentified.</p>
-<p>Keep that in mind when doing these.</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

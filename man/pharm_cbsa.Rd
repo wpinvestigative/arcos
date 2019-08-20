@@ -4,12 +4,15 @@
 \alias{pharm_cbsa}
 \title{Get the core-based statistical area GEOID for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)}
 \usage{
-pharm_cbsa(county = "Mingo", state = "WV", key = "WaPo")
+pharm_cbsa(geoid = "26580", county = "Mingo", state = "WV",
+  key = "WaPo")
 }
 \arguments{
-\item{county}{Filter the data to only this county (e.g. 'Mingo')}
+\item{geoid}{Filter the data to only this cbsa GEOD (e.g. '26580')}
 
-\item{state}{Filter the data to county within this state (e.g. 'WV')}
+\item{county}{If geoid not included, filter the data to only this county (e.g. 'Mingo')}
+
+\item{state}{If geoid not included, filter the data to county within this state (e.g. 'WV')}
 
 \item{key}{Key needed to make query successful}
 }
@@ -20,7 +23,7 @@ Get the core-based statistical area GEOID for each pharmacy based on BUYER_DEA_N
 \dontrun{
 library(arcos)
 
-mingo_wv <- pharm_cbsa(county = "Mingo", state="WV", key="WaPo")
+mingo_wv <- pharm_cbsa(geoid="26580", key="WaPo")
 
 head(mingo_wv)
 }

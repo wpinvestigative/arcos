@@ -71,7 +71,7 @@ library(arcos)
 
 ------
 
-__Available datasets (Read the [reference page](reference/index.html) for more info):__
+__Available datasets (Read the [reference page](https://wpinvestigative.github.io/arcos/reference/index.html) for more info):__
 
 |  **Function** | **What** | **Type** | **Years available** |
 | --- | --- | --- | --- |

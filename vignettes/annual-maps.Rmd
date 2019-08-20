@@ -130,10 +130,4 @@ ggplot(annual_states_joined, aes(year, pills_per)) +
   theme(strip.text.x = element_text(size = 6))
 ```
 
-West Virginia was known but South Carolina stands out.
 
-That's because a mail order pharmarcy is listed there. 
-
-Fortunately, there's [a way to filter out those pharmacies](file://localhost/Users/trana/Documents/Github/2019/08/arcos/docs/articles/per-capita-pharmacies.html) because the Post compiled a list of pharmacies that were misidentified. 
-
-Keep that in mind when doing these.

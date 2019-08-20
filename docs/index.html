@@ -5,18 +5,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Load ARCOS prescription data • arcos</title>
+<title>Load ARCOS Prescription Data Prepared by the Washington Post • arcos</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Load ARCOS prescription data">
-<meta property="og:description" content="Accesses raw and summarized data from the 
-    Drug Enforcement Administration’s 
-    Automation of Reports and Consolidated Orders System, a database
-    that monitors controlled substances transactions between manufacturors 
-    and distributors known as ARCOS, made public and prepared by 
-    Washington Post journalists as the ARCOS API: 
-    https://arcos-api.ext.nile.works/__swagger__/">
+<script src="pkgdown.js"></script><meta property="og:title" content="Load ARCOS Prescription Data Prepared by the Washington Post">
+<meta property="og:description" content="A wrapper for the ARCOS API &lt;https://arcos-api.ext.nile.works/__swagger__/&gt;
+        that returns raw and summarized data frames from the 
+        Drug Enforcement Administration’s Automation of Reports and Consolidated Orders System, 
+        a database that monitors controlled substances transactions between manufacturers and 
+        distributors which was made public by The Washington Post and The Charleston Gazette-Mail.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -91,9 +89,9 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="arcos" class="section level1">
+<div id="arcos-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#arcos" class="anchor"></a>arcos <img src="https://avatars3.githubusercontent.com/u/29076131?s=400&amp;u=0a0d9f18182017eb3398e1920b0aa9c7c0ca0e74&amp;v=4" align="right" alt="" width="120">
+<a href="#arcos-" class="anchor"></a>arcos <img src="https://avatars3.githubusercontent.com/u/29076131?s=400&amp;u=0a0d9f18182017eb3398e1920b0aa9c7c0ca0e74&amp;v=4" align="right" alt="" width="120">
 </h1></div>
 <p><img src="http://www.r-pkg.org/badges/version/arcos"><img src="http://cranlogs.r-pkg.org/badges/arcos"></p>
 <p>The Washington Post <a href="https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources">published</a> a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2012. We have reported a <a href="https://www.washingtonpost.com/national/2019/07/20/opioid-files/">number of stories</a> using this data set, but we believe there are more stories to be told.</p>
@@ -117,7 +115,7 @@ library(arcos)</a></code></pre>
 <h3 class="hasAnchor">
 <a href="#guidelines-for-using-this-data" class="anchor"></a>Guidelines for using this data</h3>
 <ul>
-<li><p>The API requires a key. <strong>Use “WaPo” as the key or use any of the keys <a href="https://github.com/wpinvestigative/arcos/blob/master/keys/keys.txt">listed here</a>. We reserve the right to blacklist these and invite users to sign up for their own individual keys in the future if the need arises.</strong> <del>To get one, fill out the form at the bottom of <a href="https://www.washingtonpost.com/national/2019/07/18/how-download-use-dea-pain-pills-database/#sub">this page</a> to establish a connection with our team and report any issues downloading the data. This will also allow us to update you with any additional information as it comes out and answer questions you may have. Because of the volume of requests, we ask you use this channel rather than emailing our reporters individually.</del></p></li>
+<li><p>The API requires a key. <strong>Use “WaPo” as the key or use any of the keys <a href="https://github.com/wpinvestigative/arcos-api/blob/master/keys/keys.txt">listed here</a>. We reserve the right to blacklist these and invite users to sign up for their own individual keys in the future if the need arises.</strong> <del>To get one, fill out the form at the bottom of <a href="https://www.washingtonpost.com/national/2019/07/18/how-download-use-dea-pain-pills-database/#sub">this page</a> to establish a connection with our team and report any issues downloading the data. This will also allow us to update you with any additional information as it comes out and answer questions you may have. Because of the volume of requests, we ask you use this channel rather than emailing our reporters individually.</del></p></li>
 <li><p>If you publish anything based on this data set, please credit The Washington Post, link to the original source, and send us an email when you’ve hit publish. We want to learn what you discover and will attempt to link to your work as part of cataloguing the impact of this project.</p></li>
 </ul>
 </div>
@@ -126,20 +124,18 @@ library(arcos)</a></code></pre>
 <a href="#about-this-data" class="anchor"></a>About this data</h3>
 <ul>
 <li><p>The Post gained access to the Drug Enforcement Administration’s Automation of Reports and Consolidated Orders System, known as ARCOS, <a href="https://www.washingtonpost.com/health/how-an-epic-legal-battle-brought-a-secret-drug-database-to-light/2019/08/02/3bc594ce-b3d4-11e9-951e-de024209545d_story.html">as the result of a court order</a>. The Post and HD Media, which publishes the Charleston Gazette-Mail in West Virginia, waged a year-long legal battle for access to the database, which the government and the drug industry had sought to keep secret.</p></li>
-<li><p>There are two levels to this API:</p></li>
-</ul>
+<li>
+<p>There are two levels to this API:</p>
 <ol>
 <li><p><strong>Raw data</strong> directly from the ARCOS database on shipments of oxycodone and hydrocodone pills to chain pharmacies, retail pharmacies and practitioners but sliced at the county- and pharmacy-level, which is easier to deal with than the 100+ gig unfiltered version (which is also <a href="#download-the-raw-data">available to download</a>).</p></li>
-<li>
-<p><strong>Summarized and supplemental data</strong> gathered by The Washington Post journalists.</p>
+<li><p><strong>Summarized and supplemental data</strong> gathered by The Washington Post journalists.</p></li>
+</ol>
 <ul>
 <li>Supplemental data such as the latitude and longitude information for nearly 83,000 chain and retail pharmacies geocoded by Post journalists, as well as Census geolocation codes.</li>
 <li>Summarized data such as on the largest distributors, manufacturers and pharmacies in your county and state, in addition to annual and monthly dosages ordered by pharmacies.</li>
 <li>We have cleaned the data to include only information on shipments of oxycodone and hydrocodone pills. We did not include data on 10 other opioids because they were shipped in much lower quantities and were diverted at far lower rates over the seven years. Diversion refers to when pills do not go directly to a patient and end up at another source, such as the black market. The Post also removed shipments that did not wind up in the hands of consumers, such as shipments from distributors to themselves. The subset of the data is very similar to how experts working on the federal court case in Ohio analyzed the data.</li>
 </ul>
 </li>
-</ol>
-<ul>
 <li><p>There are Veterans Affairs Department distribution pharmacies in Charleston, S.C., and Leavenworth, Kan., that serve the region. The DEA considers these to be retail pharmacies. However, the pills are much more likely to be spread in the region than to those counties. This is why the per capita rate of pills in those counties is far higher.</p></li>
 <li><p>It’s important to remember that the number of pills in each county does not necessarily mean those pills went to people who live in that county. The data only shows us what pharmacies the pills are shipped to and nothing else.</p></li>
 <li><p>The best way to understand the definitions of the columns and variables in this data set is to refer to the DEA’s <a href="https://www.deadiversion.usdoj.gov/arcos/handbook/full.pdf">ARCOS handbook</a>, which provides detailed descriptions of the records.</p></li>
@@ -163,13 +159,13 @@ library(arcos)</a></code></pre>
 <li><p>If you want to download the full data set released by the Ohio federal court, click <a href="https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all.tsv.gz">here</a>. This includes information on shipments of other drugs, shipments between distributors, drugs distributed to mail order pharmacies, refunded shipments, and more.</p></li>
 </ul>
 <hr>
-<p><strong>Available datasets (Read the <a href="reference/index.html">reference page</a> for more info):</strong></p>
+<p><strong>Available datasets (Read the <a href="https://wpinvestigative.github.io/arcos/reference/index.html">reference page</a> for more info):</strong></p>
 <table class="table">
 <colgroup>
-<col width="5%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
 </colgroup>
 <thead><tr class="header">
 <th><strong>Function</strong></th>
@@ -341,7 +337,8 @@ library(arcos)</a></code></pre>
 <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li>ODbL + <a href="LICENSE-text.html">LICENSE</a>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>

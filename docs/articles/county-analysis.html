@@ -112,9 +112,9 @@ library(tidyverse)
 library(scales)</code></pre>
 <p>First, let’s look at the pharmacies in Mingo, West Virginia.</p>
 <p>The total pills per pharmacy in a county can be pulled in with <code><a href="../reference/total_pharmacies_county.html">total_pharmacies_county()</a></code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mingo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span>(<span class="dt">county =</span> <span class="st">"Mingo"</span>, <span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(mingo))</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mingo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span>(<span class="dt">county =</span> <span class="st">"Mingo"</span>, <span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(mingo))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">buyer_state</th>
@@ -184,27 +184,27 @@ library(scales)</code></pre>
 </table>
 <p>Which were the most prolific pharmacies in Mingo between 2006 and 2012?</p>
 <p>Let’s chart them out.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mingo,
-       <span class="kw">aes</span>(<span class="dt">x=</span>total_dosage_unit, <span class="dt">y=</span><span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(
-       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>,
-           <span class="dt">y=</span><span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit),
-           <span class="dt">xend =</span> total_dosage_unit,
-           <span class="dt">yend =</span> <span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit)),
-           <span class="dt">color =</span> <span class="st">"gray50"</span>) <span class="op">+</span>
-<span class="st">           </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">"Dosage units"</span>, <span class="dt">y=</span><span class="st">""</span>, 
-       <span class="dt">title =</span> <span class="st">"Pills sold at Mingo, WV pharmacies"</span>,
-       <span class="dt">subtitle =</span> <span class="st">"Between 2006 and 2012"</span>,
-       <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">ggplot</span>(mingo,</span>
+<span id="cb3-2"><a href="#cb3-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>total_dosage_unit, <span class="dt">y=</span><span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit))) <span class="op">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">geom_segment</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>           <span class="dt">y=</span><span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit),</span>
+<span id="cb3-6"><a href="#cb3-6"></a>           <span class="dt">xend =</span> total_dosage_unit,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>           <span class="dt">yend =</span> <span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit)),</span>
+<span id="cb3-8"><a href="#cb3-8"></a>           <span class="dt">color =</span> <span class="st">"gray50"</span>) <span class="op">+</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="st">           </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">"Dosage units"</span>, <span class="dt">y=</span><span class="st">""</span>, </span>
+<span id="cb3-12"><a href="#cb3-12"></a>       <span class="dt">title =</span> <span class="st">"Pills sold at Mingo, WV pharmacies"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>       <span class="dt">subtitle =</span> <span class="st">"Between 2006 and 2012"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>       <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>) <span class="op">+</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/top_county_pharmacy_chart-1.png" width="864"></p>
 <p>Okay, now we can look at all the counties in West Virginia.</p>
 <p>Pull that data with <code><a href="../reference/summarized_county_annual.html">summarized_county_annual()</a></code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/summarized_county_annual.html">summarized_county_annual</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)
-
-<span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(wv))</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>wv &lt;-<span class="st"> </span><span class="kw"><a href="../reference/summarized_county_annual.html">summarized_county_annual</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(wv))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_COUNTY</th>
@@ -266,44 +266,44 @@ library(scales)</code></pre>
 </tbody>
 </table>
 <p>For easy mapping, we’ll use Census shape files pulled with the <a href="https://github.com/walkerke/tigris"><strong>Tigris</strong> package</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Set the option for shapefiles to load with sf
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">tigris_class =</span> <span class="st">"sf"</span>)
-
-## Function to download county shapefiles in West Virginia
-wv_shape &lt;-<span class="st"> </span><span class="kw">counties</span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">cb=</span>T)
-
-## Join the county dosage data we pulled
-wv &lt;-<span class="st"> </span><span class="kw">left_join</span>(wv, wv_shape, <span class="dt">by=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"countyfips"</span>=<span class="st">"GEOID"</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mapping with ggplot2, sf, and viridis</span>
-
-wv <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">geometry=</span>geometry, <span class="dt">fill =</span> DOSAGE_UNIT, <span class="dt">color =</span> DOSAGE_UNIT)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol=</span><span class="dv">2</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="dv">26915</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">'transparent'</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia"</span>, <span class="dt">caption=</span><span class="st">"Source: The Washington Post, ARCOS"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## Set the option for shapefiles to load with sf</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">tigris_class =</span> <span class="st">"sf"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">## Function to download county shapefiles in West Virginia</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>wv_shape &lt;-<span class="st"> </span><span class="kw">counties</span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">cb=</span>T)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## Join the county dosage data we pulled</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>wv &lt;-<span class="st"> </span><span class="kw">left_join</span>(wv, wv_shape, <span class="dt">by=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"countyfips"</span>=<span class="st">"GEOID"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Mapping with ggplot2, sf, and viridis</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>wv <span class="op">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">geometry=</span>geometry, <span class="dt">fill =</span> DOSAGE_UNIT, <span class="dt">color =</span> DOSAGE_UNIT)) <span class="op">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol=</span><span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="dv">26915</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">'transparent'</span>)) <span class="op">+</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia"</span>, <span class="dt">caption=</span><span class="st">"Source: The Washington Post, ARCOS"</span>)</span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/facet_map-1.png" width="864"></p>
-<p>Looks nice. You should probably <a href="file://localhost/Users/trana/Documents/Github/2019/08/arcos/docs/articles/annual-maps.html">adjust for population</a> next.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/county_population.html">county_population</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="co"># isolate the columns so it doesn't conflict in a join (there are doubles, that's why)</span>
-<span class="st">    </span><span class="kw">select</span>(countyfips, year, population)
-
-<span class="kw">left_join</span>(wv, population) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">per_person=</span>DOSAGE_UNIT<span class="op">/</span>population) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">geometry=</span>geometry, <span class="dt">fill =</span> per_person, <span class="dt">color =</span> per_person)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol=</span><span class="dv">2</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="dv">26915</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">'transparent'</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia per person"</span>, <span class="dt">caption=</span><span class="st">"Source: The Washington Post, ARCOS"</span>)</code></pre></div>
+<p>Looks nice. You should probably <a href="https://wpinvestigative.github.io/arcos/articles/annual-maps.html">adjust for population</a> next.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2"></a>population &lt;-<span class="st"> </span><span class="kw"><a href="../reference/county_population.html">county_population</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># isolate the columns so it doesn't conflict in a join (there are doubles, that's why)</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">    </span><span class="kw">select</span>(countyfips, year, population)</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="kw">left_join</span>(wv, population) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">per_person=</span>DOSAGE_UNIT<span class="op">/</span>population) <span class="op">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">geometry=</span>geometry, <span class="dt">fill =</span> per_person, <span class="dt">color =</span> per_person)) <span class="op">+</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol=</span><span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="st">  </span><span class="kw">coord_sf</span>(<span class="dt">crs =</span> <span class="dv">26915</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="st">  </span><span class="kw">scale_fill_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="st">  </span><span class="kw">scale_color_viridis</span>(<span class="dt">direction=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">label =</span> comma) <span class="op">+</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">'transparent'</span>)) <span class="op">+</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia per person"</span>, <span class="dt">caption=</span><span class="st">"Source: The Washington Post, ARCOS"</span>)</span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/pop-1.png" width="864"></p>
   </div>
 
