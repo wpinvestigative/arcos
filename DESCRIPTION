@@ -11,12 +11,12 @@ Authors@R: c(
     )
 URL: https://github.com/wpinvestigative/arcos
 BugReports: https://github.com/wpinvestigative/arcos/issues
-Description: A wrapper for the ARCOS API <https://arcos-api.ext.nile.works/__swagger__/>
+Description: A wrapper for the 'ARCOS API' <https://arcos-api.ext.nile.works/__swagger__/>
         that returns raw and summarized data frames from the 
         Drug Enforcement Administration’s Automation of Reports and Consolidated Orders System, 
         a database that monitors controlled substances transactions between manufacturers and 
         distributors which was made public by The Washington Post and The Charleston Gazette-Mail.
-License: MIT + file LICENSE
+License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 LazyData: true
 Depends:

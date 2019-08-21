@@ -97,10 +97,11 @@
     
     
 <p>Let’s look at how many pills have gone to each county in West Virginia.</p>
-<pre><code>packages &lt;- c("scales", "knitr",  "viridis", "tidyverse", "tigris")
-if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
-  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
-}
+<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Uncomment and run the lines below to see if you have the packages required already installed
+# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
+#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
+
 
 # These are all the packages you'll need to run everything below 
 
@@ -109,7 +110,7 @@ library(knitr)
 library(tigris)
 library(viridis)
 library(tidyverse)
-library(scales)</code></pre>
+library(scales)</a></code></pre>
 <p>First, let’s look at the pharmacies in Mingo, West Virginia.</p>
 <p>The total pills per pharmacy in a county can be pulled in with <code><a href="../reference/total_pharmacies_county.html">total_pharmacies_county()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mingo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span>(<span class="dt">county =</span> <span class="st">"Mingo"</span>, <span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>

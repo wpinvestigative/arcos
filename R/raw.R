@@ -40,7 +40,7 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 }
 
@@ -67,7 +67,7 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
   url <- "https://arcos-api.ext.nile.works/v1/county_fips_data"
 
   if (missing(key)) {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
     } else {
         url <- param_set(url, key = "key", value = key)
 
@@ -77,7 +77,7 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
             df <- fromJSON(url)
             return(df)
           } else {
-            print("Error: No FIPS code detected")
+            message("Error: No FIPS code detected")
           }
       }
 }
@@ -107,7 +107,7 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
   url <- "https://arcos-api.ext.nile.works/v1/pharmacy_data"
 
   if (missing(key)) {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   } else {
     url <- param_set(url, key = "key", value = key)
 
@@ -117,7 +117,7 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
       df <- fromJSON(url)
       return(df)
     } else {
-      print("Error: No BUYER_DEA_NO id detected")
+      message("Error: No BUYER_DEA_NO id detected")
     }
   }
 }
@@ -144,7 +144,7 @@ raw_data <- function(key="WaPo") {
   url <- "https://arcos-api.ext.nile.works/v1/all_the_data"
 
   if (missing(key)) {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   } else {
     url <- param_set(url, key = "key", value = key)
 

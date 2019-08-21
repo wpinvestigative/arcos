@@ -37,7 +37,7 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 
@@ -85,7 +85,7 @@ pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo"
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -127,7 +127,7 @@ pharm_tracts <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -170,7 +170,7 @@ pharm_counties <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -213,7 +213,7 @@ buyer_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -256,7 +256,7 @@ reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -300,7 +300,7 @@ county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -335,7 +335,7 @@ state_population <- function(state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -367,7 +367,7 @@ not_pharmacies <- function(key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }

@@ -19,11 +19,10 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-packages <- c("scales", "tidyverse", "lubridate", "data.table", "formattable", "sringr", "knitr")
-if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
-  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
-}
-
+# Uncomment and run the lines below to see if you have the packages required already installed
+# packages <- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 library(arcos)
 library(tidyverse)
@@ -36,10 +35,10 @@ library(knitr)
 ```
 
 ```
-packages <- c("scales", "tidyverse", "lubridate", "data.table", "formattable", "sringr", "knitr")
-if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
-  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
-}
+# Uncomment and run the lines below to see if you have the packages required already installed
+# packages <- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 library(arcos)
 library(tidyverse)

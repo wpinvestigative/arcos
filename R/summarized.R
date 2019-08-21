@@ -35,7 +35,7 @@ summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo")
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -78,7 +78,7 @@ summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo"
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -121,7 +121,7 @@ buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -165,7 +165,7 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -209,7 +209,7 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -254,7 +254,7 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -293,7 +293,7 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -331,7 +331,7 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -369,7 +369,7 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
 
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -412,7 +412,7 @@ combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }
@@ -462,7 +462,7 @@ combined_buyer_monthly <- function(county = "Mingo", state = "WV", year=2012, ke
     df <- fromJSON(url)
     return(df)
   } else {
-    print("Error: API key needed.")
+    message("Error: API key needed.")
   }
 
 }

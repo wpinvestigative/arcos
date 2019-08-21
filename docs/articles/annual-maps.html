@@ -98,10 +98,10 @@
     
 <p>How to make some quick maps with the ARCOS api.</p>
 <p>First, let’s load some packages.</p>
-<pre><code>packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
-if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
-  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
-}
+<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Uncomment and run the lines below to see if you have the packages required already installed
+# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
+#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 # These are all the packages you'll need to run everything below 
 
@@ -110,7 +110,7 @@ library(arcos)
 library(jsonlite)
 library(knitr)
 library(geofacet)
-library(scales)</code></pre>
+library(scales)</a></code></pre>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>states &lt;-<span class="st"> </span><span class="kw"><a href="../reference/combined_buyer_annual.html">combined_buyer_annual</a></span>(<span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">kable</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(states))</span></code></pre></div>

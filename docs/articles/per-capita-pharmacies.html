@@ -99,10 +99,10 @@
 <p>Here’s our process for calculating pills per person within a county— figures that end up in many of our <a href="https://www.washingtonpost.com/investigations/the-opioid-crisis-15-percent-of-the-pharmacies-handled-nearly-half-of-the-pills/2019/08/12/b24bd4ee-b3c7-11e9-8f6c-7828e68cb15f_story.html">articles</a>.</p>
 <p>First, let’s load up the packages we need.</p>
 <p>There’s a lot of new ones listed here so we can make fancy tables.</p>
-<pre><code>packages &lt;- c("scales", "tidyverse", "lubridate", "data.table", "formattable", "sringr", "knitr")
-if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
-  install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org")  
-}
+<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Uncomment and run the lines below to see if you have the packages required already installed
+# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
+#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 library(arcos)
 library(tidyverse)
@@ -112,7 +112,7 @@ library(formattable)
 library(vroom)
 library(stringr)
 library(scales)
-library(knitr)</code></pre>
+library(knitr)</a></code></pre>
 <p>Let’s look at all pharmacies in West Virginia and their total oxycodone and hydrocodone pill orders.</p>
 <p>And use the <code><a href="../reference/total_pharmacies_state.html">total_pharmacies_state()</a></code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>west_virginia &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_state.html">total_pharmacies_state</a></span>(<span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
