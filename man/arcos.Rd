@@ -9,7 +9,9 @@
 Download and use data from ARCOS, raw or summarized by the Washington Post, in R
 }
 \author{
-Andrew Ba Tran
-
 Andrew Ba Tran (@abtran)
+
+Steven Rich (@dataeditor)
+
+Aaron Williams (@aboutaaron)
 }

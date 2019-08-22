@@ -32,6 +32,7 @@ summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo")
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -75,6 +76,7 @@ summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -118,8 +120,10 @@ buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
+
   } else {
     message("Error: API key needed.")
   }
@@ -162,6 +166,7 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
     #df <- vroom(url)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -206,6 +211,7 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
     #df <- vroom(url)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -251,6 +257,7 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
     url <- param_set(url, key = "key", value = key)
 
     #df <- vroom(url)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -290,6 +297,7 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
 
     #df <- vroom(url)
 
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -328,6 +336,7 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
 
     #df <- vroom(url)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -365,6 +374,7 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
 
     #df <- vroom(url)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
 
     return(df)
@@ -409,6 +419,7 @@ combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -459,6 +470,7 @@ combined_buyer_monthly <- function(county = "Mingo", state = "WV", year=2012, ke
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {

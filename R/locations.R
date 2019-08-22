@@ -34,6 +34,8 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -82,6 +84,8 @@ pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -124,6 +128,8 @@ pharm_tracts <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -167,6 +173,8 @@ pharm_counties <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -210,6 +218,8 @@ buyer_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -253,6 +263,8 @@ reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -297,6 +309,8 @@ county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -332,6 +346,8 @@ state_population <- function(state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {
@@ -364,6 +380,8 @@ not_pharmacies <- function(key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
+    url <- gsub(" ", "%20", url)
+
     df <- fromJSON(url)
     return(df)
   } else {

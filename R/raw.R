@@ -37,6 +37,7 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
     #df <- vroom(url)
+    url <- gsub(" ", "%20", url)
     df <- fromJSON(url)
     return(df)
   } else {
@@ -74,6 +75,8 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
         if (!missing(fips)) {
             url <- param_set(url, key = "fips", value = fips)
             #df <- vroom(url)
+            url <- gsub(" ", "%20", url)
+
             df <- fromJSON(url)
             return(df)
           } else {
@@ -114,6 +117,8 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
     if (!missing(buyer_dea_no)) {
       url <- param_set(url, key = "buyer_dea_no", value = buyer_dea_no)
       #df <- vroom(url)
+      url <- gsub(" ", "%20", url)
+
       df <- fromJSON(url)
       return(df)
     } else {
@@ -149,6 +154,7 @@ raw_data <- function(key="WaPo") {
     url <- param_set(url, key = "key", value = key)
 
       df <- vroom(url)
+
       #df <- fromJSON(url)
       return(df)
   }

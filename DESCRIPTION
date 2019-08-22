@@ -7,7 +7,9 @@ Authors@R: c(
       person(given="Steven", family="Rich", email="steven.rich@washpost.com",role=c("aut", "ctb")),
       person(given="Andrew", family="Ba Tran", email="andrew.tran@washpost.com", role=c("aut", "cre")),
       person(given="Aaron", family="Williams", email="aaron.williams@washpost.com", role=c("aut", "ctb")),
-      person(given="Jason", family="Holt", email="jason.holt@washpost.com", role=c("ctb"))
+      person(given="Jason", family="Holt", email="jason.holt@washpost.com", role=c("ctb")),
+      person(given="The Washington Post", role=c("cph")),
+      person(given="The Charleston Gazette-Mail", role=c("cph"))
     )
 URL: https://github.com/wpinvestigative/arcos
 BugReports: https://github.com/wpinvestigative/arcos/issues
@@ -16,7 +18,7 @@ Description: A wrapper for the 'ARCOS API' <https://arcos-api.ext.nile.works/__s
         Drug Enforcement Administration’s Automation of Reports and Consolidated Orders System, 
         a database that monitors controlled substances transactions between manufacturers and 
         distributors which was made public by The Washington Post and The Charleston Gazette-Mail.
-License: CC BY-NC-SA 4.0
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
