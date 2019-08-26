@@ -15,7 +15,7 @@ This ARCOS package is a wrapper to utilize the [ARCOS API](https://arcos-api.ext
 Get the latest stable release from CRAN: 
 
 ```R
-install.packages("arcos")`
+install.packages("arcos")
 ```
 
 To install the development version from GitHub: 
