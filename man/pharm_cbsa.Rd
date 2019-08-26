@@ -20,7 +20,7 @@ pharm_cbsa(geoid = "26580", county = "Mingo", state = "WV",
 Get the core-based statistical area GEOID for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- pharm_cbsa(geoid="26580", key="WaPo")

@@ -15,7 +15,7 @@ total_distributors_state(state = "WV", key = "WaPo")
 Get total pills for each distributor in a state
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 wv <- total_distributors_state(state="WV", key="WaPo")

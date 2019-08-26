@@ -13,7 +13,7 @@ raw_data(key = "WaPo")
 Download raw ARCOS data (Warning 130+ GB file)
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 the_whole_thing <- raw_data(key="WaPo")

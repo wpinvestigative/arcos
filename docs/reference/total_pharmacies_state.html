@@ -162,13 +162,24 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
 
 <span class='no'>wv</span> <span class='kw'>&lt;-</span> <span class='fu'>total_pharmacies_state</span>(<span class='kw'>state</span><span class='kw'>=</span><span class='st'>"WV"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>wv</span>)
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>wv</span>)</div><div class='output co'>#&gt;   buyer_state buyer_county buyer_dea_no                    buyer_name
+#&gt; 1          WV        MINGO    BS7437064                    STROSNIDER
+#&gt; 2          WV        LOGAN    BF0660565  FAMILY DISCOUNT PHARMACY INC
+#&gt; 3          WV        MINGO    BH6954401       HURLEY DRUG COMPANY INC
+#&gt; 4          WV        MINGO    FT0251227      TUG VALLEY PHARMACY, LLC
+#&gt; 5          WV   GREENBRIER    BM8273524 FRITZ'S PHARMACY AND WELLNESS
+#&gt; 6          WV        MASON    AF6754748            FRUTH PHARMACY INC
+#&gt;       buyer_city total_dosage_unit total_records
+#&gt; 1         KERMIT          13168350          7691
+#&gt; 2      MOUNT GAY          12849040          5680
+#&gt; 3     WILLIAMSON           8890370         11138
+#&gt; 4     WILLIAMSON           8827860          5390
+#&gt; 5     RONCEVERTE           7528100         13997
+#&gt; 6 POINT PLEASANT           7317220          9193</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

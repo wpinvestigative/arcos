@@ -6,7 +6,7 @@
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- summarized_county_annual(county = "Mingo", state="WV", key="WaPo")
@@ -50,7 +50,7 @@ summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo")
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- summarized_county_monthly(county = "Mingo", state="WV", key="WaPo")
@@ -94,7 +94,7 @@ summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo"
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- buyer_details(county = "Mingo", state="WV", key="WaPo")
@@ -139,7 +139,7 @@ buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- total_pharmacies_county(county = "Mingo", state="WV", key="WaPo")
@@ -184,7 +184,7 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- total_manufacturers_county(county = "Mingo", state="WV", key="WaPo")
@@ -229,7 +229,7 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- total_distributors_county(county = "Mingo", state="WV", key="WaPo")
@@ -276,7 +276,7 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' wv <- total_pharmacies_state(state="WV", key="WaPo")
@@ -316,7 +316,7 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' wv <- total_manufacturers_state(state="WV", key="WaPo")
@@ -354,7 +354,7 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' wv <- total_distributors_state(state="WV", key="WaPo")
@@ -393,7 +393,7 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- combined_buyer_annual(county = "Mingo", state="WV", key="WaPo")
@@ -438,7 +438,7 @@ combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family summarized
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- combined_buyer_monthly(county = "Mingo", state="WV", year=2012, key="WaPo")

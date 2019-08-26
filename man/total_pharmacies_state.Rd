@@ -15,7 +15,7 @@ total_pharmacies_state(state = "WV", key = "WaPo")
 Get total pills for each pharmacy in a state
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 wv <- total_pharmacies_state(state="WV", key="WaPo")

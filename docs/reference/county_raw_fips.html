@@ -154,13 +154,80 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
 
 <span class='no'>autauga_al</span> <span class='kw'>&lt;-</span> <span class='fu'>county_raw_fips</span>(<span class='kw'>fips</span><span class='kw'>=</span><span class='st'>"01001"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>autauga_al</span>)
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>autauga_al</span>)</div><div class='output co'>#&gt;   REPORTER_DEA_NO REPORTER_BUS_ACT              REPORTER_NAME
+#&gt; 1       PB0167127      DISTRIBUTOR BLOODWORTH WHOLESALE DRUGS
+#&gt; 2       PB0167127      DISTRIBUTOR BLOODWORTH WHOLESALE DRUGS
+#&gt; 3       PB0167127      DISTRIBUTOR BLOODWORTH WHOLESALE DRUGS
+#&gt; 4       PB0167127      DISTRIBUTOR BLOODWORTH WHOLESALE DRUGS
+#&gt; 5       PB0167127      DISTRIBUTOR BLOODWORTH WHOLESALE DRUGS
+#&gt; 6       PB0167127      DISTRIBUTOR BLOODWORTH WHOLESALE DRUGS
+#&gt;   REPORTER_ADDL_CO_INFO    REPORTER_ADDRESS1 REPORTER_ADDRESS2 REPORTER_CITY
+#&gt; 1                  null 2128 YANK LAMB DRIVE     P.O. BOX 1849        TIFTON
+#&gt; 2                  null 2128 YANK LAMB DRIVE     P.O. BOX 1849        TIFTON
+#&gt; 3                  null 2128 YANK LAMB DRIVE     P.O. BOX 1849        TIFTON
+#&gt; 4                  null 2128 YANK LAMB DRIVE     P.O. BOX 1849        TIFTON
+#&gt; 5                  null 2128 YANK LAMB DRIVE     P.O. BOX 1849        TIFTON
+#&gt; 6                  null 2128 YANK LAMB DRIVE     P.O. BOX 1849        TIFTON
+#&gt;   REPORTER_STATE REPORTER_ZIP REPORTER_COUNTY BUYER_DEA_NO   BUYER_BUS_ACT
+#&gt; 1             GA        31793            TIFT    BT4725050 RETAIL PHARMACY
+#&gt; 2             GA        31793            TIFT    BT4725050 RETAIL PHARMACY
+#&gt; 3             GA        31793            TIFT    BT4725050 RETAIL PHARMACY
+#&gt; 4             GA        31793            TIFT    BT4725050 RETAIL PHARMACY
+#&gt; 5             GA        31793            TIFT    BT4725050 RETAIL PHARMACY
+#&gt; 6             GA        31793            TIFT    BT4725050 RETAIL PHARMACY
+#&gt;        BUYER_NAME BUYER_ADDL_CO_INFO   BUYER_ADDRESS1 BUYER_ADDRESS2 BUYER_CITY
+#&gt; 1 JONES DRUGS 003               null 959 EAST MAIN ST        SUITE A PRATTVILLE
+#&gt; 2 JONES DRUGS 003               null 959 EAST MAIN ST        SUITE A PRATTVILLE
+#&gt; 3 JONES DRUGS 003               null 959 EAST MAIN ST        SUITE A PRATTVILLE
+#&gt; 4 JONES DRUGS 003               null 959 EAST MAIN ST        SUITE A PRATTVILLE
+#&gt; 5 JONES DRUGS 003               null 959 EAST MAIN ST        SUITE A PRATTVILLE
+#&gt; 6 JONES DRUGS 003               null 959 EAST MAIN ST        SUITE A PRATTVILLE
+#&gt;   BUYER_STATE BUYER_ZIP BUYER_COUNTY TRANSACTION_CODE DRUG_CODE      NDC_NO
+#&gt; 1          AL     36066      AUTAUGA                S      9193 00406035905
+#&gt; 2          AL     36066      AUTAUGA                S      9193 00603388728
+#&gt; 3          AL     36066      AUTAUGA                S      9193 00603388832
+#&gt; 4          AL     36066      AUTAUGA                S      9193 00603388728
+#&gt; 5          AL     36066      AUTAUGA                S      9193 00591054005
+#&gt; 6          AL     36066      AUTAUGA                S      9193 00591054005
+#&gt;     DRUG_NAME QUANTITY UNIT ACTION_INDICATOR ORDER_FORM_NO CORRECTION_NO
+#&gt; 1 HYDROCODONE        1 null             null          null          null
+#&gt; 2 HYDROCODONE        2 null             null          null          null
+#&gt; 3 HYDROCODONE        2 null             null          null          null
+#&gt; 4 HYDROCODONE        1 null             null          null          null
+#&gt; 5 HYDROCODONE        1 null             null          null          null
+#&gt; 6 HYDROCODONE        1 null             null          null          null
+#&gt;   STRENGTH TRANSACTION_DATE CALC_BASE_WT_IN_GM DOSAGE_UNIT TRANSACTION_ID
+#&gt; 1     null         06072010             2.2702         500           1788
+#&gt; 2     null         09102010             6.0540        1000           2054
+#&gt; 3     null         06102011            12.1080        2000           2287
+#&gt; 4     null         08152011             3.0270         500           1267
+#&gt; 5     null         09132011             3.0270         500           2184
+#&gt; 6     null         10032011             3.0270         500             34
+#&gt;                           Product_Name                         Ingredient_Name
+#&gt; 1 HYDROCODONE BITARTRATE 7.5MG &amp; ACETA HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 2 HYDROCODONE.BIT./ACET.,10MG &amp; 325MG/ HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 3 HYDROCODONE.BIT &amp; ACETA  10MG &amp; 500M HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 4 HYDROCODONE.BIT./ACET.,10MG &amp; 325MG/ HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 5  HYDROCODONE BIT. 10MG/ACETAMINOPHEN HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 6  HYDROCODONE BIT. 10MG/ACETAMINOPHEN HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt;   Measure MME_Conversion_Factor Combined_Labeler_Name
+#&gt; 1     TAB                     1            SpecGx LLC
+#&gt; 2     TAB                     1    Par Pharmaceutical
+#&gt; 3     TAB                     1    Par Pharmaceutical
+#&gt; 4     TAB                     1    Par Pharmaceutical
+#&gt; 5     TAB                     1  Actavis Pharma, Inc.
+#&gt; 6     TAB                     1  Actavis Pharma, Inc.
+#&gt;         Revised_Company_Name            Reporter_family dos_str
+#&gt; 1               Mallinckrodt Bloodworth Wholesale Drugs     7.5
+#&gt; 2 Endo Pharmaceuticals, Inc. Bloodworth Wholesale Drugs    10.0
+#&gt; 3 Endo Pharmaceuticals, Inc. Bloodworth Wholesale Drugs    10.0
+#&gt; 4 Endo Pharmaceuticals, Inc. Bloodworth Wholesale Drugs    10.0
+#&gt; 5             Allergan, Inc. Bloodworth Wholesale Drugs    10.0
+#&gt; 6             Allergan, Inc. Bloodworth Wholesale Drugs    10.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

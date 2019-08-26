@@ -17,7 +17,7 @@ county_population(county = "Mingo", state = "WV", key = "WaPo")
 Get annual population for counties between 2006 and 2012
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- county_population(county = "Mingo", state="WV", key="WaPo")

@@ -17,7 +17,7 @@ reporter_addresses(county = "Mingo", state = "WV", key = "WaPo")
 Get DEA designated addresses for each Reporter based on REPORTER_DEA_NO (Includes Manufacturers and Distributors)
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- reporter_addresses(county = "Harris", state="TX", key="WaPo")

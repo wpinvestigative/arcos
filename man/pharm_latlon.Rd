@@ -17,7 +17,7 @@ pharm_latlon(county = "Mingo", state = "WV", key = "WaPo")
 Get latitude and longitude data for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- pharm_latlon(county = "Mingo", state="WV", key="WaPo")

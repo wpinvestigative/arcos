@@ -17,7 +17,7 @@ pharm_tracts(county = "Mingo", state = "WV", key = "WaPo")
 Get census tract GEOID for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- pharm_tracts(county = "Mingo", state="WV", key="WaPo")

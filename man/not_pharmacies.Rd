@@ -13,7 +13,7 @@ not_pharmacies(key = "WaPo")
 Get list of misidentified pharmacies by BUYER_DEA_NOs
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 np <- not_pharmacies(key="WaPo")

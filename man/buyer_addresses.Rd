@@ -17,7 +17,7 @@ buyer_addresses(county = "Mingo", state = "WV", key = "WaPo")
 Get DEA designated addresses for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- buyer_addresses(county = "Mingo", state="WV", key="WaPo")

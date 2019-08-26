@@ -6,7 +6,7 @@
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- pharm_latlon(county = "Mingo", state="WV", key="WaPo")
@@ -54,7 +54,7 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- pharm_cbsa(geoid="26580", key="WaPo")
@@ -102,7 +102,7 @@ pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo"
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- pharm_tracts(county = "Mingo", state="WV", key="WaPo")
@@ -147,7 +147,7 @@ pharm_tracts <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- pharm_counties(county = "Mingo", state="WV", key="WaPo")
@@ -192,7 +192,7 @@ pharm_counties <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- buyer_addresses(county = "Mingo", state="WV", key="WaPo")
@@ -237,7 +237,7 @@ buyer_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- reporter_addresses(county = "Harris", state="TX", key="WaPo")
@@ -283,7 +283,7 @@ reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- county_population(county = "Mingo", state="WV", key="WaPo")
@@ -328,7 +328,7 @@ county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' wv <- state_population(state="WV", key="WaPo")
@@ -366,7 +366,7 @@ state_population <- function(state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family geocoded data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' np <- not_pharmacies(key="WaPo")

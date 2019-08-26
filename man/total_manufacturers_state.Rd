@@ -15,7 +15,7 @@ total_manufacturers_state(state = "WV", key = "WaPo")
 Get total pills for each manufacturer in a state
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 wv <- total_manufacturers_state(state="WV", key="WaPo")

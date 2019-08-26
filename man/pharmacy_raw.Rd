@@ -15,7 +15,7 @@ pharmacy_raw(buyer_dea_no = "AB0454176", key = "WaPo")
 Data from from non-contiguous states not yet processed and available.
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 solo_pharm <- pharmacy_raw(buyer_dea_no="AB0454176", key="WaPo")

@@ -15,7 +15,7 @@ county_raw_fips(fips = "01001", key = "WaPo")
 Data from from non-contiguous states not yet processed and available.
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 autauga_al <- county_raw_fips(fips="01001", key="WaPo")

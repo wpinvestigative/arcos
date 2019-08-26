@@ -8,7 +8,7 @@
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family raw data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' mingo_wv <- county_raw(county = "Mingo", state="WV", key="WaPo")
@@ -54,7 +54,7 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family raw data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' autauga_al <- county_raw_fips(fips="01001", key="WaPo")
@@ -95,7 +95,7 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family raw data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' solo_pharm <- pharmacy_raw(buyer_dea_no="AB0454176", key="WaPo")
@@ -134,7 +134,7 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
 #' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 #'
 #' @family raw data
-#' @examples \dontrun{
+#' @examples \donttest{
 #' library(arcos)
 #'
 #' the_whole_thing <- raw_data(key="WaPo")

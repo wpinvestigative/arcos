@@ -18,7 +18,7 @@ summarized_county_annual(county = "Mingo", state = "WV",
 Get annual summarized pill totals by county
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- summarized_county_annual(county = "Mingo", state="WV", key="WaPo")

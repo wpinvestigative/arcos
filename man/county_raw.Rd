@@ -17,7 +17,7 @@ county_raw(county = "Mingo", state = "WV", key = "WaPo")
 Data from from non-contiguous states not yet processed and available.
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- county_raw(county = "Mingo", state="WV", key="WaPo")

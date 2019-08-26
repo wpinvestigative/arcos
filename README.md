@@ -1,6 +1,6 @@
 # arcos <img src="https://avatars3.githubusercontent.com/u/29076131?s=400&u=0a0d9f18182017eb3398e1920b0aa9c7c0ca0e74&v=4" align="right" alt="" width="120" />
 
-![](http://www.r-pkg.org/badges/version/arcos)  ![](http://cranlogs.r-pkg.org/badges/arcos)
+![CRAN Badge](http://www.r-pkg.org/badges/version/arcos)  ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arcos)
 
 The Washington Post [published](https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources) a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2012. We have reported a [number of stories](https://www.washingtonpost.com/national/2019/07/20/opioid-files/) using this data set, but we believe there are more stories to be told.
 
@@ -10,12 +10,19 @@ This ARCOS package is a wrapper to utilize the [ARCOS API](https://arcos-api.ext
 
 -------
 
-To install the development version from GitHub, issue the following command in R: 
+## Installation
 
+Get the latest stable release from CRAN: 
+
+```R
+install.packages("arcos")`
 ```
-devtools::install_github('wpinvestigative/arcos')
 
-library(arcos)
+To install the development version from GitHub: 
+
+```R
+# install.packages("devtools")
+devtools::install_github('wpinvestigative/arcos')
 ```
 
 ### Tips on how to use the API in R

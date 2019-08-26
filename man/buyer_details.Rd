@@ -17,7 +17,7 @@ buyer_details(county = "Mingo", state = "WV", key = "WaPo")
 Get monthly summarized pill totals by county
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- buyer_details(county = "Mingo", state="WV", key="WaPo")

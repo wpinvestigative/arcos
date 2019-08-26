@@ -20,7 +20,7 @@ combined_buyer_monthly(county = "Mingo", state = "WV", year = 2012,
 Get annual total pills for each buyer (pharmacy, etc) in a county
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- combined_buyer_monthly(county = "Mingo", state="WV", year=2012, key="WaPo")

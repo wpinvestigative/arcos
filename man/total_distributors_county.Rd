@@ -18,7 +18,7 @@ total_distributors_county(county = "Mingo", state = "WV",
 Get total pills for each distributor in a county
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 mingo_wv <- total_distributors_county(county = "Mingo", state="WV", key="WaPo")

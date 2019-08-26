@@ -15,7 +15,7 @@ state_population(state = "WV", key = "WaPo")
 Get annual population for states between 2006 and 2012
 }
 \examples{
-\dontrun{
+\donttest{
 library(arcos)
 
 wv <- state_population(state="WV", key="WaPo")

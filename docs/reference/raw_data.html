@@ -150,13 +150,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
 
-<span class='no'>the_whole_thing</span> <span class='kw'>&lt;-</span> <span class='fu'>raw_data</span>(<span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
-
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>the_whole_thing</span>)
-<span class='co'># }</span></pre>
+<span class='no'>the_whole_thing</span> <span class='kw'>&lt;-</span> <span class='fu'>raw_data</span>(<span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in vroom_(file, delim = delim, col_names = col_names, col_types = col_types,     id = id, skip = skip, col_select = col_select, na = na, quote = quote,     trim_ws = trim_ws, escape_double = escape_double, escape_backslash = escape_backslash,     comment = comment, locale = locale, guess_max = guess_max,     n_max = n_max, altrep_opts = vroom_altrep_opts(altrep_opts),     num_threads = num_threads, progress = progress): R character strings are limited to 2^31-1 bytes</span></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>the_whole_thing</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(the_whole_thing): object 'the_whole_thing' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

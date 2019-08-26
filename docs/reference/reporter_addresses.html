@@ -162,13 +162,38 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
 
 <span class='no'>mingo_wv</span> <span class='kw'>&lt;-</span> <span class='fu'>reporter_addresses</span>(<span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Harris"</span>, <span class='kw'>state</span><span class='kw'>=</span><span class='st'>"TX"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>mingo_wv</span>)
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>mingo_wv</span>)</div><div class='output co'>#&gt;                           Reporter_family REPORTER_DEA_NO REPORTER_BUS_ACT
+#&gt; 1             Great Southern Laboratories       PG0208947     MANUFACTURER
+#&gt; 2 Prof Compounding Centers of America Inc       RP0111803     MANUFACTURER
+#&gt; 3                Physician Supply Company       RP0333497      DISTRIBUTOR
+#&gt; 4                               Rally Inc       RR0305575      DISTRIBUTOR
+#&gt; 5                         Cardinal Health       RW0191407      DISTRIBUTOR
+#&gt; 6                       Avella of Houston       RA0329777     MANUFACTURER
+#&gt;                 REPORTER_NAME              REPORTER_ADDRESS1 REPORTER_CITY
+#&gt; 1 GREAT SOUTHERN LABORATORIES               10863 ROCKLEY RD       HOUSTON
+#&gt; 2 PROF COMPOUNDING CENTERS OF                    AMERICA INC       HOUSTON
+#&gt; 3    PHYSICIAN SUPPLY COMPANY 5041 SPENCER HIGHWAY SUITE 904      PASADENA
+#&gt; 4                   RALLY INC              5213 TACOMA DRIVE       HOUSTON
+#&gt; 5             CARDINAL HEALTH      7052 GRAND BLVD SUITE 112       HOUSTON
+#&gt; 6           AVELLA OF HOUSTON               9265 KIRBY DRIVE       HOUSTON
+#&gt;   REPORTER_STATE REPORTER_ZIP REPORTER_COUNTY REPORTER_ADDRESS2
+#&gt; 1             TX        77099          HARRIS              &lt;NA&gt;
+#&gt; 2             TX        77099          HARRIS  9901 S. WILCREST
+#&gt; 3             TX        77505          HARRIS              &lt;NA&gt;
+#&gt; 4             TX        77041          HARRIS        BUILDING C
+#&gt; 5             TX        77054          HARRIS              &lt;NA&gt;
+#&gt; 6             TX        77054          HARRIS              &lt;NA&gt;
+#&gt;   REPORTER_ADDL_CO_INFO
+#&gt; 1                  &lt;NA&gt;
+#&gt; 2                  &lt;NA&gt;
+#&gt; 3                  &lt;NA&gt;
+#&gt; 4                  &lt;NA&gt;
+#&gt; 5                  &lt;NA&gt;
+#&gt; 6  ADVANCED PHARMA, INC</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

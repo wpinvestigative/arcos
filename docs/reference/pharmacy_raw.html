@@ -154,13 +154,87 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
 
 <span class='no'>solo_pharm</span> <span class='kw'>&lt;-</span> <span class='fu'>pharmacy_raw</span>(<span class='kw'>buyer_dea_no</span><span class='kw'>=</span><span class='st'>"AB0454176"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>solo_pharm</span>)
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>solo_pharm</span>)</div><div class='output co'>#&gt;   REPORTER_DEA_NO REPORTER_BUS_ACT               REPORTER_NAME
+#&gt; 1       RD0320933      DISTRIBUTOR  D&amp; K HEALTHCARE RESOURCES,
+#&gt; 2       RD0320933      DISTRIBUTOR  D&amp; K HEALTHCARE RESOURCES,
+#&gt; 3       RA0223432      DISTRIBUTOR AMERISOURCEBERGEN DRUG CORP
+#&gt; 4       RA0223432      DISTRIBUTOR AMERISOURCEBERGEN DRUG CORP
+#&gt; 5       RA0223432      DISTRIBUTOR AMERISOURCEBERGEN DRUG CORP
+#&gt; 6       RA0223432      DISTRIBUTOR AMERISOURCEBERGEN DRUG CORP
+#&gt;   REPORTER_ADDL_CO_INFO                 REPORTER_ADDRESS1 REPORTER_ADDRESS2
+#&gt; 1                  null 6775 JEFFERSON METROPOLITAN  PKWY              null
+#&gt; 2                  null 6775 JEFFERSON METROPOLITAN  PKWY              null
+#&gt; 3                  null            172 CAHABA VALLEY PKWY              null
+#&gt; 4                  null            172 CAHABA VALLEY PKWY              null
+#&gt; 5                  null            172 CAHABA VALLEY PKWY              null
+#&gt; 6                  null            172 CAHABA VALLEY PKWY              null
+#&gt;   REPORTER_CITY REPORTER_STATE REPORTER_ZIP REPORTER_COUNTY BUYER_DEA_NO
+#&gt; 1       MCCALLA             AL        35111       JEFFERSON    AB0454176
+#&gt; 2       MCCALLA             AL        35111       JEFFERSON    AB0454176
+#&gt; 3        PELHAM             AL        35124          SHELBY    AB0454176
+#&gt; 4        PELHAM             AL        35124          SHELBY    AB0454176
+#&gt; 5        PELHAM             AL        35124          SHELBY    AB0454176
+#&gt; 6        PELHAM             AL        35124          SHELBY    AB0454176
+#&gt;     BUYER_BUS_ACT            BUYER_NAME         BUYER_ADDL_CO_INFO
+#&gt; 1 RETAIL PHARMACY BLOUNTSVILLE PHARMACY YEAGER JAMES F OWNERCOR HW
+#&gt; 2 RETAIL PHARMACY BLOUNTSVILLE PHARMACY YEAGER JAMES F OWNERCOR HW
+#&gt; 3 RETAIL PHARMACY BLOUNTSVILLE PHARMACY YEAGER JAMES F OWNERCOR HW
+#&gt; 4 RETAIL PHARMACY BLOUNTSVILLE PHARMACY YEAGER JAMES F OWNERCOR HW
+#&gt; 5 RETAIL PHARMACY BLOUNTSVILLE PHARMACY YEAGER JAMES F OWNERCOR HW
+#&gt; 6 RETAIL PHARMACY BLOUNTSVILLE PHARMACY YEAGER JAMES F OWNERCOR HW
+#&gt;   BUYER_ADDRESS1 BUYER_ADDRESS2   BUYER_CITY BUYER_STATE BUYER_ZIP BUYER_COUNTY
+#&gt; 1   P.O. BOX 250  69005 MAIN ST BLOUNTSVILLE          AL     35031       BLOUNT
+#&gt; 2   P.O. BOX 250  69005 MAIN ST BLOUNTSVILLE          AL     35031       BLOUNT
+#&gt; 3   P.O. BOX 250  69005 MAIN ST BLOUNTSVILLE          AL     35031       BLOUNT
+#&gt; 4   P.O. BOX 250  69005 MAIN ST BLOUNTSVILLE          AL     35031       BLOUNT
+#&gt; 5   P.O. BOX 250  69005 MAIN ST BLOUNTSVILLE          AL     35031       BLOUNT
+#&gt; 6   P.O. BOX 250  69005 MAIN ST BLOUNTSVILLE          AL     35031       BLOUNT
+#&gt;   TRANSACTION_CODE DRUG_CODE      NDC_NO   DRUG_NAME QUANTITY UNIT
+#&gt; 1                S      9193 00603388832 HYDROCODONE        1 null
+#&gt; 2                S      9193 00603388921 HYDROCODONE        1 null
+#&gt; 3                S      9193 50474090701 HYDROCODONE        2 null
+#&gt; 4                S      9193 00591054005 HYDROCODONE        2 null
+#&gt; 5                S      9193 00591085305 HYDROCODONE        1 null
+#&gt; 6                S      9193 00591054005 HYDROCODONE        2 null
+#&gt;   ACTION_INDICATOR ORDER_FORM_NO CORRECTION_NO STRENGTH TRANSACTION_DATE
+#&gt; 1             null          null          null     0000         01052006
+#&gt; 2             null          null          null     0000         02222006
+#&gt; 3             null          null          null     null         08022006
+#&gt; 4             null          null          null     null         08252006
+#&gt; 5             null          null          null     null         08302007
+#&gt; 6             null          null          null     null         08082007
+#&gt;   CALC_BASE_WT_IN_GM DOSAGE_UNIT TRANSACTION_ID
+#&gt; 1             6.0540        1000      601002710
+#&gt; 2             0.4540         100      602015099
+#&gt; 3             0.9081         200          21678
+#&gt; 4             6.0540        1000           9007
+#&gt; 5             3.0270         500          10795
+#&gt; 6             6.0540        1000           9555
+#&gt;                           Product_Name                         Ingredient_Name
+#&gt; 1 HYDROCODONE.BIT &amp; ACETA  10MG &amp; 500M HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 2 HYDROCODONE.BIT 7.5MG/ACETAMINAOPHEN HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 3 LORTAB 7.5MG HYDROCODONE.BIT / 500MG HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 4  HYDROCODONE BIT. 10MG/ACETAMINOPHEN HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 5  HYDROCODONE BIT. 10MG/ACETAMINOPHEN HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt; 6  HYDROCODONE BIT. 10MG/ACETAMINOPHEN HYDROCODONE BITARTRATE HEMIPENTAHYDRATE
+#&gt;   Measure MME_Conversion_Factor Combined_Labeler_Name
+#&gt; 1     TAB                     1    Par Pharmaceutical
+#&gt; 2     TAB                     1    Par Pharmaceutical
+#&gt; 3     TAB                     1             UCB, Inc.
+#&gt; 4     TAB                     1  Actavis Pharma, Inc.
+#&gt; 5     TAB                     1  Actavis Pharma, Inc.
+#&gt; 6     TAB                     1  Actavis Pharma, Inc.
+#&gt;         Revised_Company_Name            Reporter_family dos_str
+#&gt; 1 Endo Pharmaceuticals, Inc. D &amp; K Healthcare Resources    10.0
+#&gt; 2 Endo Pharmaceuticals, Inc. D &amp; K Healthcare Resources     7.5
+#&gt; 3                  UCB, Inc.     AmerisourceBergen Drug     7.5
+#&gt; 4             Allergan, Inc.     AmerisourceBergen Drug    10.0
+#&gt; 5             Allergan, Inc.     AmerisourceBergen Drug    10.0
+#&gt; 6             Allergan, Inc.     AmerisourceBergen Drug    10.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
