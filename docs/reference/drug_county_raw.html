@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get DEA designated addresses for each Reporter based on REPORTER_DEA_NO (Includes Manufacturers and Distributors) — pharm_addresses • arcos</title>
+<title>Download raw prescription data for individual drugs by specified county (by state and county names) into R — drug_county_raw • arcos</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Get DEA designated addresses for each Reporter based on REPORTER_DEA_NO (Includes Manufacturers and Distributors) — pharm_addresses" />
+<meta property="og:title" content="Download raw prescription data for individual drugs by specified county (by state and county names) into R — drug_county_raw" />
 
-<meta property="og:description" content="Get DEA designated addresses for each Reporter based on REPORTER_DEA_NO (Includes Manufacturers and Distributors)" />
+<meta property="og:description" content="Data from from non-contiguous states not yet processed and available." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9</span>
       </span>
     </div>
 
@@ -94,9 +94,6 @@
     <li>
       <a href="../articles/per-capita-pharmacies.html">Per capita pharmacies</a>
     </li>
-    <li>
-      <a href="../articles/top-charts.html">Top charts</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -123,22 +120,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get DEA designated addresses for each Reporter based on REPORTER_DEA_NO (Includes Manufacturers and Distributors)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wpinvestigative/arcos/blob/master/R/locations.R'><code>R/locations.R</code></a></small>
-    <div class="hidden name"><code>pharm_addresses.Rd</code></div>
+    <h1>Download raw prescription data for individual drugs by specified county (by state and county names) into R</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wpinvestigative/arcos/blob/master/R/raw.R'><code>R/raw.R</code></a></small>
+    <div class="hidden name"><code>drug_county_raw.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get DEA designated addresses for each Reporter based on REPORTER_DEA_NO (Includes Manufacturers and Distributors)</p>
+    <p>Data from from non-contiguous states not yet processed and available.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>pharm_addresses</span>(<span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Mingo"</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"WV"</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"FakeKey"</span>)</pre>
+    <pre class="usage"><span class='fu'>drug_county_raw</span>(<span class='kw'>drug</span> <span class='kw'>=</span> <span class='st'>"Oxycodone"</span>, <span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Mingo"</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"WV"</span>,
+  <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"WaPo"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>drug</th>
+      <td><p>Filter the data to one of 14 available drugs in the database (e.g. 'OXYCODONE')</p></td>
+    </tr>
     <tr>
       <th>county</th>
       <td><p>Filter the data to only this county (e.g. 'Mingo')</p></td>
@@ -156,20 +158,17 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources'>https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources</a></p>
-<p>Other geocoded data: <code><a href='buyer_addresses.html'>buyer_addresses</a></code>,
-  <code><a href='county_population.html'>county_population</a></code>,
-  <code><a href='pharm_cbsa.html'>pharm_cbsa</a></code>, <code><a href='pharm_counties.html'>pharm_counties</a></code>,
-  <code><a href='pharm_latlon.html'>pharm_latlon</a></code>, <code><a href='pharm_tracts.html'>pharm_tracts</a></code></p></div>
+<p>Other raw data: <code><a href='county_list.html'>county_list</a></code>,
+  <code><a href='county_raw_fips.html'>county_raw_fips</a></code>, <code><a href='county_raw.html'>county_raw</a></code>,
+  <code><a href='drug_county_fips.html'>drug_county_fips</a></code>, <code><a href='drug_list.html'>drug_list</a></code>,
+  <code><a href='pharmacy_raw.html'>pharmacy_raw</a></code>, <code><a href='raw_data.html'>raw_data</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
 
-<span class='no'>mingo_wv</span> <span class='kw'>&lt;-</span> <span class='fu'>reporter_addresses</span>(<span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Mingo"</span>, <span class='kw'>state</span><span class='kw'>=</span><span class='st'>"WV"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"Fak3K3y"</span>)
-
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>mingo_wv</span>)
-<span class='co'># }</span></pre>
+<span class='no'>mingo_wv_oxy</span> <span class='kw'>&lt;-</span> <span class='fu'>drug_county_raw</span>(<span class='kw'>drug</span><span class='kw'>=</span><span class='st'>"Oxycodone"</span>, <span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Mingo"</span>, <span class='kw'>state</span><span class='kw'>=</span><span class='st'>"WV"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in drug_county_raw(drug = "Oxycodone", county = "Mingo", state = "WV",     key = "WaPo"): could not find function "drug_county_raw"</span></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>mingo_wv</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(mingo_wv): object 'mingo_wv' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -186,7 +185,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Andrew Ba Tran, Steven Rich, Aaron Williams.</p>
+  <p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
 </div>
 
 <div class="pkgdown">

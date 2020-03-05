@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -94,9 +94,9 @@
 <a href="#arcos-" class="anchor"></a>arcos <img src="https://avatars3.githubusercontent.com/u/29076131?s=400&amp;u=0a0d9f18182017eb3398e1920b0aa9c7c0ca0e74&amp;v=4" align="right" alt="" width="120">
 </h1></div>
 <p><img src="http://www.r-pkg.org/badges/version/arcos" alt="CRAN Badge"><img src="http://cranlogs.r-pkg.org/badges/arcos" alt="CRAN Downloads"></p>
-<p>The Washington Post <a href="https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources">published</a> a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2012. We have reported a <a href="https://www.washingtonpost.com/national/2019/07/20/opioid-files/">number of stories</a> using this data set, but we believe there are more stories to be told.</p>
+<p>The Washington Post <a href="https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources">published</a> a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2014. We have reported a <a href="https://www.washingtonpost.com/national/2019/07/20/opioid-files/">number of stories</a> using this data set, but we believe there are more stories to be told.</p>
 <p>We are making this data accessible <a href="https://arcos-api.ext.nile.works/__swagger__/">as an API</a> for everyone to download and <a href="https://www.washingtonpost.com/national/2019/08/12/post-released-deas-data-pain-pills-heres-what-local-journalists-are-using-it/">use in their reporting</a> or research to promote a deeper understanding of the regional and local effects of the opioid crisis.</p>
-<p>This ARCOS package is a wrapper to utilize the <a href="https://arcos-api.ext.nile.works/__swagger__/">ARCOS API</a>.</p>
+<p>This ARCOS package is a wrapper to utilize the <a href="https://arcos-api.ext.nile.works/__swagger__/">ARCOS API</a>. There is also a Python wrapper: <a href="https://pypi.org/project/arcospy/">arcospy</a></p>
 <hr>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -143,7 +143,6 @@
 <li><p>There are Veterans Affairs Department distribution pharmacies in Charleston, S.C., and Leavenworth, Kan., that serve the region. The DEA considers these to be retail pharmacies. However, the pills are much more likely to be spread in the region than to those counties. This is why the per capita rate of pills in those counties is far higher.</p></li>
 <li><p>It’s important to remember that the number of pills in each county does not necessarily mean those pills went to people who live in that county. The data only shows us what pharmacies the pills are shipped to and nothing else.</p></li>
 <li><p>The best way to understand the definitions of the columns and variables in this data set is to refer to the DEA’s <a href="https://www.deadiversion.usdoj.gov/arcos/handbook/full.pdf">ARCOS handbook</a>, which provides detailed descriptions of the records.</p></li>
-<li><p>We’ve been asked why we don’t have more recent data. The answer: The DEA only produced data from 2006 through 2014 in the case. We know that 2013 and 2014 data exists, but we have not been able to get access because of the ongoing court case in Ohio. The Post is still fighting for its release.</p></li>
 </ul>
 </div>
 <div id="alternate-ways-to-download-summarized-data" class="section level3">
@@ -166,161 +165,253 @@
 <p><strong>Available datasets (Read the <a href="https://wpinvestigative.github.io/arcos/reference/index.html">reference page</a> for more info):</strong></p>
 <table class="table">
 <colgroup>
-<col width="25%">
-<col width="25%">
-<col width="25%">
-<col width="25%">
+<col width="28%">
+<col width="31%">
+<col width="5%">
+<col width="5%">
+<col width="9%">
+<col width="20%">
 </colgroup>
 <thead><tr class="header">
-<th><strong>Function</strong></th>
-<th><strong>What</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Years available</strong></th>
+<th>Function</th>
+<th>What</th>
+<th>Type</th>
+<th>Years</th>
+<th>Drugs</th>
+<th>Buyers</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>buyer_addresses()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/buyer_addresses.html">buyer_addresses()</a></td>
 <td>Get DEA designated addresses for each pharmacy</td>
 <td>Raw</td>
 <td></td>
+<td>All</td>
+<td>All</td>
 </tr>
 <tr class="even">
-<td>buyer_details()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/buyer_details.html">buyer_details()</a></td>
 <td>Get monthly summarized pill totals by county</td>
 <td>Summarized</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
 <tr class="odd">
-<td>combined_buyer_annual()</td>
-<td>Get annual total pills for each buyer (pharmacy, etc) in a county</td>
-<td>Summarized</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/buyer_list.html">buyer_list()</a></td>
+<td>Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database</td>
+<td>Raw</td>
+<td>2006 - 2014</td>
+<td></td>
+<td>All</td>
 </tr>
 <tr class="even">
-<td>combined_buyer_monthly()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/combined_buyer_annual.html">combined_buyer_annual()</a></td>
 <td>Get annual total pills for each buyer (pharmacy, etc) in a county</td>
 <td>Summarized</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
 <tr class="odd">
-<td>county_population()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/combined_buyer_monthly.html">combined_buyer_monthly()</a></td>
+<td>Get annual total pills for each buyer (pharmacy, etc) in a county</td>
+<td>Summarized</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
+</tr>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/county_list.html">county_list()</a></td>
+<td>Get list of counties and states and fips codes represented in the ARCOS data</td>
+<td>Raw</td>
+<td>2006 - 2014</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/county_population.html">county_population()</a></td>
 <td>Get annual population for counties between 2006 and 2012</td>
 <td>Supplemental</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
 <tr class="even">
-<td>county_raw()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/county_raw.html">county_raw()</a></td>
 <td>Download raw prescription data for specified county (by state and county names)</td>
 <td>Raw</td>
 <td></td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
 <tr class="odd">
-<td>county_raw_fips()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/county_raw_fips.html">county_raw_fips()</a></td>
 <td>Download raw prescription data for specified county (by county FIPS code)</td>
 <td>Raw</td>
 <td></td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
 <tr class="even">
-<td>not_pharmacies()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/drug_county_biz.html">drug_county_biz()</a></td>
+<td>Raw data by county and individual drug and business type</td>
+<td>Raw</td>
+<td>2006 - 2014</td>
+<td>All</td>
+<td>All</td>
+</tr>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/drug_county_raw.html">drug_county_raw()</a></td>
+<td>Raw data by county and individual drug and business type via fips code</td>
+<td>Raw</td>
+<td>2006 - 2014</td>
+<td>All</td>
+<td>All</td>
+</tr>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/drug_list.html">drug_list()</a></td>
+<td>Get list of the 14 drugs tracked in the ARCOS data</td>
+<td>Raw</td>
+<td>2006 - 2014</td>
+<td>All</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/not_pharmacies.html">not_pharmacies()</a></td>
 <td>Get list of misidentified pharmacies by BUYER_DEA_NOs</td>
 <td>Supplemental</td>
+<td>2006 - 2012</td>
 <td></td>
+<td>Retail Pharmacy, Chain Pharmacy</td>
 </tr>
-<tr class="odd">
-<td>pharm_cbsa()</td>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/pharm_cbsa.html">pharm_cbsa()</a></td>
 <td>Get the core-based statistical area GEOID for each pharmacy</td>
 <td>Supplemental</td>
+<td>2006 - 2014</td>
 <td></td>
+<td>Retail Pharmacy, Chain Pharmacy</td>
 </tr>
-<tr class="even">
-<td>pharm_counties()</td>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/pharm_counties.html">pharm_counties()</a></td>
 <td>Get county GEOID for each pharmacy</td>
 <td>Supplemental</td>
+<td>2006 - 2014</td>
 <td></td>
+<td>Retail Pharmacy, Chain Pharmacy</td>
 </tr>
-<tr class="odd">
-<td>pharm_latlon()</td>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/pharm_latlon.html">pharm_latlon()</a></td>
 <td>Get latitude and longitude data for each pharmacy</td>
 <td>Supplemental</td>
+<td>2006 - 2014</td>
 <td></td>
+<td>Retail Pharmacy, Chain Pharmacy</td>
 </tr>
-<tr class="even">
-<td>pharm_tracts()</td>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/pharm_tracts.html">pharm_tracts()</a></td>
 <td>Get census tract GEOID for each pharmacy</td>
 <td>Supplemental</td>
+<td>2006 - 2014</td>
 <td></td>
+<td>Retail Pharmacy, Chain Pharmacy</td>
 </tr>
-<tr class="odd">
-<td>pharmacy_raw()</td>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/pharmacy_raw.html">pharmacy_raw()</a></td>
 <td>Download raw prescription data for specified pharmacy into R</td>
 <td>Raw</td>
-<td></td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy</td>
 </tr>
-<tr class="even">
-<td>raw_data()</td>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/raw_data.html">raw_data()</a></td>
 <td>Download raw ARCOS data</td>
 <td>Raw</td>
-<td></td>
+<td>2006 - 2014</td>
+<td>All</td>
+<td>All</td>
 </tr>
-<tr class="odd">
-<td>reporter_addresses()</td>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/reporter_addresses.html">reporter_addresses()</a></td>
 <td>Get DEA designated addresses for each Reporter</td>
 <td>Raw</td>
+<td>2006 - 2014</td>
+<td>All</td>
+<td>All</td>
+</tr>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/state_population.html">state_population()</a></td>
+<td>Get annual population for states between 2006 and 2014</td>
+<td>Supplemental</td>
+<td>2006 - 2014</td>
+<td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>state_population()</td>
-<td>Get annual population for states between 2006 and 2012</td>
-<td>Supplemental</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
-</tr>
-<tr class="odd">
-<td>summarized_county_annual()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/summarized_county_annual.html">summarized_county_annual()</a></td>
 <td>Get annual summarized pill totals by county</td>
 <td>Summarized</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
-<tr class="even">
-<td>summarized_county_monthly()</td>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/summarized_county_monthly.html">summarized_county_monthly()</a></td>
 <td>Get monthly summarized pill totals by county</td>
 <td>Summarized</td>
-<td>2006, 2007, 2008, 2009, 2010, 2011, 2012</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
-<tr class="odd">
-<td>total_distributors_county()</td>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/total_distributors_county.html">total_distributors_county()</a></td>
 <td>Get total pills for each distributor in a county</td>
 <td>Summarized</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
 <td></td>
 </tr>
-<tr class="even">
-<td>total_distributors_state()</td>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/total_distributors_state.html">total_distributors_state()</a></td>
 <td>Get total pills for each distributor in a state</td>
 <td>Summarized</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
 <td></td>
 </tr>
-<tr class="odd">
-<td>total_manufacturers_county()</td>
+<tr class="even">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/total_manufacturers_county.html">total_manufacturers_county()</a></td>
 <td>Get total pills for each manufacturer in a county</td>
 <td>Summarized</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>total_manufacturers_state()</td>
-<td>Get total pills for each manufacturer in a state</td>
-<td>Summarized</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>total_pharmacies_county()</td>
-<td>Get total pills for each pharmacy in a county</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/total_manufacturers_state.html">total_manufacturers_state()</a></td>
+<td>Get total pills for each manufacturer in a state</td>
 <td>Summarized</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
 <td></td>
 </tr>
 <tr class="even">
-<td>total_pharmacies_state()</td>
+<td><a href="https://wpinvestigative.github.io/arcos/reference/total_pharmacies_county.html">total_pharmacies_county()</a></td>
+<td>Get total pills for each pharmacy in a county</td>
+<td>Summarized</td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
+</tr>
+<tr class="odd">
+<td><a href="https://wpinvestigative.github.io/arcos/reference/total_pharmacies_state.html">total_pharmacies_state()</a></td>
 <td>Get total pills for each pharmacy in a state</td>
 <td>Summarized</td>
-<td></td>
+<td>2006 - 2014</td>
+<td>Oxycodone &amp; Hydrocodone</td>
+<td>Retail Pharmacy, Chain Pharmacy, and Practitioners</td>
 </tr>
 </tbody>
 </table>

@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -99,13 +99,14 @@
 <p>How to make some quick maps with the ARCOS api.</p>
 <p>First, let’s load some packages.</p>
 <pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Uncomment and run the lines below to see if you have the packages required already installed
-# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# packages &lt;- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")
 # if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 # These are all the packages you'll need to run everything below 
 
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(arcos)
 library(jsonlite)
 library(knitr)
@@ -197,27 +198,27 @@ library(scales)</a></code></pre>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2006</td>
-<td align="right">15720610</td>
+<td align="right">15667010</td>
 </tr>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2007</td>
-<td align="right">17350433</td>
+<td align="right">17272433</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2008</td>
-<td align="right">18820491</td>
+<td align="right">18707811</td>
 </tr>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2009</td>
-<td align="right">20266809</td>
+<td align="right">20160949</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2010</td>
-<td align="right">21097203</td>
+<td align="right">21012703</td>
 </tr>
 </tbody>
 </table>
@@ -296,37 +297,37 @@ library(scales)</a></code></pre>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2006</td>
-<td align="right">15720610</td>
+<td align="right">15667010</td>
 <td align="right">675302</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2007</td>
-<td align="right">17350433</td>
+<td align="right">17272433</td>
 <td align="right">680300</td>
 </tr>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2008</td>
-<td align="right">18820491</td>
+<td align="right">18707811</td>
 <td align="right">687455</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2009</td>
-<td align="right">20266809</td>
+<td align="right">20160949</td>
 <td align="right">683142</td>
 </tr>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2010</td>
-<td align="right">21097203</td>
+<td align="right">21012703</td>
 <td align="right">691189</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2011</td>
-<td align="right">22551775</td>
+<td align="right">22444775</td>
 <td align="right">700703</td>
 </tr>
 </tbody>
@@ -348,44 +349,44 @@ library(scales)</a></code></pre>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2006</td>
-<td align="right">15720610</td>
+<td align="right">15667010</td>
 <td align="right">675302</td>
-<td align="right">23.27938</td>
+<td align="right">23.20001</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2007</td>
-<td align="right">17350433</td>
+<td align="right">17272433</td>
 <td align="right">680300</td>
-<td align="right">25.50409</td>
+<td align="right">25.38944</td>
 </tr>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2008</td>
-<td align="right">18820491</td>
+<td align="right">18707811</td>
 <td align="right">687455</td>
-<td align="right">27.37705</td>
+<td align="right">27.21314</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2009</td>
-<td align="right">20266809</td>
+<td align="right">20160949</td>
 <td align="right">683142</td>
-<td align="right">29.66705</td>
+<td align="right">29.51209</td>
 </tr>
 <tr class="odd">
 <td align="left">AK</td>
 <td align="right">2010</td>
-<td align="right">21097203</td>
+<td align="right">21012703</td>
 <td align="right">691189</td>
-<td align="right">30.52306</td>
+<td align="right">30.40081</td>
 </tr>
 <tr class="even">
 <td align="left">AK</td>
 <td align="right">2011</td>
-<td align="right">22551775</td>
+<td align="right">22444775</td>
 <td align="right">700703</td>
-<td align="right">32.18450</td>
+<td align="right">32.03180</td>
 </tr>
 </tbody>
 </table>

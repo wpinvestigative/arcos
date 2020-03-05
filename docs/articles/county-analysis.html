@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@
     
 <p>Let’s look at how many pills have gone to each county in West Virginia.</p>
 <pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Uncomment and run the lines below to see if you have the packages required already installed
-# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales", "forcats")
 # if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
@@ -109,8 +109,10 @@ library(arcos)
 library(knitr)
 library(tigris)
 library(viridis)
-library(tidyverse)
-library(scales)</a></code></pre>
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(forcats)</a></code></pre>
 <p>First, let’s look at the pharmacies in Mingo, West Virginia.</p>
 <p>The total pills per pharmacy in a county can be pulled in with <code><a href="../reference/total_pharmacies_county.html">total_pharmacies_county()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mingo &lt;-<span class="st"> </span><span class="kw"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span>(<span class="dt">county =</span> <span class="st">"Mingo"</span>, <span class="dt">state=</span><span class="st">"WV"</span>, <span class="dt">key=</span><span class="st">"WaPo"</span>)</span>
@@ -183,7 +185,7 @@ library(scales)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Which were the most prolific pharmacies in Mingo between 2006 and 2012?</p>
+<p>Which were the most prolific pharmacies in Mingo between 2006 and 2014?</p>
 <p>Let’s chart them out.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">ggplot</span>(mingo,</span>
 <span id="cb3-2"><a href="#cb3-2"></a>       <span class="kw">aes</span>(<span class="dt">x=</span>total_dosage_unit, <span class="dt">y=</span><span class="kw">fct_reorder</span>(buyer_name, total_dosage_unit))) <span class="op">+</span></span>
@@ -197,7 +199,7 @@ library(scales)</a></code></pre>
 <span id="cb3-10"><a href="#cb3-10"></a><span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">label=</span>comma) <span class="op">+</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">"Dosage units"</span>, <span class="dt">y=</span><span class="st">""</span>, </span>
 <span id="cb3-12"><a href="#cb3-12"></a>       <span class="dt">title =</span> <span class="st">"Pills sold at Mingo, WV pharmacies"</span>,</span>
-<span id="cb3-13"><a href="#cb3-13"></a>       <span class="dt">subtitle =</span> <span class="st">"Between 2006 and 2012"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>       <span class="dt">subtitle =</span> <span class="st">"Between 2006 and 2014"</span>,</span>
 <span id="cb3-14"><a href="#cb3-14"></a>       <span class="dt">caption =</span> <span class="st">"Source: The Washington Post, ARCOS"</span>) <span class="op">+</span></span>
 <span id="cb3-15"><a href="#cb3-15"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/top_county_pharmacy_chart-1.png" width="864"></p>

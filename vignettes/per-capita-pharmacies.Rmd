@@ -20,12 +20,13 @@ knitr::opts_chunk$set(
 )
 
 # Uncomment and run the lines below to see if you have the packages required already installed
-# packages <- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# packages <- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")
 # if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 library(arcos)
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(lubridate)
 library(data.table)
 library(formattable)
@@ -36,12 +37,12 @@ library(knitr)
 
 ```
 # Uncomment and run the lines below to see if you have the packages required already installed
-# packages <- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# packages <- c("dplyr", "jsonlite", "knitr", "geofacet", "scales")
 # if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 library(arcos)
-library(tidyverse)
+library(dplyr)
 library(lubridate)
 library(data.table)
 library(formattable)

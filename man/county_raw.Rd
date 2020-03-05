@@ -14,7 +14,7 @@ county_raw(county = "Mingo", state = "WV", key = "WaPo")
 \item{key}{Key needed to make query successful}
 }
 \description{
-Data from from non-contiguous states not yet processed and available.
+Data from from non-contiguous states not yet processed and available. This raw data only includes data from pharmacies and practitioners and the drugs Hydrocodne and Oxycodone.
 }
 \examples{
 \donttest{
@@ -28,7 +28,10 @@ head(mingo_wv)
 \seealso{
 \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 
-Other raw data: \code{\link{county_raw_fips}},
+Other raw data: \code{\link{buyer_list}},
+  \code{\link{county_list}}, \code{\link{county_raw_fips}},
+  \code{\link{drug_county_biz}},
+  \code{\link{drug_fips_biz}}, \code{\link{drug_list}},
   \code{\link{pharmacy_raw}}, \code{\link{raw_data}}
 }
 \concept{raw data}

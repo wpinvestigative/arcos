@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • arcos</title>
+<title>Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database — buyer_list • arcos</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database — buyer_list" />
+
+<meta property="og:description" content="Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -47,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -117,40 +120,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/wpinvestigative/arcos/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database</h1>
+    <small class="dont-index">Source: <a href='https://github.com/wpinvestigative/arcos/blob/master/R/raw.R'><code>R/raw.R</code></a></small>
+    <div class="hidden name"><code>buyer_list.Rd</code></div>
     </div>
 
-    <div id="arcos-08" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arcos-08" class="anchor"></a>arcos 0.8</h2>
-<p>New API and functions</p>
-</div>
-    <div id="arcos-082" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arcos-082" class="anchor"></a>arcos 0.82</h2>
-<p>Updated to follow new API path to account for future versions (ie /v1/county_data/)</p>
-</div>
-    <div id="arcos-10" class="section level2">
-<h2 class="hasAnchor">
-<a href="#arcos-10" class="anchor"></a>arcos 1.0</h2>
-<p>Updated to include newly released 2013 and 2014 data.</p>
-<p>Added nearly 10,000 more geocoded pharmacy locations and fixed a few dozen latitudes and longitudes.</p>
-<p>New functions to query list of counties, drug types, business types, and raw data for individual drugs by county.</p>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>buyer_list</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"WaPo"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>key</th>
+      <td><p>Key needed to make query successful</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources'>https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources</a></p>
+<p>Other raw data: <code><a href='county_list.html'>county_list</a></code>,
+  <code><a href='county_raw_fips.html'>county_raw_fips</a></code>, <code><a href='county_raw.html'>county_raw</a></code>,
+  <code><a href='drug_county_biz.html'>drug_county_biz</a></code>,
+  <code><a href='drug_fips_biz.html'>drug_fips_biz</a></code>, <code><a href='drug_list.html'>drug_list</a></code>,
+  <code><a href='pharmacy_raw.html'>pharmacy_raw</a></code>, <code><a href='raw_data.html'>raw_data</a></code></p></div>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+
+<span class='no'>bl</span> <span class='kw'>&lt;-</span> <span class='fu'>buyer_list</span>(<span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>bl</span>)</div><div class='output co'>#&gt;                 BUYER_BUS_ACT total_bus
+#&gt; 1              ANALYTICAL LAB       988
+#&gt; 2 AUTOMATED DISPENSING SYSTEM        10
+#&gt; 3              CANINE HANDLER        21
+#&gt; 4       CENTRAL FILL PHARMACY       143
+#&gt; 5           CHAIN HOSP/CLINIC       113
+#&gt; 6              CHAIN PHARMACY     47945</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#arcos-08">0.8</a></li>
-        <li><a href="#arcos-082">0.82</a></li>
-        <li><a href="#arcos-10">1.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
+  </div>
 </div>
 
       <footer>

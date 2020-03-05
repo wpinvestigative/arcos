@@ -357,9 +357,6 @@ state_population <- function(state = "WV", key="WaPo") {
 }
 
 
-
-
-
 #' Get list of misidentified pharmacies by BUYER_DEA_NOs
 #'
 #' @param key Key needed to make query successful
@@ -389,5 +386,4 @@ not_pharmacies <- function(key="WaPo") {
   }
 
 }
-
 

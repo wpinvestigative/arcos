@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
       </span>
     </div>
 
@@ -100,12 +100,12 @@
 <p>First, let’s load up the packages we need.</p>
 <p>There’s a lot of new ones listed here so we can make fancy tables.</p>
 <pre><code><a href="https://www.rdocumentation.org/packages/base/topics/library"># Uncomment and run the lines below to see if you have the packages required already installed
-# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales")
+# packages &lt;- c("dplyr", "jsonlite", "knitr", "geofacet", "scales")
 # if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
 library(arcos)
-library(tidyverse)
+library(dplyr)
 library(lubridate)
 library(data.table)
 library(formattable)
@@ -214,7 +214,7 @@ library(knitr)</a></code></pre>
 <td align="right">1</td>
 <td align="left">Barbour</td>
 <td align="left">Barbour County, West Virginia</td>
-<td align="left">POPESTIMATE2006</td>
+<td align="left">B01003_001</td>
 <td align="right">2006</td>
 <td align="right">15922</td>
 </tr>
@@ -226,7 +226,7 @@ library(knitr)</a></code></pre>
 <td align="right">3</td>
 <td align="left">Berkeley</td>
 <td align="left">Berkeley County, West Virginia</td>
-<td align="left">POPESTIMATE2006</td>
+<td align="left">B01003_001</td>
 <td align="right">2006</td>
 <td align="right">96318</td>
 </tr>
@@ -238,7 +238,7 @@ library(knitr)</a></code></pre>
 <td align="right">5</td>
 <td align="left">Boone</td>
 <td align="left">Boone County, West Virginia</td>
-<td align="left">POPESTIMATE2006</td>
+<td align="left">B01003_001</td>
 <td align="right">2006</td>
 <td align="right">25101</td>
 </tr>
@@ -250,7 +250,7 @@ library(knitr)</a></code></pre>
 <td align="right">7</td>
 <td align="left">Braxton</td>
 <td align="left">Braxton County, West Virginia</td>
-<td align="left">POPESTIMATE2006</td>
+<td align="left">B01003_001</td>
 <td align="right">2006</td>
 <td align="right">14585</td>
 </tr>
@@ -262,7 +262,7 @@ library(knitr)</a></code></pre>
 <td align="right">9</td>
 <td align="left">Brooke</td>
 <td align="left">Brooke County, West Virginia</td>
-<td align="left">POPESTIMATE2006</td>
+<td align="left">B01003_001</td>
 <td align="right">2006</td>
 <td align="right">24399</td>
 </tr>
@@ -274,7 +274,7 @@ library(knitr)</a></code></pre>
 <td align="right">11</td>
 <td align="left">Cabell</td>
 <td align="left">Cabell County, West Virginia</td>
-<td align="left">POPESTIMATE2006</td>
+<td align="left">B01003_001</td>
 <td align="right">2006</td>
 <td align="right">94943</td>
 </tr>
@@ -318,7 +318,7 @@ library(knitr)</a></code></pre>
 <td align="right">13168350</td>
 <td align="right">7691</td>
 <td align="left">54059</td>
-<td align="right">26869.43</td>
+<td align="right">26752.78</td>
 </tr>
 <tr class="even">
 <td align="left">WV</td>
@@ -329,7 +329,7 @@ library(knitr)</a></code></pre>
 <td align="right">12849040</td>
 <td align="right">5680</td>
 <td align="left">54045</td>
-<td align="right">36374.29</td>
+<td align="right">36359.00</td>
 </tr>
 <tr class="odd">
 <td align="left">WV</td>
@@ -340,7 +340,7 @@ library(knitr)</a></code></pre>
 <td align="right">8890370</td>
 <td align="right">11138</td>
 <td align="left">54059</td>
-<td align="right">26869.43</td>
+<td align="right">26752.78</td>
 </tr>
 <tr class="even">
 <td align="left">WV</td>
@@ -351,7 +351,7 @@ library(knitr)</a></code></pre>
 <td align="right">8827860</td>
 <td align="right">5390</td>
 <td align="left">54059</td>
-<td align="right">26869.43</td>
+<td align="right">26752.78</td>
 </tr>
 <tr class="odd">
 <td align="left">WV</td>
@@ -362,7 +362,7 @@ library(knitr)</a></code></pre>
 <td align="right">7528100</td>
 <td align="right">13997</td>
 <td align="left">54025</td>
-<td align="right">35294.29</td>
+<td align="right">35365.22</td>
 </tr>
 <tr class="even">
 <td align="left">WV</td>
@@ -373,7 +373,7 @@ library(knitr)</a></code></pre>
 <td align="right">7317220</td>
 <td align="right">9193</td>
 <td align="left">54053</td>
-<td align="right">26775.57</td>
+<td align="right">26878.56</td>
 </tr>
 </tbody>
 </table>
@@ -406,8 +406,8 @@ library(knitr)</a></code></pre>
 <td align="right">13168350</td>
 <td align="right">7691</td>
 <td align="left">54059</td>
-<td align="right">26869.43</td>
-<td align="right">70.01239</td>
+<td align="right">26752.78</td>
+<td align="right">70.31766</td>
 </tr>
 <tr class="even">
 <td align="left">WV</td>
@@ -418,8 +418,8 @@ library(knitr)</a></code></pre>
 <td align="right">12849040</td>
 <td align="right">5680</td>
 <td align="left">54045</td>
-<td align="right">36374.29</td>
-<td align="right">50.46359</td>
+<td align="right">36359.00</td>
+<td align="right">50.48481</td>
 </tr>
 <tr class="odd">
 <td align="left">WV</td>
@@ -430,8 +430,8 @@ library(knitr)</a></code></pre>
 <td align="right">8890370</td>
 <td align="right">11138</td>
 <td align="left">54059</td>
-<td align="right">26869.43</td>
-<td align="right">47.26758</td>
+<td align="right">26752.78</td>
+<td align="right">47.47368</td>
 </tr>
 <tr class="even">
 <td align="left">WV</td>
@@ -442,8 +442,8 @@ library(knitr)</a></code></pre>
 <td align="right">8827860</td>
 <td align="right">5390</td>
 <td align="left">54059</td>
-<td align="right">26869.43</td>
-<td align="right">46.93523</td>
+<td align="right">26752.78</td>
+<td align="right">47.13988</td>
 </tr>
 <tr class="odd">
 <td align="left">WV</td>
@@ -454,8 +454,8 @@ library(knitr)</a></code></pre>
 <td align="right">7528100</td>
 <td align="right">13997</td>
 <td align="left">54025</td>
-<td align="right">35294.29</td>
-<td align="right">30.47074</td>
+<td align="right">35365.22</td>
+<td align="right">30.40962</td>
 </tr>
 <tr class="even">
 <td align="left">WV</td>
@@ -466,8 +466,8 @@ library(knitr)</a></code></pre>
 <td align="right">7317220</td>
 <td align="right">9193</td>
 <td align="left">54053</td>
-<td align="right">26775.57</td>
-<td align="right">39.03996</td>
+<td align="right">26878.56</td>
+<td align="right">38.89038</td>
 </tr>
 </tbody>
 </table>
@@ -552,13 +552,13 @@ KERMIT
 MINGO
 </td>
 <td style="text-align:right;">
-26869
+26753
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #71ca97">13168350</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 100.00%">70.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 100.00%">70.3</span>
 </td>
 </tr>
 <tr>
@@ -572,13 +572,13 @@ MOUNT GAY
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #73cb99">12849040</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 67.77%">50.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 67.43%">50.5</span>
 </td>
 </tr>
 <tr>
@@ -592,13 +592,13 @@ WILLIAMSON
 MINGO
 </td>
 <td style="text-align:right;">
-26869
+26753
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #95d9b2">8890370</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 62.48%">47.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 62.50%">47.5</span>
 </td>
 </tr>
 <tr>
@@ -612,13 +612,13 @@ WILLIAMSON
 MINGO
 </td>
 <td style="text-align:right;">
-26869
+26753
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #96d9b2">8827860</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 61.82%">46.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 61.84%">47.1</span>
 </td>
 </tr>
 <tr>
@@ -632,13 +632,13 @@ MADISON
 BOONE
 </td>
 <td style="text-align:right;">
-24892
+24780
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a3debd">7227600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 52.89%">41.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 52.96%">41.7</span>
 </td>
 </tr>
 <tr>
@@ -652,13 +652,13 @@ POINT PLEASANT
 MASON
 </td>
 <td style="text-align:right;">
-26776
+26879
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a2debc">7317220</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 48.76%">39.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 48.36%">38.9</span>
 </td>
 </tr>
 <tr>
@@ -672,13 +672,13 @@ BERKELEY SPRINGS
 MORGAN
 </td>
 <td style="text-align:right;">
-17243
+17295
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #bfead2">3939400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 38.18%">32.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.83%">32.5</span>
 </td>
 </tr>
 <tr>
@@ -692,13 +692,13 @@ OCEANA
 WYOMING
 </td>
 <td style="text-align:right;">
-23922
+23793
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b3e5c9">5353990</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.19%">32.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.17%">32.1</span>
 </td>
 </tr>
 <tr>
@@ -712,13 +712,13 @@ PHILIPPI
 BARBOUR
 </td>
 <td style="text-align:right;">
-16117
+16244
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c2ebd4">3612930</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.19%">32.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.68%">31.8</span>
 </td>
 </tr>
 <tr>
@@ -732,13 +732,13 @@ SAINT MARYS
 PLEASANTS
 </td>
 <td style="text-align:right;">
-7639
+7631
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e0">1686260</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.36%">31.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.35%">31.6</span>
 </td>
 </tr>
 <tr>
@@ -752,13 +752,13 @@ RONCEVERTE
 GREENBRIER
 </td>
 <td style="text-align:right;">
-35294
+35365
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a1ddbb">7528100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 34.71%">30.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 34.38%">30.4</span>
 </td>
 </tr>
 <tr>
@@ -772,13 +772,13 @@ WEBSTER SPRINGS
 WEBSTER
 </td>
 <td style="text-align:right;">
-9290
+9234
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1df">1946520</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 33.72%">29.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 33.88%">30.1</span>
 </td>
 </tr>
 <tr>
@@ -792,13 +792,13 @@ HINTON
 SUMMERS
 </td>
 <td style="text-align:right;">
-13737
+13739
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2664450</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 30.08%">27.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.93%">27.7</span>
 </td>
 </tr>
 <tr>
@@ -812,13 +812,13 @@ CHAPMANVILLE
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a5dfbe">7032640</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.92%">27.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.77%">27.6</span>
 </td>
 </tr>
 <tr>
@@ -832,13 +832,13 @@ CHAPMANVILLE
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a5dfbe">7032640</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.92%">27.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.77%">27.6</span>
 </td>
 </tr>
 <tr>
@@ -852,13 +852,13 @@ NEW MARTINSVILLE
 WETZEL
 </td>
 <td style="text-align:right;">
-16662
+16598
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c6edd7">3168780</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.26%">27.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.28%">27.3</span>
 </td>
 </tr>
 <tr>
@@ -872,13 +872,13 @@ PETERSBURG
 GRANT
 </td>
 <td style="text-align:right;">
-11920
+11904
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2207400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 28.10%">26.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 27.96%">26.5</span>
 </td>
 </tr>
 <tr>
@@ -892,13 +892,13 @@ ST MARYS
 PLEASANTS
 </td>
 <td style="text-align:right;">
-7639
+7631
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1281320</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 23.97%">24.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 23.85%">24.0</span>
 </td>
 </tr>
 <tr>
@@ -912,33 +912,13 @@ FOLLANSBEE
 BROOKE
 </td>
 <td style="text-align:right;">
-24128
+24069
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead2">3899940</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 22.48%">23.1</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">GIL-CO FAITH PHCY </span>
-</td>
-<td style="text-align:left;">
-GLENVILLE
-</td>
-<td style="text-align:left;">
-GILMER
-</td>
-<td style="text-align:right;">
-8167
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1320859</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 22.48%">23.1</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 22.37%">23.1</span>
 </td>
 </tr>
 <tr>
@@ -952,33 +932,33 @@ MARLINTON
 POCAHONTAS
 </td>
 <td style="text-align:right;">
-8790
+8774
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5f3e2">1397320</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.82%">22.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.88%">22.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FRUTH PHARMACY #18 </span>
+<span style="color: grey; font-weight: bold">GIL-CO FAITH PHCY </span>
 </td>
 <td style="text-align:left;">
-SPENCER
+GLENVILLE
 </td>
 <td style="text-align:left;">
-ROANE
+GILMER
 </td>
 <td style="text-align:right;">
-15119
+8283
 </td>
 <td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2308890</span>
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1320859</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.33%">21.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.88%">22.8</span>
 </td>
 </tr>
 <tr>
@@ -992,33 +972,33 @@ WELCH
 MCDOWELL
 </td>
 <td style="text-align:right;">
-22599
+22347
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3431120</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.17%">21.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.39%">21.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">FRUTH PHARMACY #18 </span>
 </td>
 <td style="text-align:left;">
-PT PLEASANT
+SPENCER
 </td>
 <td style="text-align:left;">
-MASON
+ROANE
 </td>
 <td style="text-align:right;">
-26776
+15043
 </td>
 <td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead2">3912290</span>
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2308890</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.84%">20.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.39%">21.9</span>
 </td>
 </tr>
 <tr>
@@ -1032,13 +1012,33 @@ NEW MARTINSVILLE
 WETZEL
 </td>
 <td style="text-align:right;">
-16662
+16598
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdb">2426050</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.68%">20.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.75%">20.9</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+</td>
+<td style="text-align:left;">
+PT PLEASANT
+</td>
+<td style="text-align:left;">
+MASON
+</td>
+<td style="text-align:right;">
+26879
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead2">3912290</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.59%">20.8</span>
 </td>
 </tr>
 <tr>
@@ -1052,13 +1052,33 @@ GRAFTON
 TAYLOR
 </td>
 <td style="text-align:right;">
-16651
+16715
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2349790</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 17.69%">20.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 17.43%">20.1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+</td>
+<td style="text-align:left;">
+CLAY
+</td>
+<td style="text-align:left;">
+CLAY
+</td>
+<td style="text-align:right;">
+9572
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1280300</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.79%">19.1</span>
 </td>
 </tr>
 <tr>
@@ -1072,33 +1092,13 @@ WESTON
 LEWIS
 </td>
 <td style="text-align:right;">
-16520
+16496
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2180940</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.54%">18.9</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
-</td>
-<td style="text-align:left;">
-CLAY
-</td>
-<td style="text-align:left;">
-CLAY
-</td>
-<td style="text-align:right;">
-9652
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1280300</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.54%">18.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.46%">18.9</span>
 </td>
 </tr>
 <tr>
@@ -1112,13 +1112,13 @@ SUMMERSVILLE
 NICHOLAS
 </td>
 <td style="text-align:right;">
-26165
+26157
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3439100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.37%">18.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.30%">18.8</span>
 </td>
 </tr>
 <tr>
@@ -1132,13 +1132,13 @@ GASSAWAY
 BRAXTON
 </td>
 <td style="text-align:right;">
-14563
+14551
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d1f1df">1878800</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.71%">18.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.64%">18.4</span>
 </td>
 </tr>
 <tr>
@@ -1152,13 +1152,13 @@ FRANKLIN
 PENDLETON
 </td>
 <td style="text-align:right;">
-7745
+7705
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">993310</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.55%">18.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.64%">18.4</span>
 </td>
 </tr>
 <tr>
@@ -1172,13 +1172,13 @@ NORTHFORK
 MCDOWELL
 </td>
 <td style="text-align:right;">
-22599
+22347
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c9eed9">2755760</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 13.06%">17.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 13.32%">17.6</span>
 </td>
 </tr>
 <tr>
@@ -1192,13 +1192,13 @@ WEST UNION
 DODDRIDGE
 </td>
 <td style="text-align:right;">
-7910
+7985
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d9f5e5">961790</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 13.06%">17.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.66%">17.2</span>
 </td>
 </tr>
 <tr>
@@ -1212,33 +1212,13 @@ SISTERSVILLE
 TYLER
 </td>
 <td style="text-align:right;">
-9291
+9249
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1105230</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.40%">17.0</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FOUR SEASONS PHARMACY INC </span>
-</td>
-<td style="text-align:left;">
-PRINCETON
-</td>
-<td style="text-align:left;">
-MERCER
-</td>
-<td style="text-align:right;">
-61769
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a4dfbd">7099410</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.40%">16.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.50%">17.1</span>
 </td>
 </tr>
 <tr>
@@ -1252,13 +1232,33 @@ WEIRTON
 HANCOCK
 </td>
 <td style="text-align:right;">
-30766
+30694
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c3ebd4">3539710</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.40%">16.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.51%">16.5</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">FOUR SEASONS PHARMACY INC </span>
+</td>
+<td style="text-align:left;">
+PRINCETON
+</td>
+<td style="text-align:left;">
+MERCER
+</td>
+<td style="text-align:right;">
+61867
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a4dfbd">7099410</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.35%">16.4</span>
 </td>
 </tr>
 <tr>
@@ -1272,13 +1272,13 @@ MOUNDSVILLE
 MARSHALL
 </td>
 <td style="text-align:right;">
-33339
+33215
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead3">3808030</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.24%">16.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.35%">16.4</span>
 </td>
 </tr>
 <tr>
@@ -1292,33 +1292,13 @@ MASON
 MASON
 </td>
 <td style="text-align:right;">
-26776
+26879
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c7edd8">3010650</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.91%">16.1</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">CARL WALKER’S DRUG STORE </span>
-</td>
-<td style="text-align:left;">
-GASSAWAY
-</td>
-<td style="text-align:left;">
-BRAXTON
-</td>
-<td style="text-align:right;">
-14563
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e1">1623340</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.58%">15.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.69%">16.0</span>
 </td>
 </tr>
 <tr>
@@ -1332,13 +1312,33 @@ HARRISVILLE
 RITCHIE
 </td>
 <td style="text-align:right;">
-10476
+10428
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1165930</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.58%">15.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.69%">16.0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">CARL WALKER’S DRUG STORE </span>
+</td>
+<td style="text-align:left;">
+GASSAWAY
+</td>
+<td style="text-align:left;">
+BRAXTON
+</td>
+<td style="text-align:right;">
+14551
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e1">1623340</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.53%">15.9</span>
 </td>
 </tr>
 <tr>
@@ -1352,13 +1352,13 @@ MARLINTON
 POCAHONTAS
 </td>
 <td style="text-align:right;">
-8790
+8774
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d9f4e5">977390</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.58%">15.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.53%">15.9</span>
 </td>
 </tr>
 <tr>
@@ -1372,13 +1372,13 @@ WESTON
 LEWIS
 </td>
 <td style="text-align:right;">
-16520
+16496
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1793260</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.92%">15.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.87%">15.5</span>
 </td>
 </tr>
 <tr>
@@ -1392,13 +1392,13 @@ HAMLIN
 LINCOLN
 </td>
 <td style="text-align:right;">
-21926
+21860
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2349260</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.59%">15.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.70%">15.4</span>
 </td>
 </tr>
 <tr>
@@ -1412,13 +1412,13 @@ MOUNDSVILLE
 MARSHALL
 </td>
 <td style="text-align:right;">
-33339
+33215
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c3ebd4">3551300</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.42%">15.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
 </td>
 </tr>
 <tr>
@@ -1432,13 +1432,13 @@ OCEANA
 WYOMING
 </td>
 <td style="text-align:right;">
-23922
+23793
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cbefdb">2552680</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.42%">15.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
 </td>
 </tr>
 <tr>
@@ -1452,33 +1452,13 @@ SPENCER
 ROANE
 </td>
 <td style="text-align:right;">
-15119
+15043
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e1">1612830</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.42%">15.2</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
-</td>
-<td style="text-align:left;">
-ROMNEY
-</td>
-<td style="text-align:left;">
-HAMPSHIRE
-</td>
-<td style="text-align:right;">
-23387
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdc">2419200</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.76%">14.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
 </td>
 </tr>
 <tr>
@@ -1492,13 +1472,33 @@ CLAY
 CLAY
 </td>
 <td style="text-align:right;">
-9652
+9572
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">1003280</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.76%">14.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.05%">15.0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+</td>
+<td style="text-align:left;">
+ROMNEY
+</td>
+<td style="text-align:left;">
+HAMPSHIRE
+</td>
+<td style="text-align:right;">
+23459
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdc">2419200</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.55%">14.7</span>
 </td>
 </tr>
 <tr>
@@ -1512,13 +1512,13 @@ BRANCHLAND
 LINCOLN
 </td>
 <td style="text-align:right;">
-21926
+21860
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2218910</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.26%">14.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.22%">14.5</span>
 </td>
 </tr>
 <tr>
@@ -1532,13 +1532,13 @@ SUMMERSVILLE
 NICHOLAS
 </td>
 <td style="text-align:right;">
-26165
+26157
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cbefda">2617790</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.93%">14.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.89%">14.3</span>
 </td>
 </tr>
 <tr>
@@ -1552,13 +1552,13 @@ MADISON
 BOONE
 </td>
 <td style="text-align:right;">
-24892
+24780
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdb">2483700</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.93%">14.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.89%">14.3</span>
 </td>
 </tr>
 <tr>
@@ -1572,33 +1572,13 @@ MOOREFIELD
 HARDY
 </td>
 <td style="text-align:right;">
-13762
+13801
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1331100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.11%">13.8</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">KROGER PHARMACY </span>
-</td>
-<td style="text-align:left;">
-LOGAN
-</td>
-<td style="text-align:left;">
-LOGAN
-</td>
-<td style="text-align:right;">
-36374
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3441400</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.61%">13.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.07%">13.8</span>
 </td>
 </tr>
 <tr>
@@ -1612,33 +1592,33 @@ PINEVILLE
 WYOMING
 </td>
 <td style="text-align:right;">
-23922
+23793
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2262020</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.61%">13.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.74%">13.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">PETERSTOWN PHARMACY, LLC </span>
+<span style="color: grey; font-weight: bold">KROGER PHARMACY </span>
 </td>
 <td style="text-align:left;">
-PETERSTOWN
+LOGAN
 </td>
 <td style="text-align:left;">
-MONROE
+LOGAN
 </td>
 <td style="text-align:right;">
-13514
+36359
 </td>
 <td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1253120</span>
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3441400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.12%">13.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.58%">13.5</span>
 </td>
 </tr>
 <tr>
@@ -1652,13 +1632,33 @@ WEBSTER SPRINGS
 WEBSTER
 </td>
 <td style="text-align:right;">
-9290
+9234
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #daf5e6">857680</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.12%">13.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.25%">13.3</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">PETERSTOWN PHARMACY, LLC </span>
+</td>
+<td style="text-align:left;">
+PETERSTOWN
+</td>
+<td style="text-align:left;">
+MONROE
+</td>
+<td style="text-align:right;">
+13515
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1253120</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.09%">13.2</span>
 </td>
 </tr>
 <tr>
@@ -1672,13 +1672,13 @@ GRANTSVILLE
 CALHOUN
 </td>
 <td style="text-align:right;">
-7538
+7550
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e7">697330</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.12%">13.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.09%">13.2</span>
 </td>
 </tr>
 <tr>
@@ -1692,13 +1692,13 @@ KEYSER
 MINERAL
 </td>
 <td style="text-align:right;">
-27636
+27709
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cbefdb">2541900</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.95%">13.1</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.92%">13.1</span>
 </td>
 </tr>
 <tr>
@@ -1712,13 +1712,13 @@ LOGAN
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c5ecd6">3251160</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.45%">12.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.43%">12.8</span>
 </td>
 </tr>
 <tr>
@@ -1732,13 +1732,13 @@ SUMMERSVILLE
 NICHOLAS
 </td>
 <td style="text-align:right;">
-26165
+26157
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2329350</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.29%">12.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.26%">12.7</span>
 </td>
 </tr>
 <tr>
@@ -1752,13 +1752,13 @@ GLENVILLE
 GILMER
 </td>
 <td style="text-align:right;">
-8167
+8283
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e6">716400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.96%">12.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.77%">12.4</span>
 </td>
 </tr>
 <tr>
@@ -1772,13 +1772,13 @@ MAN
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c7edd7">3055510</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.13%">12.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
 </td>
 </tr>
 <tr>
@@ -1792,13 +1792,13 @@ WESTON
 LEWIS
 </td>
 <td style="text-align:right;">
-16520
+16496
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5f3e2">1388800</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.13%">12.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
 </td>
 </tr>
 <tr>
@@ -1812,13 +1812,13 @@ SUTTON
 BRAXTON
 </td>
 <td style="text-align:right;">
-14563
+14551
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f4e3">1222140</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.13%">12.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
 </td>
 </tr>
 <tr>
@@ -1832,13 +1832,13 @@ BECKLEY
 RALEIGH
 </td>
 <td style="text-align:right;">
-78519
+78606
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a9e1c1">6550590</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.97%">11.9</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.95%">11.9</span>
 </td>
 </tr>
 <tr>
@@ -1852,13 +1852,13 @@ CRAB ORCHARD
 RALEIGH
 </td>
 <td style="text-align:right;">
-78519
+78606
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #aae1c1">6477420</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.80%">11.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.78%">11.8</span>
 </td>
 </tr>
 <tr>
@@ -1872,13 +1872,13 @@ MOOREFIELD
 HARDY
 </td>
 <td style="text-align:right;">
-13762
+13801
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1125820</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.64%">11.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.62%">11.7</span>
 </td>
 </tr>
 <tr>
@@ -1892,13 +1892,13 @@ SUMMERSVILLE
 NICHOLAS
 </td>
 <td style="text-align:right;">
-26165
+26157
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cff0dd">2121460</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.47%">11.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.45%">11.6</span>
 </td>
 </tr>
 <tr>
@@ -1912,13 +1912,13 @@ DANVILLE
 BOONE
 </td>
 <td style="text-align:right;">
-24892
+24780
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1de">2015250</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.47%">11.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.45%">11.6</span>
 </td>
 </tr>
 <tr>
@@ -1932,13 +1932,13 @@ WELCH
 MCDOWELL
 </td>
 <td style="text-align:right;">
-22599
+22347
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1790640</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.98%">11.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.13%">11.4</span>
 </td>
 </tr>
 <tr>
@@ -1952,13 +1952,13 @@ HARTS
 LINCOLN
 </td>
 <td style="text-align:right;">
-21926
+21860
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1736300</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.98%">11.3</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.96%">11.3</span>
 </td>
 </tr>
 <tr>
@@ -1972,73 +1972,13 @@ ELKINS
 RANDOLPH
 </td>
 <td style="text-align:right;">
-29098
+29170
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2220600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.31%">10.9</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">BURNSVILLE DRUG STORE </span>
-</td>
-<td style="text-align:left;">
-BURNSVILLE
-</td>
-<td style="text-align:left;">
-BRAXTON
-</td>
-<td style="text-align:right;">
-14563
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1112100</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.31%">10.9</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">T AND J ENTERPRISES INC </span>
-</td>
-<td style="text-align:left;">
-HUNTINGTON
-</td>
-<td style="text-align:left;">
-WAYNE
-</td>
-<td style="text-align:right;">
-42451
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c6edd6">3210690</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.15%">10.8</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FRUTH </span>
-</td>
-<td style="text-align:left;">
-RIPLEY
-</td>
-<td style="text-align:left;">
-JACKSON
-</td>
-<td style="text-align:right;">
-28951
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2192823</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.15%">10.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
 </td>
 </tr>
 <tr>
@@ -2052,13 +1992,73 @@ SPENCER
 ROANE
 </td>
 <td style="text-align:right;">
-15119
+15043
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1145830</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.15%">10.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">BURNSVILLE DRUG STORE </span>
+</td>
+<td style="text-align:left;">
+BURNSVILLE
+</td>
+<td style="text-align:left;">
+BRAXTON
+</td>
+<td style="text-align:right;">
+14551
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1112100</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">T AND J ENTERPRISES INC </span>
+</td>
+<td style="text-align:left;">
+HUNTINGTON
+</td>
+<td style="text-align:left;">
+WAYNE
+</td>
+<td style="text-align:right;">
+42322
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c6edd6">3210690</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.14%">10.8</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">FRUTH </span>
+</td>
+<td style="text-align:left;">
+RIPLEY
+</td>
+<td style="text-align:left;">
+JACKSON
+</td>
+<td style="text-align:right;">
+29013
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2192823</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.14%">10.8</span>
 </td>
 </tr>
 <tr>
@@ -2072,13 +2072,13 @@ WEIRTON
 HANCOCK
 </td>
 <td style="text-align:right;">
-30766
+30694
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2296230</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.98%">10.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.97%">10.7</span>
 </td>
 </tr>
 <tr>
@@ -2092,13 +2092,13 @@ UNION
 MONROE
 </td>
 <td style="text-align:right;">
-13514
+13515
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">1013090</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.98%">10.7</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.97%">10.7</span>
 </td>
 </tr>
 <tr>
@@ -2112,13 +2112,13 @@ CRAIGSVILLE
 NICHOLAS
 </td>
 <td style="text-align:right;">
-26165
+26157
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1df">1945700</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.82%">10.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.81%">10.6</span>
 </td>
 </tr>
 <tr>
@@ -2132,13 +2132,13 @@ CRAIGSVILLE
 NICHOLAS
 </td>
 <td style="text-align:right;">
-26165
+26157
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1df">1944600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.82%">10.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.81%">10.6</span>
 </td>
 </tr>
 <tr>
@@ -2152,13 +2152,13 @@ HINTON
 SUMMERS
 </td>
 <td style="text-align:right;">
-13737
+13739
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">1011540</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.65%">10.5</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.64%">10.5</span>
 </td>
 </tr>
 <tr>
@@ -2172,13 +2172,13 @@ CHAPMANVILLE
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2656020</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.49%">10.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
@@ -2192,13 +2192,13 @@ LOGAN
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2639720</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.49%">10.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
@@ -2212,13 +2212,13 @@ LOGAN
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2639720</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.49%">10.4</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
@@ -2232,33 +2232,13 @@ MULLENS
 WYOMING
 </td>
 <td style="text-align:right;">
-23922
+23793
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1737920</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.49%">10.4</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">CARDINAL PHARMACY </span>
-</td>
-<td style="text-align:left;">
-ELIZABETH
-</td>
-<td style="text-align:left;">
-WIRT
-</td>
-<td style="text-align:right;">
-5758
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ddf6e8">409160</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.16%">10.2</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
@@ -2272,10 +2252,30 @@ NEW MARTINSVILLE
 WETZEL
 </td>
 <td style="text-align:right;">
-16662
+16598
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1176480</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.99%">10.1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">CARDINAL PHARMACY </span>
+</td>
+<td style="text-align:left;">
+ELIZABETH
+</td>
+<td style="text-align:left;">
+WIRT
+</td>
+<td style="text-align:right;">
+5768
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ddf6e8">409160</span>
 </td>
 <td style="text-align:right;">
 <span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.99%">10.1</span>
@@ -2292,13 +2292,13 @@ GRAFTON
 TAYLOR
 </td>
 <td style="text-align:right;">
-16651
+16715
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1164600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.83%">10.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.82%">10.0</span>
 </td>
 </tr>
 <tr>
@@ -2312,13 +2312,33 @@ SISTERSVILLE
 TYLER
 </td>
 <td style="text-align:right;">
-9291
+9249
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf6e7">647810</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.83%">10.0</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.82%">10.0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">PENNSBORO FAMILY PHARMACY </span>
+</td>
+<td style="text-align:left;">
+PENNSBORO
+</td>
+<td style="text-align:left;">
+RITCHIE
+</td>
+<td style="text-align:right;">
+10428
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e6">721220</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.66%">9.9</span>
 </td>
 </tr>
 <tr>
@@ -2332,7 +2352,7 @@ ELIZABETH
 WIRT
 </td>
 <td style="text-align:right;">
-5758
+5768
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #def7e9">399420</span>
@@ -2352,13 +2372,13 @@ WHEELING
 OHIO
 </td>
 <td style="text-align:right;">
-44545
+44436
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c7edd7">3053760</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.50%">9.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
 </td>
 </tr>
 <tr>
@@ -2372,13 +2392,13 @@ WEIRTON
 HANCOCK
 </td>
 <td style="text-align:right;">
-30766
+30694
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cff0de">2107570</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.50%">9.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
 </td>
 </tr>
 <tr>
@@ -2392,33 +2412,13 @@ RAVENSWOOD
 JACKSON
 </td>
 <td style="text-align:right;">
-28951
+29013
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1de">1980740</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.50%">9.8</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">PENNSBORO FAMILY PHARMACY </span>
-</td>
-<td style="text-align:left;">
-PENNSBORO
-</td>
-<td style="text-align:left;">
-RITCHIE
-</td>
-<td style="text-align:right;">
-10476
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e6">721220</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.50%">9.8</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
 </td>
 </tr>
 <tr>
@@ -2432,7 +2432,7 @@ CLARKSBURG
 HARRISON
 </td>
 <td style="text-align:right;">
-68440
+68581
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b9e7cd">4659700</span>
@@ -2452,7 +2452,7 @@ UNEEDA
 BOONE
 </td>
 <td style="text-align:right;">
-24892
+24780
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1689590</span>
@@ -2472,7 +2472,7 @@ PETERSBURG
 GRANT
 </td>
 <td style="text-align:right;">
-11920
+11904
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #daf5e6">806970</span>
@@ -2486,19 +2486,39 @@ GRANT
 <span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
 </td>
 <td style="text-align:left;">
+BENWOOD
+</td>
+<td style="text-align:left;">
+MARSHALL
+</td>
+<td style="text-align:right;">
+33215
+</td>
+<td style="text-align:right;">
+<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2225690</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.16%">9.6</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+</td>
+<td style="text-align:left;">
 BERKELEY SPRINGS
 </td>
 <td style="text-align:left;">
 MORGAN
 </td>
 <td style="text-align:right;">
-17243
+17295
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1156910</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.17%">9.6</span>
+<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.16%">9.6</span>
 </td>
 </tr>
 <tr>
@@ -2512,30 +2532,10 @@ MAN
 LOGAN
 </td>
 <td style="text-align:right;">
-36374
+36359
 </td>
 <td style="text-align:right;">
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdc">2420280</span>
-</td>
-<td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.00%">9.5</span>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
-</td>
-<td style="text-align:left;">
-BENWOOD
-</td>
-<td style="text-align:left;">
-MARSHALL
-</td>
-<td style="text-align:right;">
-33339
-</td>
-<td style="text-align:right;">
-<span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2225690</span>
 </td>
 <td style="text-align:right;">
 <span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.00%">9.5</span>

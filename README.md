@@ -2,11 +2,11 @@
 
 ![CRAN Badge](http://www.r-pkg.org/badges/version/arcos)  ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/arcos)
 
-The Washington Post [published](https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources) a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2012. We have reported a [number of stories](https://www.washingtonpost.com/national/2019/07/20/opioid-files/) using this data set, but we believe there are more stories to be told.
+The Washington Post [published](https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources) a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2014. We have reported a [number of stories](https://www.washingtonpost.com/national/2019/07/20/opioid-files/) using this data set, but we believe there are more stories to be told.
 
 We are making this data accessible [as an API](https://arcos-api.ext.nile.works/__swagger__/) for everyone to download and [use in their reporting](https://www.washingtonpost.com/national/2019/08/12/post-released-deas-data-pain-pills-heres-what-local-journalists-are-using-it/) or research to promote a deeper understanding of the regional and local effects of the opioid crisis.
 
-This ARCOS package is a wrapper to utilize the [ARCOS API](https://arcos-api.ext.nile.works/__swagger__/). 
+This ARCOS package is a wrapper to utilize the [ARCOS API](https://arcos-api.ext.nile.works/__swagger__/). There is also a Python wrapper: [arcospy](https://pypi.org/project/arcospy/)
 
 -------
 
@@ -60,8 +60,6 @@ devtools::install_github('wpinvestigative/arcos')
 
 * The best way to understand the definitions of the columns and variables in this data set is to refer to the DEA’s [ARCOS handbook](https://www.deadiversion.usdoj.gov/arcos/handbook/full.pdf), which provides detailed descriptions of the records.
 
-* We’ve been asked why we don’t have more recent data. The answer: The DEA only produced data from 2006 through 2014 in the case. We know that 2013 and 2014 data exists, but we have not been able to get access because of the ongoing court case in Ohio. The Post is still fighting for its release.
-
 ### Alternate ways to download summarized data
 
 * Go to the DEA pain pills [database page](https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources).
@@ -80,29 +78,34 @@ devtools::install_github('wpinvestigative/arcos')
 
 __Available datasets (Read the [reference page](https://wpinvestigative.github.io/arcos/reference/index.html) for more info):__
 
-|  **Function** | **What** | **Type** | **Years available** |
-| --- | --- | --- | --- |
-|  buyer_addresses() | Get DEA designated addresses for each pharmacy | Raw |  |
-|  buyer_details() | Get monthly summarized pill totals by county | Summarized | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  combined_buyer_annual() | Get annual total pills for each buyer (pharmacy, etc) in a county | Summarized | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  combined_buyer_monthly() | Get annual total pills for each buyer (pharmacy, etc) in a county | Summarized | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  county_population() | Get annual population for counties between 2006 and 2012 | Supplemental | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  county_raw() | Download raw prescription data for specified county (by state and county names) | Raw |  |
-|  county_raw_fips() | Download raw prescription data for specified county (by county FIPS code) | Raw |  |
-|  not_pharmacies() | Get list of misidentified pharmacies by BUYER_DEA_NOs | Supplemental |  |
-|  pharm_cbsa() | Get the core-based statistical area GEOID for each pharmacy | Supplemental |  |
-|  pharm_counties() | Get county GEOID for each pharmacy | Supplemental |  |
-|  pharm_latlon() | Get latitude and longitude data for each pharmacy | Supplemental |  |
-|  pharm_tracts() | Get census tract GEOID for each pharmacy | Supplemental |  |
-|  pharmacy_raw() | Download raw prescription data for specified pharmacy into R | Raw |  |
-|  raw_data() | Download raw ARCOS data | Raw |  |
-|  reporter_addresses() | Get DEA designated addresses for each Reporter | Raw |  |
-|  state_population() | Get annual population for states between 2006 and 2012 | Supplemental | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  summarized_county_annual() | Get annual summarized pill totals by county | Summarized | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  summarized_county_monthly() | Get monthly summarized pill totals by county | Summarized | 2006, 2007, 2008, 2009, 2010, 2011, 2012 |
-|  total_distributors_county() | Get total pills for each distributor in a county | Summarized |  |
-|  total_distributors_state() | Get total pills for each distributor in a state | Summarized |  |
-|  total_manufacturers_county() | Get total pills for each manufacturer in a county | Summarized |  |
-|  total_manufacturers_state() | Get total pills for each manufacturer in a state | Summarized |  |
-|  total_pharmacies_county() | Get total pills for each pharmacy in a county | Summarized |  |
-|  total_pharmacies_state() | Get total pills for each pharmacy in a state | Summarized |  |
+| Function                                                                  | What                                                                            | Type         | Years       | Drugs                   | Buyers                                             |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------------------|--------------|-------------|-------------------------|----------------------------------------------------|
+| [buyer_addresses()](https://wpinvestigative.github.io/arcos/reference/buyer_addresses.html)                       | Get DEA designated addresses for each pharmacy                                  | Raw          |             | All                     | All                                                |
+| [buyer_details()](https://wpinvestigative.github.io/arcos/reference/buyer_details.html)                           | Get monthly summarized pill totals by county                                    | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [buyer_list()](https://wpinvestigative.github.io/arcos/reference/buyer_list.html)                                 | Get list of business types listed in the BUYER_BUS_ACT in the ARCOS database    | Raw          | 2006 - 2014 |                         | All                                                |
+| [combined_buyer_annual()](https://wpinvestigative.github.io/arcos/reference/combined_buyer_annual.html)           | Get annual total pills for each buyer (pharmacy, etc) in a county               | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [combined_buyer_monthly()](https://wpinvestigative.github.io/arcos/reference/combined_buyer_monthly.html)         | Get annual total pills for each buyer (pharmacy, etc) in a county               | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [county_list()](https://wpinvestigative.github.io/arcos/reference/county_list.html)                               | Get list of counties and states and fips codes represented in the ARCOS data    | Raw          | 2006 - 2014 |                         |                                                    |
+| [county_population()](https://wpinvestigative.github.io/arcos/reference/county_population.html)                   | Get annual population for counties between 2006 and 2012                        | Supplemental | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [county_raw()](https://wpinvestigative.github.io/arcos/reference/county_raw.html)                                 | Download raw prescription data for specified county (by state and county names) | Raw          |             | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [county_raw_fips()](https://wpinvestigative.github.io/arcos/reference/county_raw_fips.html)                       | Download raw prescription data for specified county (by county FIPS code)       | Raw          |             | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [drug_county_biz()](https://wpinvestigative.github.io/arcos/reference/drug_county_biz.html)                       | Raw data by county and individual drug and business type                        | Raw          | 2006 - 2014 | All                     | All                                                |
+| [drug_county_raw()](https://wpinvestigative.github.io/arcos/reference/drug_county_raw.html)                       | Raw data by county and individual drug and business type via fips code          | Raw          | 2006 - 2014 | All                     | All                                                |
+| [drug_list()](https://wpinvestigative.github.io/arcos/reference/drug_list.html)                                   | Get list of the 14 drugs tracked in the ARCOS data                              | Raw          | 2006 - 2014 | All                     |                                                    |
+| [not_pharmacies()](https://wpinvestigative.github.io/arcos/reference/not_pharmacies.html)                         | Get list of misidentified pharmacies by BUYER_DEA_NOs                           | Supplemental | 2006 - 2012 |                         | Retail Pharmacy, Chain Pharmacy                    |
+| [pharm_cbsa()](https://wpinvestigative.github.io/arcos/reference/pharm_cbsa.html)                                 | Get the core-based statistical area GEOID for each pharmacy                     | Supplemental | 2006 - 2014 |                         | Retail Pharmacy, Chain Pharmacy                    |
+| [pharm_counties()](https://wpinvestigative.github.io/arcos/reference/pharm_counties.html)                         | Get county GEOID for each pharmacy                                              | Supplemental | 2006 - 2014 |                         | Retail Pharmacy, Chain Pharmacy                    |
+| [pharm_latlon()](https://wpinvestigative.github.io/arcos/reference/pharm_latlon.html)                             | Get latitude and longitude data for each pharmacy                               | Supplemental | 2006 - 2014 |                         | Retail Pharmacy, Chain Pharmacy                    |
+| [pharm_tracts()](https://wpinvestigative.github.io/arcos/reference/pharm_tracts.html)                             | Get census tract GEOID for each pharmacy                                        | Supplemental | 2006 - 2014 |                         | Retail Pharmacy, Chain Pharmacy                    |
+| [pharmacy_raw()](https://wpinvestigative.github.io/arcos/reference/pharmacy_raw.html)                             | Download raw prescription data for specified pharmacy into R                    | Raw          | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy                    |
+| [raw_data()](https://wpinvestigative.github.io/arcos/reference/raw_data.html)                                     | Download raw ARCOS data                                                         | Raw          | 2006 - 2014 | All                     | All                                                |
+| [reporter_addresses()](https://wpinvestigative.github.io/arcos/reference/reporter_addresses.html)                 | Get DEA designated addresses for each Reporter                                  | Raw          | 2006 - 2014 | All                     | All                                                |
+| [state_population()](https://wpinvestigative.github.io/arcos/reference/state_population.html)                     | Get annual population for states between 2006 and 2014                          | Supplemental | 2006 - 2014 |                         |                                                    |
+| [summarized_county_annual()](https://wpinvestigative.github.io/arcos/reference/summarized_county_annual.html)     | Get annual summarized pill totals by county                                     | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [summarized_county_monthly()](https://wpinvestigative.github.io/arcos/reference/summarized_county_monthly.html)   | Get monthly summarized pill totals by county                                    | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [total_distributors_county()](https://wpinvestigative.github.io/arcos/reference/total_distributors_county.html)   | Get total pills for each distributor in a county                                | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone |                                                    |
+| [total_distributors_state()](https://wpinvestigative.github.io/arcos/reference/total_distributors_state.html)     | Get total pills for each distributor in a state                                 | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone |                                                    |
+| [total_manufacturers_county()](https://wpinvestigative.github.io/arcos/reference/total_manufacturers_county.html) | Get total pills for each manufacturer in a county                               | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone |                                                    |
+| [total_manufacturers_state()](https://wpinvestigative.github.io/arcos/reference/total_manufacturers_state.html)   | Get total pills for each manufacturer in a state                                | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone |                                                    |
+| [total_pharmacies_county()](https://wpinvestigative.github.io/arcos/reference/total_pharmacies_county.html)       | Get total pills for each pharmacy in a county                                   | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
+| [total_pharmacies_state()](https://wpinvestigative.github.io/arcos/reference/total_pharmacies_state.html)         | Get total pills for each pharmacy in a state                                    | Summarized   | 2006 - 2014 | Oxycodone & Hydrocodone | Retail Pharmacy, Chain Pharmacy, and Practitioners |
