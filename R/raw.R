@@ -213,7 +213,7 @@ drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Re
     if (!missing(fips)) {
       url <- param_set(url, key = "fips", value = fips)
       #df <- vroom(url)
-      url <- gsub(" ", "%20", url)
+      #url <- gsub(" ", "%20", url)
 
       if (!missing(drug)) {
         url <- param_set(url, key = "drug", value = drug)
