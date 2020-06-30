@@ -2,7 +2,8 @@
 % Please edit documentation in R/raw.R
 \name{raw_data}
 \alias{raw_data}
-\title{Download raw ARCOS data (Warning 130+ GB file)}
+\title{Download raw ARCOS data (Warning 130+ GB file)
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.}
 \usage{
 raw_data(key = "WaPo")
 }
@@ -11,18 +12,10 @@ raw_data(key = "WaPo")
 }
 \description{
 Download raw ARCOS data (Warning 130+ GB file)
-}
-\examples{
-\donttest{
-library(arcos)
-
-the_whole_thing <- raw_data(key="WaPo")
-
-head(the_whole_thing)
-}
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.
 }
 \seealso{
-\url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
+\url{https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz}
 
 Other raw data: \code{\link{buyer_list}},
   \code{\link{county_list}}, \code{\link{county_raw_fips}},

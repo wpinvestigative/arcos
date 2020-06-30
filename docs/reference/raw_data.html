@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download raw ARCOS data (Warning 130+ GB file) — raw_data • arcos</title>
+<title>Download raw ARCOS data (Warning 130+ GB file)
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below. — raw_data • arcos</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +31,11 @@
 
 
 
-<meta property="og:title" content="Download raw ARCOS data (Warning 130+ GB file) — raw_data" />
+<meta property="og:title" content="Download raw ARCOS data (Warning 130+ GB file)
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below. — raw_data" />
 
-<meta property="og:description" content="Download raw ARCOS data (Warning 130+ GB file)" />
+<meta property="og:description" content="Download raw ARCOS data (Warning 130+ GB file)
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,7 +95,13 @@
       <a href="../articles/county-analysis.html">County analysis</a>
     </li>
     <li>
+      <a href="../articles/individual-drug-mapping.html">Individual drug mapping</a>
+    </li>
+    <li>
       <a href="../articles/per-capita-pharmacies.html">Per capita pharmacies</a>
+    </li>
+    <li>
+      <a href="../articles/suspicious-order-detecton.html">Suspicious orders detection</a>
     </li>
   </ul>
 </li>
@@ -120,14 +129,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download raw ARCOS data (Warning 130+ GB file)</h1>
+    <h1>Download raw ARCOS data (Warning 130+ GB file)
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.</h1>
     <small class="dont-index">Source: <a href='https://github.com/wpinvestigative/arcos/blob/master/R/raw.R'><code>R/raw.R</code></a></small>
     <div class="hidden name"><code>raw_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Download raw ARCOS data (Warning 130+ GB file)</p>
+    <p>Download raw ARCOS data (Warning 130+ GB file)
+Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.</p>
     
     </div>
 
@@ -144,7 +155,7 @@
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources'>https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources</a></p>
+    <div class='dont-index'><p><a href='https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz'>https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz</a></p>
 <p>Other raw data: <code><a href='buyer_list.html'>buyer_list</a></code>,
   <code><a href='county_list.html'>county_list</a></code>, <code><a href='county_raw_fips.html'>county_raw_fips</a></code>,
   <code><a href='county_raw.html'>county_raw</a></code>, <code><a href='drug_county_biz.html'>drug_county_biz</a></code>,
@@ -152,11 +163,6 @@
   <code><a href='pharmacy_raw.html'>pharmacy_raw</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
-
-<span class='no'>the_whole_thing</span> <span class='kw'>&lt;-</span> <span class='fu'>raw_data</span>(<span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in vroom_(file, delim = delim, col_names = col_names, col_types = col_types,     id = id, skip = skip, col_select = col_select, na = na, quote = quote,     trim_ws = trim_ws, escape_double = escape_double, escape_backslash = escape_backslash,     comment = comment, locale = locale, guess_max = guess_max,     n_max = n_max, altrep_opts = vroom_altrep_opts(altrep_opts),     num_threads = num_threads, progress = progress): R character strings are limited to 2^31-1 bytes</span></div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>the_whole_thing</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(the_whole_thing): object 'the_whole_thing' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -164,9 +170,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

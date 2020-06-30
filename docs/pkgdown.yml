@@ -4,5 +4,7 @@ pkgdown_sha: ~
 articles:
   annual-maps: annual-maps.html
   county-analysis: county-analysis.html
+  individual-drug-mapping: individual-drug-mapping.html
   per-capita-pharmacies: per-capita-pharmacies.html
+  suspicious-order-detecton: suspicious-order-detecton.html
 

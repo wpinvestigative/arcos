@@ -322,31 +322,26 @@ county_list <- function(key="WaPo") {
 
 
 #' Download raw ARCOS data (Warning 130+ GB file)
+#' Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.
 #'
 #' @param key Key needed to make query successful
-#' @seealso \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
+#' @seealso \url{https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz}
 #'
 #' @family raw data
-#' @examples \donttest{
-#' library(arcos)
-#'
-#' the_whole_thing <- raw_data(key="WaPo")
-#'
-#' head(the_whole_thing)
-#' }
 #' @export
 
 raw_data <- function(key="WaPo") {
 
 
-  url <- "https://arcos-api.ext.nile.works/v1/all_the_data"
+  #url <- "https://arcos-api.ext.nile.works/v1/all_the_data"
+  url <- "https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz"
 
   if (missing(key)) {
     message("Error: API key needed.")
   } else {
-    url <- param_set(url, key = "key", value = key)
+    #url <- param_set(url, key = "key", value = key)
 
-      df <- vroom(url)
+      df <- vroom(url, delim="\t")
 
       #df <- fromJSON(url)
       return(df)

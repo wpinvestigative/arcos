@@ -1,0 +1,186 @@
+---
+title: "Suspicious orders detection"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{suspicious-order-detection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The DEA is purposefully vague in how it defines what is a suspicious amount of opioids ordered by a buyer.
+
+But in a [recent lawsuit](https://www.docketbird.com/court-documents/In-re-National-Prescription-Opiate-Litigation/Exhibit-12-Rafalski-Report-Redacted/ohnd-1:2017-md-02804-01876-014), a former DEA agent described five methodologies:
+
+* Maximum  Monthly, Trailing 6 Month Threshold
+* 2x Trailing 12 Month average
+* Extraordinary Order Method – 3x Trailing 12 Month Average
+* Maximum 8,000 Dosage Units Monthly
+* Maximum  Daily  Dosage  Units
+
+This vignette will show how to analyze one pharamacy's ordering patterns to identify suspicious orders using the first two listed methodologies.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+# Uncomment and run the lines below to see if you have the packages required already installed
+# packages <- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")
+# if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
+#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
+
+library(arcos)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(tidyr)
+library(stringr)
+library(scales)
+library(zoo)
+library(knitr)
+```
+
+We're going to look at a Walgreens pharmacy in Oviedo that was part of a [half dozen pharmacies](https://www.orlandosentinel.com/news/os-xpm-2012-04-06os-walgreens-dea-oviedo-20120406-story.html) in Florida sanctioned by the DEA in 2011 for suspicious activity. The Post later determined at the height of the opioid crisis, [Walgreens handled nearly one in five of the most addictive opioids](https://www.washingtonpost.com/investigations/2019/11/07/height-crisis-walgreens-handled-nearly-one-five-most-addictive-opioids/?arc404=true).
+
+## Investigate 
+
+First, we need to find the BUYER_DEA_NO for that store. All we know of [this specific pharmacy](https://www.wftv.com/news/local/dea-inspects-oviedo-walgreens-oxycodone-probe/287945741/) is the city and the address: Oviedo and Lockwood Boulevard. 
+
+Let's load up the data on buyers. The city of Oviedo is in Seminole County, Florida. Let's search based on that.
+
+```{r buyer}
+pharm <- buyer_addresses(county = "Seminole", state="FL", key="WaPo")
+
+glimpse(pharm)
+```
+
+Okay, we have 468 pharmacies in Seminole County. Are there any on Lockwood?
+
+```{r lockwood}
+pharm <- filter(pharm, 
+                grepl("LOCKWOOD", BUYER_ADDRESS1))
+
+kable(pharm)
+```
+
+Okay, we have four. And there are two that specifically Walgreens. 
+
+It's either BW8487438	or FW4552091. They both have the same address.
+
+`pharmacy_raw(buyer_dea_no = "FW4552091", key = "WaPo")` returns an error from the ARCOS api, so `BW8487438` must be the correct BUYER_DEA__NO.
+
+
+```{r oviedo}
+pharm1 <- pharmacy_raw(buyer_dea_no = "BW8487438", key = "WaPo")
+
+glimpse(pharm1)
+```
+
+These are the raw results from this one pharmacy. More than 4,000 orders.
+
+Let's narrow this list down to only Oxycodone and by month.
+
+```{r summarizing}
+# consolidating by month
+
+pharm_monthly <- pharm1 %>% 
+  # setting transactio code to S because those are purchases
+  filter(TRANSACTION_CODE=="S") %>% 
+  filter(DRUG_NAME=="OXYCODONE") %>% 
+  mutate(TRANSACTION_DATE=mdy(TRANSACTION_DATE)) %>% 
+  mutate(year=year(TRANSACTION_DATE),
+         month=month(TRANSACTION_DATE),
+         month_date=mdy(paste0(month, "/1/", year))) %>% 
+  group_by(year, month, month_date) %>% 
+  summarize(pills=sum(DOSAGE_UNIT))
+```
+
+## Maximum Monthly, Trailing 6 Month Threshold
+
+We use the `lag()` function to pull six months of pill orders prior and then keep the largest order from that list.
+
+```{r six_month_max, warning=F, message=F}
+# Slices out the max orders within a window of 6 months prior to the current month
+monthly_drug_six <- pharm_monthly %>% 
+  ungroup() %>% 
+  arrange(month_date) %>% 
+  mutate(lag1=lag(pills, 1),
+         lag2=lag(pills, 2),
+         lag3=lag(pills, 3),
+         lag4=lag(pills, 4),
+         lag5=lag(pills, 5),
+         lag6=lag(pills, 6)
+  ) %>% 
+  pivot_longer(cols=5:10, names_to="lag", values_to="total") %>% 
+  group_by(year, month, pills, month_date) %>% 
+  arrange(desc(total)) %>% 
+  slice(1)  %>% 
+  ungroup()
+
+
+# creating a column that indicates if a monthly dosage exceeds the 6 month max prior
+
+monthly_drug_six <- monthly_drug_six %>% 
+  mutate(six_max_flag=case_when(
+         pills > total ~ T,
+         TRUE ~ F))
+
+#monthly_drug_six$trail_six_max_flag <- ifelse(monthly_drug_six$pills > monthly_drug_six$total, 1, 0)
+```
+
+```{r six_month_plot, warning=F, message=F}
+
+ggplot(monthly_drug_six, aes(x=month_date, y=pills)) +
+  geom_col(fill="cadetblue3") +
+  geom_step(aes(x=month_date, y=total, fill="Maximum 6 month order"), color="tomato", opacity=.6)+
+    scale_y_continuous(label=comma) +
+  theme_minimal() +
+  labs(title="Monthly oxycodone pill orders from a Walgreens pharmacy in Oviedo, FL",
+       subtitle='As compared to the DEA suspicious "exceeds the 6-month maximum" order criteria')
+
+```
+
+How often did this store's orders exceed the 6-month max order?
+
+```{r table1}
+table(monthly_drug_six$six_max_flag)
+```
+
+## 2x Trailing 12 Month average
+
+Next, we'll determing what double the trailing 12-month average is.
+
+```{r rolling avg, warning=F, message=F}
+# we'll use the rollmean() function from the zoo package
+
+rolling <- pharm_monthly %>% 
+  ungroup() %>% 
+  arrange(month_date) %>% 
+  mutate(avg_pills = zoo::rollmean(pills, k = 12, fill = NA, align="right")) %>% 
+  mutate(avg_pills_2x=avg_pills*2) %>% 
+  mutate(roll_flag_2x=case_when(
+    avg_pills_2x<pills ~ T,
+    TRUE ~ F
+  ))
+
+# CALCULATE ROLLING AVERAGE HERE
+
+ggplot(rolling, aes(x=month_date, y=pills)) +
+  geom_col(fill="cadetblue3") +
+  geom_step(aes(x=month_date, y=avg_pills_2x, fill="Double the 12 month rolling average"), direction="mid",color="tomato", opacity=.06) +
+  scale_y_continuous(label=comma) +
+  theme_minimal() +
+  labs(title="Monthly oxycodone pill orders from a Walgreens pharmacy in Oviedo, FL",
+       subtitle='As compared to the DEA suspicious "double the 12-month rolling average" order criteria')
+
+```
+
+
+
+How often did this store's orders exceed double the 12-month rolling average?
+
+```{r table2}
+table(rolling$roll_flag_2x)
+```
+
