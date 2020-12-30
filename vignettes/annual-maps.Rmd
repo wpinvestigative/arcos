@@ -1,6 +1,7 @@
 ---
 title: "Annual maps"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{annual-maps}
   %\VignetteEngine{knitr::rmarkdown}
@@ -12,6 +13,8 @@ How to make some quick maps with the ARCOS api.
 First, let's load some packages.
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

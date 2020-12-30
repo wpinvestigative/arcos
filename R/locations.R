@@ -36,8 +36,13 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -86,8 +91,13 @@ pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo"
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -130,8 +140,13 @@ pharm_tracts <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -175,8 +190,13 @@ pharm_counties <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -220,8 +240,13 @@ buyer_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -265,8 +290,13 @@ reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -311,8 +341,13 @@ county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -348,8 +383,13 @@ state_population <- function(state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -379,8 +419,13 @@ not_pharmacies <- function(key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }

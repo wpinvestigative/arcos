@@ -2,7 +2,7 @@
 % Please edit documentation in R/raw.R
 \name{raw_data}
 \alias{raw_data}
-\title{Download raw ARCOS data (Warning 130+ GB file)
+\title{Link for raw ARCOS data (Warning 130+ GB file)
 Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.}
 \usage{
 raw_data(key = "WaPo")
@@ -11,16 +11,20 @@ raw_data(key = "WaPo")
 \item{key}{Key needed to make query successful}
 }
 \description{
-Download raw ARCOS data (Warning 130+ GB file)
+Link for raw ARCOS data (Warning 130+ GB file)
 Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.
 }
 \seealso{
 \url{https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz}
 
-Other raw data: \code{\link{buyer_list}},
-  \code{\link{county_list}}, \code{\link{county_raw_fips}},
-  \code{\link{county_raw}}, \code{\link{drug_county_biz}},
-  \code{\link{drug_fips_biz}}, \code{\link{drug_list}},
-  \code{\link{pharmacy_raw}}
+Other raw data: 
+\code{\link{buyer_list}()},
+\code{\link{county_list}()},
+\code{\link{county_raw_fips}()},
+\code{\link{county_raw}()},
+\code{\link{drug_county_biz}()},
+\code{\link{drug_fips_biz}()},
+\code{\link{drug_list}()},
+\code{\link{pharmacy_raw}()}
 }
 \concept{raw data}

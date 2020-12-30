@@ -4,8 +4,7 @@
 \alias{pharm_cbsa}
 \title{Get the core-based statistical area GEOID for each pharmacy based on BUYER_DEA_NO (Only includes retail and chain pharmacy designations)}
 \usage{
-pharm_cbsa(geoid = "26580", county = "Mingo", state = "WV",
-  key = "WaPo")
+pharm_cbsa(geoid = "26580", county = "Mingo", state = "WV", key = "WaPo")
 }
 \arguments{
 \item{geoid}{Filter the data to only this cbsa GEOD (e.g. '26580')}
@@ -31,12 +30,14 @@ head(mingo_wv)
 \seealso{
 \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 
-Other geocoded data: \code{\link{buyer_addresses}},
-  \code{\link{county_population}},
-  \code{\link{not_pharmacies}},
-  \code{\link{pharm_counties}}, \code{\link{pharm_latlon}},
-  \code{\link{pharm_tracts}},
-  \code{\link{reporter_addresses}},
-  \code{\link{state_population}}
+Other geocoded data: 
+\code{\link{buyer_addresses}()},
+\code{\link{county_population}()},
+\code{\link{not_pharmacies}()},
+\code{\link{pharm_counties}()},
+\code{\link{pharm_latlon}()},
+\code{\link{pharm_tracts}()},
+\code{\link{reporter_addresses}()},
+\code{\link{state_population}()}
 }
 \concept{geocoded data}

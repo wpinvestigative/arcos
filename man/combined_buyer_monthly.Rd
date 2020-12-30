@@ -4,8 +4,12 @@
 \alias{combined_buyer_monthly}
 \title{Get annual total pills for each buyer (pharmacy, etc) in a county}
 \usage{
-combined_buyer_monthly(county = "Mingo", state = "WV", year = 2012,
-  key = "WaPo")
+combined_buyer_monthly(
+  county = "Mingo",
+  state = "WV",
+  year = 2012,
+  key = "WaPo"
+)
 }
 \arguments{
 \item{county}{Filter the data to only this county (e.g. 'Mingo')}
@@ -31,15 +35,16 @@ head(mingo_wv)
 \seealso{
 \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 
-Other summarized: \code{\link{buyer_details}},
-  \code{\link{combined_buyer_annual}},
-  \code{\link{summarized_county_annual}},
-  \code{\link{summarized_county_monthly}},
-  \code{\link{total_distributors_county}},
-  \code{\link{total_distributors_state}},
-  \code{\link{total_manufacturers_county}},
-  \code{\link{total_manufacturers_state}},
-  \code{\link{total_pharmacies_county}},
-  \code{\link{total_pharmacies_state}}
+Other summarized: 
+\code{\link{buyer_details}()},
+\code{\link{combined_buyer_annual}()},
+\code{\link{summarized_county_annual}()},
+\code{\link{summarized_county_monthly}()},
+\code{\link{total_distributors_county}()},
+\code{\link{total_distributors_state}()},
+\code{\link{total_manufacturers_county}()},
+\code{\link{total_manufacturers_state}()},
+\code{\link{total_pharmacies_county}()},
+\code{\link{total_pharmacies_state}()}
 }
 \concept{summarized}

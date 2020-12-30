@@ -1,6 +1,7 @@
 ---
 title: "Suspicious orders detection"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{suspicious-order-detection}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,13 +21,15 @@ But in a [recent lawsuit](https://www.docketbird.com/court-documents/In-re-Natio
 This vignette will show how to analyze one pharamacy's ordering patterns to identify suspicious orders using the first two listed methodologies.
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
 # Uncomment and run the lines below to see if you have the packages required already installed
-# packages <- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")
+# packages <- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales", "zoo", "knitr")
 # if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 

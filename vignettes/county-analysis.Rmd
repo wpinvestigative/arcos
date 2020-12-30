@@ -1,6 +1,7 @@
 ---
 title: "County analysis"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{county-analysis}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,6 +11,8 @@ vignette: >
 Let's look at how many pills have gone to each county in West Virginia.
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

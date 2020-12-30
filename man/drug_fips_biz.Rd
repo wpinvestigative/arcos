@@ -4,8 +4,12 @@
 \alias{drug_fips_biz}
 \title{Download raw prescription data for individual drugs and business type by county FIPS code into R}
 \usage{
-drug_fips_biz(drug = "Fentanyl", fips = "01001",
-  buyer_bus_act = "Chain Retail", key = "WaPo")
+drug_fips_biz(
+  drug = "Fentanyl",
+  fips = "01001",
+  buyer_bus_act = "Chain Retail",
+  key = "WaPo"
+)
 }
 \arguments{
 \item{drug}{Filter the data to one of 14 available drugs in the database (e.g. 'OXYCODONE')}
@@ -31,10 +35,14 @@ head(autauga_al)
 \seealso{
 \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 
-Other raw data: \code{\link{buyer_list}},
-  \code{\link{county_list}}, \code{\link{county_raw_fips}},
-  \code{\link{county_raw}}, \code{\link{drug_county_biz}},
-  \code{\link{drug_list}}, \code{\link{pharmacy_raw}},
-  \code{\link{raw_data}}
+Other raw data: 
+\code{\link{buyer_list}()},
+\code{\link{county_list}()},
+\code{\link{county_raw_fips}()},
+\code{\link{county_raw}()},
+\code{\link{drug_county_biz}()},
+\code{\link{drug_list}()},
+\code{\link{pharmacy_raw}()},
+\code{\link{raw_data}()}
 }
 \concept{raw data}

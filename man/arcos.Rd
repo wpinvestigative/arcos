@@ -3,7 +3,6 @@
 \docType{package}
 \name{arcos}
 \alias{arcos}
-\alias{arcos-package}
 \title{\code{arcos} package}
 \description{
 Download and use data from ARCOS, raw or summarized by the Washington Post, in R

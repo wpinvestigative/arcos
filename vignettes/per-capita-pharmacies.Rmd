@@ -1,6 +1,7 @@
 ---
 title: "Per capita pharmacies"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{per-capita-pharmacies}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,6 +15,8 @@ First, let's load up the packages we need.
 There's a lot of new ones listed here so we can make fancy tables.
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

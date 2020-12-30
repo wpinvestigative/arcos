@@ -36,10 +36,14 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
-    #df <- vroom(url)
     url <- gsub(" ", "%20", url)
-    df <- fromJSON(url)
-    return(df)
+
+    if (curl::has_internet()==T) {
+      url %>% vroom() %>%  return()
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -69,20 +73,23 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
 
   if (missing(key)) {
     message("Error: API key needed.")
-    } else {
-        url <- param_set(url, key = "key", value = key)
+  } else {
+    url <- param_set(url, key = "key", value = key)
 
-        if (!missing(fips)) {
-            url <- param_set(url, key = "fips", value = fips)
-            #df <- vroom(url)
-            url <- gsub(" ", "%20", url)
+    if (!missing(fips)) {
+      url <- param_set(url, key = "fips", value = fips)
+      url <- gsub(" ", "%20", url)
 
-            df <- fromJSON(url)
-            return(df)
-          } else {
-            message("Error: No FIPS code detected")
-          }
+      if (curl::has_internet()==T) {
+        url %>% vroom() %>%  return()
+      } else {
+        message("Error: No internet connection")
       }
+
+    } else {
+      message("Error: No FIPS code detected")
+    }
+  }
 }
 
 
@@ -118,8 +125,13 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
       #df <- vroom(url)
       url <- gsub(" ", "%20", url)
 
-      df <- fromJSON(url)
-      return(df)
+      if (curl::has_internet()==T) {
+        df <- fromJSON(url)
+        return(df)
+      } else {
+        message("Error: No internet connection")
+      }
+
     } else {
       message("Error: No BUYER_DEA_NO id detected")
     }
@@ -173,8 +185,14 @@ drug_county_biz <- function(drug="Fentanyl", county = "Laurens", state = "GA", b
     url <- param_set(url, key = "key", value = key)
     #df <- vroom(url)
     url <- gsub(" ", "%20", url)
-    df <- fromJSON(url)
-    return(df)
+
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -217,8 +235,14 @@ drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Re
 
       if (!missing(drug)) {
         url <- param_set(url, key = "drug", value = drug)
-        df <- fromJSON(url)
-        return(df)
+
+        if (curl::has_internet()==T) {
+          df <- fromJSON(url)
+          return(df)
+        } else {
+          message("Error: No internet connection")
+        }
+
       } else {
         message("Error: No drug name detected")
       }
@@ -252,8 +276,13 @@ buyer_list <- function(key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -282,8 +311,14 @@ drug_list <- function(key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
 
-    df <- fromJSON(url)
-    return(df)
+
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -312,8 +347,14 @@ county_list <- function(key="WaPo") {
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
-    df <- fromJSON(url)
-    return(df)
+
+    if (curl::has_internet()==T) {
+      df <- fromJSON(url)
+      return(df)
+    } else {
+      message("Error: No internet connection")
+    }
+
   } else {
     message("Error: API key needed.")
   }
@@ -321,7 +362,7 @@ county_list <- function(key="WaPo") {
 }
 
 
-#' Download raw ARCOS data (Warning 130+ GB file)
+#' Link for raw ARCOS data (Warning 130+ GB file)
 #' Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.
 #'
 #' @param key Key needed to make query successful
@@ -339,12 +380,13 @@ raw_data <- function(key="WaPo") {
   if (missing(key)) {
     message("Error: API key needed.")
   } else {
-    #url <- param_set(url, key = "key", value = key)
 
-      df <- vroom(url, delim="\t")
+    if (curl::has_internet()==T) {
+      url %>% vroom() %>%  return()
+    } else {
+      message("Error: No internet connection")
+    }
 
-      #df <- fromJSON(url)
-      return(df)
   }
 }
 

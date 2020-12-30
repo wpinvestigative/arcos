@@ -1,8 +1,8 @@
 Package: arcos
 Type: Package
 Title: Load ARCOS Prescription Data Prepared by the Washington Post
-Version: 1.1
-Date: 2020-04-18
+Version: 1.25
+Date: 2020-12-30
 Authors@R: c(
       person(given="Steven", family="Rich", email="steven.rich@washpost.com",role=c("aut", "ctb")),
       person(given="Andrew", family="Ba Tran", email="andrew.tran@washpost.com", role=c("aut", "cre")),
@@ -37,13 +37,16 @@ Suggests:
     geofacet,
     lubridate,
     scales,
-    viridis
+    viridis,
+    zoo
 Imports:
     stringr,
     magrittr,
     jsonlite,
     dplyr,
     urltools,
+    httr,
+    curl,
     vroom
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr

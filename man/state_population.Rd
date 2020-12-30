@@ -26,11 +26,14 @@ head(wv)
 \seealso{
 \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 
-Other geocoded data: \code{\link{buyer_addresses}},
-  \code{\link{county_population}},
-  \code{\link{not_pharmacies}}, \code{\link{pharm_cbsa}},
-  \code{\link{pharm_counties}}, \code{\link{pharm_latlon}},
-  \code{\link{pharm_tracts}},
-  \code{\link{reporter_addresses}}
+Other geocoded data: 
+\code{\link{buyer_addresses}()},
+\code{\link{county_population}()},
+\code{\link{not_pharmacies}()},
+\code{\link{pharm_cbsa}()},
+\code{\link{pharm_counties}()},
+\code{\link{pharm_latlon}()},
+\code{\link{pharm_tracts}()},
+\code{\link{reporter_addresses}()}
 }
 \concept{geocoded data}

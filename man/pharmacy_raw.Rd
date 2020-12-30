@@ -26,10 +26,14 @@ head(solo_pharm)
 \seealso{
 \url{https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources}
 
-Other raw data: \code{\link{buyer_list}},
-  \code{\link{county_list}}, \code{\link{county_raw_fips}},
-  \code{\link{county_raw}}, \code{\link{drug_county_biz}},
-  \code{\link{drug_fips_biz}}, \code{\link{drug_list}},
-  \code{\link{raw_data}}
+Other raw data: 
+\code{\link{buyer_list}()},
+\code{\link{county_list}()},
+\code{\link{county_raw_fips}()},
+\code{\link{county_raw}()},
+\code{\link{drug_county_biz}()},
+\code{\link{drug_fips_biz}()},
+\code{\link{drug_list}()},
+\code{\link{raw_data}()}
 }
 \concept{raw data}
