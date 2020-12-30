@@ -305,7 +305,7 @@ reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 
 
-#' Get annual population for counties between 2006 and 2012
+#' Get annual population for counties between 2006 and 2014
 #'
 #' @param county Filter the data to only this county (e.g. 'Mingo')
 #' @param state Filter the data to county within this state (e.g. 'WV')
@@ -356,7 +356,7 @@ county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 
 
-#' Get annual population for states between 2006 and 2012
+#' Get annual population for states between 2006 and 2014
 #'
 #' @param state Filter the data to county within this state (e.g. 'WV')
 #' @param key Key needed to make query successful
