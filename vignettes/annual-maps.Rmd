@@ -74,8 +74,23 @@ kable(head(annual_states))
 
 Looks good. Let's use the geofacet package to map out the annual pill trends.
 
-```{r map, warning=F, message=F, fig.width=9, fig.height=7}
+```{r map, warning=F, message=F, fig.width=9, fig.height=7, eval=F}
 ggplot(annual_states, aes(year, pills)) +
+  geom_col() +
+  facet_geo(~ BUYER_STATE, grid = "us_state_grid2") +
+    scale_x_continuous(labels = function(x) paste0("'", substr(x, 3, 4))) +
+  scale_y_continuous(label=comma) +
+  labs(title = "Annual oxycodone and hydrocodone pills by state",
+    caption = "Source: The Washington Post, ARCOS",
+    x = "",
+    y = "Dosage units") +
+  theme(strip.text.x = element_text(size = 6))
+```
+
+```{r map_real, warning=F, message=F, fig.width=9, fig.height=7, echo=F}
+annual_states %>% 
+  filter(!BUYER_STATE %in% c("AE", "GU", "MP", "PR", "PW", "VI")) %>% 
+ggplot(aes(year, pills)) +
   geom_col() +
   facet_geo(~ BUYER_STATE, grid = "us_state_grid2") +
     scale_x_continuous(labels = function(x) paste0("'", substr(x, 3, 4))) +

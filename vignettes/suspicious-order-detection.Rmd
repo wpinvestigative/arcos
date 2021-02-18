@@ -52,8 +52,14 @@ First, we need to find the BUYER_DEA_NO for that store. All we know of [this spe
 
 Let's load up the data on buyers. The city of Oviedo is in Seminole County, Florida. Let's search based on that.
 
-```{r buyer}
+```{r buyer, eval=F}
 pharm <- buyer_addresses(county = "Seminole", state="FL", key="WaPo")
+
+glimpse(pharm)
+```
+
+```{r buyer_real, echo=F}
+pharm <- readRDS("data/seminole_pharms.RDS")
 
 glimpse(pharm)
 ```
@@ -74,8 +80,14 @@ It's either BW8487438	or FW4552091. They both have the same address.
 `pharmacy_raw(buyer_dea_no = "FW4552091", key = "WaPo")` returns an error from the ARCOS api, so `BW8487438` must be the correct BUYER_DEA__NO.
 
 
-```{r oviedo}
+```{r oviedo, eval=F}
 pharm1 <- pharmacy_raw(buyer_dea_no = "BW8487438", key = "WaPo")
+
+glimpse(pharm1)
+```
+
+```{r oviedo_real, echo=F}
+pharm1 <- readRDS("data/solo_pharm.RDS")
 
 glimpse(pharm1)
 ```

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 
 # Uncomment and run the lines below to see if you have the packages required already installed
-# packages <- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")
+# packages <- c("dplyr", "ggplot2", "lubridate", "tidyr", "scales", "leaflet")
 # if (length(setdiff(packages, rownames(installed.packages()))) > 0) {
 #   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
 
@@ -37,10 +37,17 @@ This is an exploratory analysis that highlights possibilities from drilling into
 
 First, let's get a list of the types of drugs tracked in this ARCOS data.
 
-```{r drug_list, warning=F, message=F}
+```{r drug_list, warning=F, message=F, eval=F}
 # what drugs are there
 
 drugs <- drug_list(key="WaPo")
+
+drugs
+```
+
+```{r drug_list_real, warning=F, message=F, echo=F}
+# what drugs are there
+drugs <- readRDS("data/drugs_list.RDS")
 
 drugs
 ```
@@ -49,10 +56,18 @@ We have 14 options, but let's focus on methadone, which is used to treat narcoti
 
 And Boston is in Suffolk County in Massachusetts. Let's pull that data.
 
-```{r methadone, warning=F, message=F}
+```{r methadone, warning=F, message=F, eval=F}
 # okay, we want METHADONE from Suffolk County
 
 methadone <- drug_county_biz(drug = "METHADONE", county = "Suffolk", state = "MA", key = "WaPo")
+
+# how big is this file
+
+nrow(methadone)
+```
+
+```{r methadone_real, warning=F, message=F, echo=F}
+methadone <- readRDS("data/methadone.RDS")
 
 # how big is this file
 
@@ -183,7 +198,10 @@ detox <- tribble(
 buyers_detox <- left_join(buyers_detox, detox)
 
 # Now that buyers_pharm and buyers_detox both have lat and lon data, we can join them
-buyers <- rbind(buyers_pharm, buyers_detox)
+buyers <- rbind(buyers_pharm, buyers_detox) 
+
+buyers <- buyers %>% 
+  filter(!is.na(lon))
 
 # Just ordering the data frame for mapping purposes
 buyers <- buyers %>% 

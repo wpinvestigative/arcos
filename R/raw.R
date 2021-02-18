@@ -39,8 +39,20 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- gsub(" ", "%20", url)
 
     if (curl::has_internet()==T) {
-      url %>% vroom() %>%  return()
-    } else {
+
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
+      } else {
       message("Error: No internet connection")
     }
 
@@ -81,8 +93,20 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
       url <- gsub(" ", "%20", url)
 
       if (curl::has_internet()==T) {
-        url %>% vroom() %>%  return()
-      } else {
+
+        for (i in 1:10) {
+          tryCatch({
+            df <- fromJSON(url)
+            return(df)
+            break
+          }, error=function(e) {
+            message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+          })
+          Sys.sleep(1)
+        }
+
+
+        } else {
         message("Error: No internet connection")
       }
 
@@ -126,8 +150,19 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
       url <- gsub(" ", "%20", url)
 
       if (curl::has_internet()==T) {
-        df <- fromJSON(url)
-        return(df)
+
+        for (i in 1:10) {
+          tryCatch({
+            df <- fromJSON(url)
+            return(df)
+            break
+          }, error=function(e) {
+            message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+          })
+          Sys.sleep(1)
+        }
+
+
       } else {
         message("Error: No internet connection")
       }
@@ -187,8 +222,20 @@ drug_county_biz <- function(drug="Fentanyl", county = "Laurens", state = "GA", b
     url <- gsub(" ", "%20", url)
 
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+
+
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -237,8 +284,15 @@ drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Re
         url <- param_set(url, key = "drug", value = drug)
 
         if (curl::has_internet()==T) {
-          df <- fromJSON(url)
-          return(df)
+          for (i in 1:10) {
+          tryCatch({
+            df <- fromJSON(url)
+            return(df)
+            break
+          }, error=function(e) {
+            message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+          })
+          }
         } else {
           message("Error: No internet connection")
         }
@@ -277,8 +331,17 @@ buyer_list <- function(key="WaPo") {
     url <- gsub(" ", "%20", url)
 
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
     } else {
       message("Error: No internet connection")
     }
@@ -313,8 +376,17 @@ drug_list <- function(key="WaPo") {
 
 
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
     } else {
       message("Error: No internet connection")
     }
@@ -349,8 +421,16 @@ county_list <- function(key="WaPo") {
     url <- gsub(" ", "%20", url)
 
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
     } else {
       message("Error: No internet connection")
     }
@@ -362,8 +442,8 @@ county_list <- function(key="WaPo") {
 }
 
 
-#' Link for raw ARCOS data (Warning 130+ GB file)
-#' Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.
+#' Raw ARCOS data (Warning 130+ GB file)
+#' Warning: May not fit on your memory.. If interested in the raw data, you can download via the link below.
 #'
 #' @param key Key needed to make query successful
 #' @seealso \url{https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz}
@@ -382,7 +462,17 @@ raw_data <- function(key="WaPo") {
   } else {
 
     if (curl::has_internet()==T) {
-      url %>% vroom() %>%  return()
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
     } else {
       message("Error: No internet connection")
     }

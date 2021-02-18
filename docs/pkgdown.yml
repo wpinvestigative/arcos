@@ -1,10 +1,11 @@
 pandoc: 2.9.1.1
-pkgdown: 1.3.0
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   annual-maps: annual-maps.html
   county-analysis: county-analysis.html
   individual-drug-mapping: individual-drug-mapping.html
   per-capita-pharmacies: per-capita-pharmacies.html
-  suspicious-order-detecton: suspicious-order-detecton.html
+  suspicious-order-detection: suspicious-order-detection.html
+last_built: 2021-02-18T21:15Z
 

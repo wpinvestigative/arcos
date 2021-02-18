@@ -34,8 +34,18 @@ summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo")
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -83,8 +93,20 @@ summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo"
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -132,8 +154,19 @@ buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -183,8 +216,20 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
     #df <- vroom(url)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -233,8 +278,18 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
     #df <- vroom(url)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
     } else {
       message("Error: No internet connection")
     }
@@ -284,8 +339,17 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
     #df <- vroom(url)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
     } else {
       message("Error: No internet connection")
     }
@@ -329,8 +393,18 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
 
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -373,8 +447,18 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
     #df <- vroom(url)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -416,8 +500,18 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
     #df <- vroom(url)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
     } else {
       message("Error: No internet connection")
     }
@@ -465,8 +559,17 @@ combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
     } else {
       message("Error: No internet connection")
     }
@@ -521,8 +624,19 @@ combined_buyer_monthly <- function(county = "Mingo", state = "WV", year=2012, ke
     url <- param_set(url, key = "key", value = key)
     url <- gsub(" ", "%20", url)
     if (curl::has_internet()==T) {
-      df <- fromJSON(url)
-      return(df)
+      for (i in 1:10) {
+        tryCatch({
+          df <- fromJSON(url)
+          return(df)
+          break
+        }, error=function(e) {
+          message("Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues")
+        })
+        Sys.sleep(1)
+      }
+
+
+
     } else {
       message("Error: No internet connection")
     }

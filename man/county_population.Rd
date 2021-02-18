@@ -2,7 +2,7 @@
 % Please edit documentation in R/locations.R
 \name{county_population}
 \alias{county_population}
-\title{Get annual population for counties between 2006 and 2012}
+\title{Get annual population for counties between 2006 and 2014}
 \usage{
 county_population(county = "Mingo", state = "WV", key = "WaPo")
 }
@@ -14,7 +14,7 @@ county_population(county = "Mingo", state = "WV", key = "WaPo")
 \item{key}{Key needed to make query successful}
 }
 \description{
-Get annual population for counties between 2006 and 2012
+Get annual population for counties between 2006 and 2014
 }
 \examples{
 \donttest{

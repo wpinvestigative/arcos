@@ -58,7 +58,7 @@ devtools::install_github('wpinvestigative/arcos')
 
 * It’s important to remember that the number of pills in each county does not necessarily mean those pills went to people who live in that county. The data only shows us what pharmacies the pills are shipped to and nothing else.
 
-* The best way to understand the definitions of the columns and variables in this data set is to refer to the DEA’s [ARCOS handbook](https://www.deadiversion.usdoj.gov/arcos/handbook/full.pdf), which provides detailed descriptions of the records.
+* The best way to understand the definitions of the columns and variables in this data set is to refer to the DEA’s [ARCOS handbook](https://web.archive.org/web/20200418215938/https://www.deadiversion.usdoj.gov/arcos/handbook/full.pdf), which provides detailed descriptions of the records.
 
 ### Alternate ways to download summarized data
 

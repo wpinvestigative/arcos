@@ -2,7 +2,7 @@
 % Please edit documentation in R/locations.R
 \name{state_population}
 \alias{state_population}
-\title{Get annual population for states between 2006 and 2012}
+\title{Get annual population for states between 2006 and 2014}
 \usage{
 state_population(state = "WV", key = "WaPo")
 }
@@ -12,7 +12,7 @@ state_population(state = "WV", key = "WaPo")
 \item{key}{Key needed to make query successful}
 }
 \description{
-Get annual population for states between 2006 and 2012
+Get annual population for states between 2006 and 2014
 }
 \examples{
 \donttest{

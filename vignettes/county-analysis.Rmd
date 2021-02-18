@@ -55,8 +55,14 @@ First, let's look at the pharmacies in Mingo, West Virginia.
 
 The total pills per pharmacy in a county can be pulled in with `total_pharmacies_county()`.
 
-```{r top_county_pharmacy}
+```{r top_county_pharmacy, eval=F}
 mingo <- total_pharmacies_county(county = "Mingo", state="WV", key="WaPo")
+
+kable(head(mingo))
+```
+
+```{r top_county_pharmacy_real, cho=F}
+mingo <- readRDS("data/mingo.RDS")
 
 kable(head(mingo))
 ```
@@ -88,15 +94,21 @@ Okay, now we can look at all the counties in West Virginia.
 
 Pull that data with `summarized_county_annual()`.
 
-```{r wv_data}
+```{r wv_data, eval=F}
 wv <- summarized_county_annual(state="WV", key="WaPo")
+
+kable(head(wv))
+```
+
+```{r wv_data_real, echo=F}
+wv <- readRDS("data/wv.RDS")
 
 kable(head(wv))
 ```
 
 For easy mapping, we'll use Census shape files pulled with the [**Tigris** package](https://github.com/walkerke/tigris).
 
-```{r tigris, warning=F, message=F, quietly=T, results="hide"}
+```{r tigris, warning=F, message=F, quietly=T, results="hide", eval=F}
 ## Set the option for shapefiles to load with sf
 options(tigris_class = "sf")
 
@@ -107,7 +119,15 @@ wv_shape <- counties(state="WV", cb=T)
 wv <- left_join(wv, wv_shape, by=c("countyfips"="GEOID"))
 ```
 
-```{r facet_map, fig.width=9, fig.height=7}
+
+```{r tigris_real, warning=F, message=F, quietly=T, results="hide", echo=F}
+wv_shape <- readRDS("data/wv_shape.RDS")
+
+## Join the county dosage data we pulled
+wv <- left_join(wv, wv_shape, by=c("countyfips"="GEOID"))
+```
+
+```{r facet_map, fig.width=9, fig.height=7, eval=F}
 # Mapping with ggplot2, sf, and viridis
 
 wv %>%
@@ -122,9 +142,24 @@ wv %>%
   labs(title="Oxycodone and hydrocodone pills in West Virginia", caption="Source: The Washington Post, ARCOS")
 ```
 
+```{r facet_map_real, fig.width=9, fig.height=7, echo=F}
+# Mapping with ggplot2, sf, and viridis
+wv <- readRDS("data/wv_facet.RDS")
+wv %>%
+  ggplot(aes(geometry=geometry, fill = DOSAGE_UNIT, color = DOSAGE_UNIT)) +
+  facet_wrap(~year, ncol=2) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  scale_fill_viridis(direction=-1, label = comma) +
+  scale_color_viridis(direction=-1, label = comma) +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  labs(title="Oxycodone and hydrocodone pills in West Virginia", caption="Source: The Washington Post, ARCOS")
+```
+
 Looks nice. You should probably [adjust for population](https://wpinvestigative.github.io/arcos/articles/annual-maps.html) next.
 
-```{r pop, warning=F, message=F, fig.width=9, fig.height=7}
+```{r pop, warning=F, message=F, fig.width=9, fig.height=7, eval=F}
 
 population <- county_population(state="WV", key="WaPo") %>% 
 # isolate the columns so it doesn't conflict in a join (there are doubles, that's why)
@@ -141,4 +176,25 @@ left_join(wv, population) %>%
   theme_void() +
   theme(panel.grid.major = element_line(colour = 'transparent')) +
   labs(title="Oxycodone and hydrocodone pills in West Virginia per person", caption="Source: The Washington Post, ARCOS")
+```
+
+
+```{r pop_real, warning=F, message=F, fig.width=9, fig.height=7, echo=F}
+
+population <- readRDS("data/wvpop.RDS")
+
+left_join(wv, population) %>% 
+  mutate(per_person=DOSAGE_UNIT/population) %>%
+  ggplot(aes(geometry=geometry, fill = per_person, color = per_person)) +
+  facet_wrap(~year, ncol=2) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  scale_fill_viridis(direction=-1, label = comma) +
+  scale_color_viridis(direction=-1, label = comma) +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  labs(title="Oxycodone and hydrocodone pills in West Virginia per person", caption="Source: The Washington Post, ARCOS")
+```
+
+
 

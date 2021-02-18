@@ -2,8 +2,8 @@
 % Please edit documentation in R/raw.R
 \name{raw_data}
 \alias{raw_data}
-\title{Link for raw ARCOS data (Warning 130+ GB file)
-Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.}
+\title{Raw ARCOS data (Warning 130+ GB file)
+Warning: May not fit on your memory.. If interested in the raw data, you can download via the link below.}
 \usage{
 raw_data(key = "WaPo")
 }
@@ -11,8 +11,8 @@ raw_data(key = "WaPo")
 \item{key}{Key needed to make query successful}
 }
 \description{
-Link for raw ARCOS data (Warning 130+ GB file)
-Warning: Not recommended to run in R due to server stability. If interested in the raw data, you can download via the link below.
+Raw ARCOS data (Warning 130+ GB file)
+Warning: May not fit on your memory.. If interested in the raw data, you can download via the link below.
 }
 \seealso{
 \url{https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz}

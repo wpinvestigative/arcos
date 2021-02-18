@@ -8,21 +8,29 @@
 
 <title>Download raw prescription data for individual drugs and business type by county into R — drug_county_biz • arcos</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Download raw prescription data for individual drugs and business type by county into R — drug_county_biz" />
 
+<meta property="og:title" content="Download raw prescription data for individual drugs and business type by county into R — drug_county_biz" />
 <meta property="og:description" content="Data from from non-contiguous states not yet processed and available." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.26</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -80,7 +89,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Walkthroughs
+    Articles
      
     <span class="caret"></span>
   </a>
@@ -98,7 +107,7 @@
       <a href="../articles/per-capita-pharmacies.html">Per capita pharmacies</a>
     </li>
     <li>
-      <a href="../articles/suspicious-order-detecton.html">Suspicious orders detection</a>
+      <a href="../articles/suspicious-order-detection.html">Suspicious orders detection</a>
     </li>
   </ul>
 </li>
@@ -106,11 +115,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/wpinvestigative/arcos">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/wpinvestigative/arcos/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -121,6 +129,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -132,14 +141,17 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Data from from non-contiguous states not yet processed and available.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>drug_county_biz</span>(<span class='kw'>drug</span> <span class='kw'>=</span> <span class='st'>"Fentanyl"</span>, <span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Laurens"</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"GA"</span>,
-  <span class='kw'>buyer_bus_act</span> <span class='kw'>=</span> <span class='st'>"Chain Retail"</span>, <span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"WaPo"</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>drug_county_biz</span><span class='op'>(</span>
+  drug <span class='op'>=</span> <span class='st'>"Fentanyl"</span>,
+  county <span class='op'>=</span> <span class='st'>"Laurens"</span>,
+  state <span class='op'>=</span> <span class='st'>"GA"</span>,
+  buyer_bus_act <span class='op'>=</span> <span class='st'>"Chain Retail"</span>,
+  key <span class='op'>=</span> <span class='st'>"WaPo"</span>
+<span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -164,24 +176,29 @@
       <td><p>Key needed to make query successful</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources'>https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources</a></p>
-<p>Other raw data: <code><a href='buyer_list.html'>buyer_list</a></code>,
-  <code><a href='county_list.html'>county_list</a></code>, <code><a href='county_raw_fips.html'>county_raw_fips</a></code>,
-  <code><a href='county_raw.html'>county_raw</a></code>, <code><a href='drug_fips_biz.html'>drug_fips_biz</a></code>,
-  <code><a href='drug_list.html'>drug_list</a></code>, <code><a href='pharmacy_raw.html'>pharmacy_raw</a></code>,
-  <code><a href='raw_data.html'>raw_data</a></code></p></div>
-    
+<p>Other raw data: 
+<code><a href='buyer_list.html'>buyer_list</a>()</code>,
+<code><a href='county_list.html'>county_list</a>()</code>,
+<code><a href='county_raw_fips.html'>county_raw_fips</a>()</code>,
+<code><a href='county_raw.html'>county_raw</a>()</code>,
+<code><a href='drug_fips_biz.html'>drug_fips_biz</a>()</code>,
+<code><a href='drug_list.html'>drug_list</a>()</code>,
+<code><a href='pharmacy_raw.html'>pharmacy_raw</a>()</code>,
+<code><a href='raw_data.html'>raw_data</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>arcos</span>)
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/wpinvestigative/arcos'>arcos</a></span><span class='op'>)</span>
 
-<span class='no'>bronx</span> <span class='kw'>&lt;-</span> <span class='fu'>drug_county_biz</span>(<span class='kw'>drug</span><span class='kw'>=</span><span class='st'>"Fentanyl"</span>, <span class='kw'>county</span> <span class='kw'>=</span> <span class='st'>"Laurens"</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"GA"</span>,
-                         <span class='kw'>buyer_bus_act</span> <span class='kw'>=</span> <span class='st'>"Chain Retail"</span>, <span class='kw'>key</span><span class='kw'>=</span><span class='st'>"WaPo"</span>)
+<span class='va'>bronx</span> <span class='op'>&lt;-</span> <span class='fu'>drug_county_biz</span><span class='op'>(</span>drug<span class='op'>=</span><span class='st'>"Fentanyl"</span>, county <span class='op'>=</span> <span class='st'>"Laurens"</span>, state <span class='op'>=</span> <span class='st'>"GA"</span>,
+                         buyer_bus_act <span class='op'>=</span> <span class='st'>"Chain Retail"</span>, key<span class='op'>=</span><span class='st'>"WaPo"</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>bronx</span>)</div><div class='output co'>#&gt;   REPORTER_DEA_NO REPORTER_BUS_ACT        REPORTER_NAME    REPORTER_ADDRESS1
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>bronx</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   REPORTER_DEA_NO REPORTER_BUS_ACT        REPORTER_NAME    REPORTER_ADDRESS1
 #&gt; 1       PR0040357      DISTRIBUTOR MCKESSON CORPORATION DBA MCKESSON DRUG CO
 #&gt; 2       PR0040357      DISTRIBUTOR MCKESSON CORPORATION DBA MCKESSON DRUG CO
 #&gt; 3       PR0040357      DISTRIBUTOR MCKESSON CORPORATION DBA MCKESSON DRUG CO
@@ -243,20 +260,16 @@
 #&gt; 3     &lt;NA&gt;                  &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;
 #&gt; 4     &lt;NA&gt;                  &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;
 #&gt; 5     &lt;NA&gt;                  &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;
-#&gt; 6     &lt;NA&gt;                  &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;</div></pre>
+#&gt; 6     &lt;NA&gt;                  &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;</div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -264,13 +277,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
