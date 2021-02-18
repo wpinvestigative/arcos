@@ -9,3 +9,7 @@ navbar:
     - articles
     - news
     right: github
+
+  components:
+    articles:
+      text: Walkthroughs
