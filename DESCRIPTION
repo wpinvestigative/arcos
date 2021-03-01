@@ -1,7 +1,7 @@
 Package: arcos
 Type: Package
 Title: Load ARCOS Prescription Data Prepared by the Washington Post
-Version: 1.26
+Version: 1.27
 Date: 2021-02-18
 Authors@R: c(
       person(given="Steven", family="Rich", email="steven.rich@washpost.com",role=c("aut", "ctb")),

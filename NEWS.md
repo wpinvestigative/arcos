@@ -1,4 +1,4 @@
-arcos 1.26
+arcos 1.27
 -------------------------------------------------------
 
 * Added contingencies for dealing with error 500s from the data server
