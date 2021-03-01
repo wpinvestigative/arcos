@@ -10,6 +10,6 @@ navbar:
     - news
     right: github
 
-  components:
-    articles:
-      text: Walkthroughs
+  #components:
+  #  articles:
+  #    text: Walkthroughs

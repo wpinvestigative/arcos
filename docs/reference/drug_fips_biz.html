@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.26</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27</span>
       </span>
     </div>
 
@@ -87,7 +87,30 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown-header">Walkthroughs</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/annual-maps.html">Annual maps</a>
+    </li>
+    <li>
+      <a href="../articles/county-analysis.html">County analysis</a>
+    </li>
+    <li>
+      <a href="../articles/individual-drug-mapping.html">Individual drug mapping</a>
+    </li>
+    <li>
+      <a href="../articles/per-capita-pharmacies.html">Per capita pharmacies</a>
+    </li>
+    <li>
+      <a href="../articles/suspicious-order-detection.html">Suspicious orders detection</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -167,85 +190,9 @@
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/wpinvestigative/arcos'>arcos</a></span><span class='op'>)</span>
 
 <span class='va'>autauga_al</span> <span class='op'>&lt;-</span> <span class='fu'>drug_fips_biz</span><span class='op'>(</span>drug<span class='op'>=</span><span class='st'>"Fentanyl"</span>, fips<span class='op'>=</span><span class='st'>"01001"</span>, buyer_bus_act<span class='op'>=</span><span class='st'>"Chain Retail"</span>, key<span class='op'>=</span><span class='st'>"WaPo"</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='output co'>#&gt; <span class='message'>Sorry, our server must be overwhelmed. Try again in a little bit. If it persists, let us know at https://github.com/wpinvestigative/arcos/issues</span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>autauga_al</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   REPORTER_DEA_NO REPORTER_BUS_ACT               REPORTER_NAME
-#&gt; 1       PR0040357      DISTRIBUTOR        MCKESSON CORPORATION
-#&gt; 2       PR0040357      DISTRIBUTOR        MCKESSON CORPORATION
-#&gt; 3       PR0040357      DISTRIBUTOR        MCKESSON CORPORATION
-#&gt; 4       PR0040357      DISTRIBUTOR        MCKESSON CORPORATION
-#&gt; 5       PR0040357      DISTRIBUTOR        MCKESSON CORPORATION
-#&gt; 6       RA0223432      DISTRIBUTOR AMERISOURCEBERGEN DRUG CORP
-#&gt;        REPORTER_ADDRESS1 REPORTER_ADDRESS2 REPORTER_CITY REPORTER_STATE
-#&gt; 1   DBA MCKESSON DRUG CO 2975 EVERGREEN DR        DULUTH             GA
-#&gt; 2   DBA MCKESSON DRUG CO 2975 EVERGREEN DR        DULUTH             GA
-#&gt; 3   DBA MCKESSON DRUG CO 2975 EVERGREEN DR        DULUTH             GA
-#&gt; 4   DBA MCKESSON DRUG CO 2975 EVERGREEN DR        DULUTH             GA
-#&gt; 5   DBA MCKESSON DRUG CO 2975 EVERGREEN DR        DULUTH             GA
-#&gt; 6 172 CAHABA VALLEY PKWY              &lt;NA&gt;        PELHAM             AL
-#&gt;   REPORTER_ZIP REPORTER_COUNTY BUYER_DEA_NO   BUYER_BUS_ACT
-#&gt; 1        30096        GWINNETT    BK2452566  CHAIN PHARMACY
-#&gt; 2        30096        GWINNETT    BK2452566  CHAIN PHARMACY
-#&gt; 3        30096        GWINNETT    BU4203751 RETAIL PHARMACY
-#&gt; 4        30096        GWINNETT    BU4203751 RETAIL PHARMACY
-#&gt; 5        30096        GWINNETT    BU4203751 RETAIL PHARMACY
-#&gt; 6        35124          SHELBY    BA6459576 RETAIL PHARMACY
-#&gt;                  BUYER_NAME BUYER_ADDL_CO_INFO           BUYER_ADDRESS1
-#&gt; 1 K &amp; B ALABAMA CORPORATION     RITE AID #7172 606 SOUTH MEMORIAL DRIVE
-#&gt; 2 K &amp; B ALABAMA CORPORATION     RITE AID #7172 606 SOUTH MEMORIAL DRIVE
-#&gt; 3    OMNICARE OF PRATTVILLE               &lt;NA&gt;         842 PEACHTREE ST
-#&gt; 4    OMNICARE OF PRATTVILLE               &lt;NA&gt;         842 PEACHTREE ST
-#&gt; 5    OMNICARE OF PRATTVILLE               &lt;NA&gt;         842 PEACHTREE ST
-#&gt; 6    ADAMS DRUGS-PRATTVILLE               &lt;NA&gt; 103 SOUTH MEMORIAL DRIVE
-#&gt;   BUYER_CITY BUYER_STATE BUYER_ZIP BUYER_COUNTY TRANSACTION_CODE DRUG_CODE
-#&gt; 1 PRATTVILLE          AL     36067      AUTAUGA                S      9801
-#&gt; 2 PRATTVILLE          AL     36067      AUTAUGA                S      9801
-#&gt; 3 PRATTVILLE          AL     36066      AUTAUGA                S      9801
-#&gt; 4 PRATTVILLE          AL     36066      AUTAUGA                S      9801
-#&gt; 5 PRATTVILLE          AL     36066      AUTAUGA                S      9801
-#&gt; 6 PRATTVILLE          AL     36066      AUTAUGA                S      9801
-#&gt;        NDC_NO DRUG_NAME QUANTITY ORDER_FORM_NO TRANSACTION_DATE
-#&gt; 1 00378912298  FENTANYL        3     061743386         05222006
-#&gt; 2 00378912198  FENTANYL        5     061743389         06282006
-#&gt; 3 50458003305  FENTANYL        2     07X000038         03192007
-#&gt; 4 00781710955  FENTANYL       10     07X000048         04132007
-#&gt; 5 00591319872  FENTANYL       72     08X000019         03052008
-#&gt; 6 00781711255  FENTANYL        3     056729958         02162006
-#&gt;   CALC_BASE_WT_IN_GM DOSAGE_UNIT TRANSACTION_ID
-#&gt; 1             0.0765          15      605007466
-#&gt; 2             0.0638          25      606006979
-#&gt; 3             0.0250          10      703041217
-#&gt; 4             0.0625          50      704031016
-#&gt; 5             0.9000         360      803041754
-#&gt; 6             0.0750          15          15143
-#&gt;                           Product_Name Ingredient_Name Measure
-#&gt; 1 FENTANYL 72HR 50MCG/HR TDS (5.10MG T   FENTANYL BASE   PO/PA
-#&gt; 2 FENTANYL 72HR 25MCG/HR TDS (2.55MG T   FENTANYL BASE   PO/PA
-#&gt; 3         DURAGESIC 2.5MG FENTANYL TDS   FENTANYL BASE   PO/PA
-#&gt; 4 FENTANYL TRANSDERMAL SYSTEM 1.25MG F   FENTANYL BASE   PO/PA
-#&gt; 5 FENTANYL 25MCG/HR TRANSDERMAL SYSTEM   FENTANYL BASE   PO/PA
-#&gt; 6 FENTANYL TRANSDERMAL SYSTEM 5MG POUC   FENTANYL BASE   PO/PA
-#&gt;   MME_Conversion_Factor         Combined_Labeler_Name        Reporter_family
-#&gt; 1                   100   Mylan Pharmaceuticals, Inc.   McKesson Corporation
-#&gt; 2                   100   Mylan Pharmaceuticals, Inc.   McKesson Corporation
-#&gt; 3                   100 Janssen Pharmaceuticals, Inc.   McKesson Corporation
-#&gt; 4                   100                    Sandoz Inc   McKesson Corporation
-#&gt; 5                   100          Actavis Pharma, Inc.   McKesson Corporation
-#&gt; 6                   100                    Sandoz Inc AmerisourceBergen Drug
-#&gt;     MME year REPORTER_ADDL_CO_INFO BUYER_ADDRESS2 STRENGTH ACTION_INDICATOR
-#&gt; 1  7650 2006                  &lt;NA&gt;           &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-#&gt; 2  6375 2006                  &lt;NA&gt;           &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-#&gt; 3  2500 2007                  &lt;NA&gt;           &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-#&gt; 4  6250 2007                  &lt;NA&gt;           &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-#&gt; 5 90000 2008                  &lt;NA&gt;           &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-#&gt; 6  7500 2006                  &lt;NA&gt;           &lt;NA&gt;     &lt;NA&gt;             &lt;NA&gt;
-#&gt;   CORRECTION_NO dos_str
-#&gt; 1          &lt;NA&gt;      NA
-#&gt; 2          &lt;NA&gt;      NA
-#&gt; 3          &lt;NA&gt;      NA
-#&gt; 4          &lt;NA&gt;      NA
-#&gt; 5          &lt;NA&gt;      NA
-#&gt; 6          &lt;NA&gt;      NA</div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
