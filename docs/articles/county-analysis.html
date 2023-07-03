@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.29</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/wpinvestigative/arcos/">
+  <a href="https://github.com/wpinvestigative/arcos/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,47 +87,49 @@
 
       
 
-      </header><script src="county-analysis_files/header-attrs-2.6/header-attrs.js"></script><script src="county-analysis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>County analysis</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/master/vignettes/county-analysis.Rmd"><code>vignettes/county-analysis.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/HEAD/vignettes/county-analysis.Rmd" class="external-link"><code>vignettes/county-analysis.Rmd</code></a></small>
       <div class="hidden name"><code>county-analysis.Rmd</code></div>
 
     </div>
 
     
     
-<p>Let’s look at how many pills have gone to each county in West Virginia.</p>
-<pre><code><a href="https://github.com/wpinvestigative/arcos"># Uncomment and run the lines below to see if you have the packages required already installed
-# packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales", "forcats")
-# if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
-#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
-
-
-# These are all the packages you'll need to run everything below 
-
-library(arcos)
-library(knitr)
-library(tigris)
-library(viridis)
-library(dplyr)
-library(ggplot2)
-library(scales)
-library(forcats)</a></code></pre>
+<p>Let’s look at how many pills have gone to each county in West
+Virginia.</p>
+<pre><code><span><span class="co"># Uncomment and run the lines below to see if you have the packages required already installed</span></span>
+<span><span class="co"># packages &lt;- c("tidyverse", "jsonlite", "knitr", "geofacet", "scales", "forcats")</span></span>
+<span><span class="co"># if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {</span></span>
+<span><span class="co">#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># These are all the packages you'll need to run everything below </span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wpinvestigative/arcos" class="external-link">arcos</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/tigris" class="external-link">tigris</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/" class="external-link">viridis</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org" class="external-link">scales</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/" class="external-link">forcats</a></span><span class="op">)</span></span></code></pre>
 <p>First, let’s look at the pharmacies in Mingo, West Virginia.</p>
-<p>The total pills per pharmacy in a county can be pulled in with <code><a href="../reference/total_pharmacies_county.html">total_pharmacies_county()</a></code>.</p>
+<p>The total pills per pharmacy in a county can be pulled in with
+<code><a href="../reference/total_pharmacies_county.html">total_pharmacies_county()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mingo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Mingo"</span>, state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mingo</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mingo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/total_pharmacies_county.html">total_pharmacies_county</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Mingo"</span>, state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mingo</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mingo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"data/mingo.RDS"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mingo</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span><span class="va">mingo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="st">"data/mingo.RDS"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mingo</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="11%">
 <col width="12%">
@@ -207,31 +205,32 @@ library(forcats)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Which were the most prolific pharmacies in Mingo between 2006 and 2014?</p>
+<p>Which were the most prolific pharmacies in Mingo between 2006 and
+2014?</p>
 <p>Let’s chart them out.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">mingo</span>,
-       <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">total_dosage_unit</span>, y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">buyer_name</span>, <span class="va">total_dosage_unit</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_segment</span><span class="op">(</span>
-       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>,
-           y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">buyer_name</span>, <span class="va">total_dosage_unit</span><span class="op">)</span>,
-           xend <span class="op">=</span> <span class="va">total_dosage_unit</span>,
-           yend <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">buyer_name</span>, <span class="va">total_dosage_unit</span><span class="op">)</span><span class="op">)</span>,
-           color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span>
-           <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">scale_x_continuous</span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Dosage units"</span>, y<span class="op">=</span><span class="st">""</span>, 
-       title <span class="op">=</span> <span class="st">"Pills sold at Mingo, WV pharmacies"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Between 2006 and 2014"</span>,
-       caption <span class="op">=</span> <span class="st">"Source: The Washington Post, ARCOS"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mingo</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">total_dosage_unit</span>, y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">buyer_name</span>, <span class="va">total_dosage_unit</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html" class="external-link">geom_segment</a></span><span class="op">(</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>           y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">buyer_name</span>, <span class="va">total_dosage_unit</span><span class="op">)</span>,</span>
+<span>           xend <span class="op">=</span> <span class="va">total_dosage_unit</span>,</span>
+<span>           yend <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">buyer_name</span>, <span class="va">total_dosage_unit</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>           color <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>           <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Dosage units"</span>, y<span class="op">=</span><span class="st">""</span>, </span>
+<span>       title <span class="op">=</span> <span class="st">"Pills sold at Mingo, WV pharmacies"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Between 2006 and 2014"</span>,</span>
+<span>       caption <span class="op">=</span> <span class="st">"Source: The Washington Post, ARCOS"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/top_county_pharmacy_chart-1.png" width="864"></p>
 <p>Okay, now we can look at all the counties in West Virginia.</p>
 <p>Pull that data with <code><a href="../reference/summarized_county_annual.html">summarized_county_annual()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summarized_county_annual.html">summarized_county_annual</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">wv</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summarized_county_annual.html">summarized_county_annual</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wv</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_COUNTY</th>
@@ -292,48 +291,50 @@ library(forcats)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>For easy mapping, we’ll use Census shape files pulled with the <a href="https://github.com/walkerke/tigris"><strong>Tigris</strong> package</a>.</p>
+<p>For easy mapping, we’ll use Census shape files pulled with the <a href="https://github.com/walkerke/tigris" class="external-link"><strong>Tigris</strong>
+package</a>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Set the option for shapefiles to load with sf</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>tigris_class <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span>
-
-<span class="co">## Function to download county shapefiles in West Virginia</span>
-<span class="va">wv_shape</span> <span class="op">&lt;-</span> <span class="fu">counties</span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, cb<span class="op">=</span><span class="cn">T</span><span class="op">)</span>
-
-<span class="co">## Join the county dosage data we pulled</span>
-<span class="va">wv</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">wv</span>, <span class="va">wv_shape</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"countyfips"</span><span class="op">=</span><span class="st">"GEOID"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Set the option for shapefiles to load with sf</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>tigris_class <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Function to download county shapefiles in West Virginia</span></span>
+<span><span class="va">wv_shape</span> <span class="op">&lt;-</span> <span class="fu">counties</span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, cb<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Join the county dosage data we pulled</span></span>
+<span><span class="va">wv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">wv</span>, <span class="va">wv_shape</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"countyfips"</span><span class="op">=</span><span class="st">"GEOID"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Mapping with ggplot2, sf, and viridis</span>
-
-<span class="va">wv</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>geometry<span class="op">=</span><span class="va">geometry</span>, fill <span class="op">=</span> <span class="va">DOSAGE_UNIT</span>, color <span class="op">=</span> <span class="va">DOSAGE_UNIT</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">year</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">coord_sf</span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">26915</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">scale_fill_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_color_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">'transparent'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia"</span>, caption<span class="op">=</span><span class="st">"Source: The Washington Post, ARCOS"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Mapping with ggplot2, sf, and viridis</span></span>
+<span></span>
+<span><span class="va">wv</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>geometry<span class="op">=</span><span class="va">geometry</span>, fill <span class="op">=</span> <span class="va">DOSAGE_UNIT</span>, color <span class="op">=</span> <span class="va">DOSAGE_UNIT</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">year</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">26915</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">scale_fill_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">'transparent'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia"</span>, caption<span class="op">=</span><span class="st">"Source: The Washington Post, ARCOS"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/facet_map_real-1.png" width="864"></p>
-<p>Looks nice. You should probably <a href="https://wpinvestigative.github.io/arcos/articles/annual-maps.html">adjust for population</a> next.</p>
+<p>Looks nice. You should probably <a href="https://wpinvestigative.github.io/arcos/articles/annual-maps.html" class="external-link">adjust
+for population</a> next.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/county_population.html">county_population</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-<span class="co"># isolate the columns so it doesn't conflict in a join (there are doubles, that's why)</span>
-    <span class="fu">select</span><span class="op">(</span><span class="va">countyfips</span>, <span class="va">year</span>, <span class="va">population</span><span class="op">)</span>
-
-<span class="fu">left_join</span><span class="op">(</span><span class="va">wv</span>, <span class="va">population</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>per_person<span class="op">=</span><span class="va">DOSAGE_UNIT</span><span class="op">/</span><span class="va">population</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>geometry<span class="op">=</span><span class="va">geometry</span>, fill <span class="op">=</span> <span class="va">per_person</span>, color <span class="op">=</span> <span class="va">per_person</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">year</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">coord_sf</span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">26915</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">scale_fill_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_color_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">'transparent'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia per person"</span>, caption<span class="op">=</span><span class="st">"Source: The Washington Post, ARCOS"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/county_population.html">county_population</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="co"># isolate the columns so it doesn't conflict in a join (there are doubles, that's why)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">countyfips</span>, <span class="va">year</span>, <span class="va">population</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">wv</span>, <span class="va">population</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>per_person<span class="op">=</span><span class="va">DOSAGE_UNIT</span><span class="op">/</span><span class="va">population</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>geometry<span class="op">=</span><span class="va">geometry</span>, fill <span class="op">=</span> <span class="va">per_person</span>, color <span class="op">=</span> <span class="va">per_person</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">year</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">26915</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">scale_fill_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_viridis</span><span class="op">(</span>direction<span class="op">=</span><span class="op">-</span><span class="fl">1</span>, label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">'transparent'</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Oxycodone and hydrocodone pills in West Virginia per person"</span>, caption<span class="op">=</span><span class="st">"Source: The Washington Post, ARCOS"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="county-analysis_files/figure-html/pop_real-1.png" width="864"></p>
   </div>
 
@@ -346,11 +347,13 @@ library(forcats)</a></code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
+  <p></p>
+<p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -358,6 +361,8 @@ library(forcats)</a></code></pre>
 
   
 
+
+  
 
   </body>
 </html>

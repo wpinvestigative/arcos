@@ -16,7 +16,7 @@
 #' @export
 
 pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/pharmacy_latlon"
+  url <- "https://ne.washingtonpost.com/arcos/v1/pharmacy_latlon"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -80,7 +80,7 @@ pharm_latlon <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/pharmacy_cbsa"
+  url <- "https://ne.washingtonpost.com/arcos/v1/pharmacy_cbsa"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -95,7 +95,7 @@ pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo"
   }
 
   if (!missing(geoid)) {
-    url <- param_set( "https://arcos-api.ext.nile.works/v1/pharmacy_cbsa", key = "geoid", value = geoid)
+    url <- param_set( "https://ne.washingtonpost.com/arcos/v1/pharmacy_cbsa", key = "geoid", value = geoid)
   }
 
   if (!missing(key)) {
@@ -142,7 +142,7 @@ pharm_cbsa <- function(geoid="26580", county = "Mingo", state = "WV", key="WaPo"
 #' @export
 
 pharm_tracts <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/pharmacy_tracts"
+  url <- "https://ne.washingtonpost.com/arcos/v1/pharmacy_tracts"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -202,7 +202,7 @@ pharm_tracts <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 pharm_counties <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/pharmacy_counties"
+  url <- "https://ne.washingtonpost.com/arcos/v1/pharmacy_counties"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -262,7 +262,7 @@ pharm_counties <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 buyer_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/buyer_details"
+  url <- "https://ne.washingtonpost.com/arcos/v1/buyer_details"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -323,7 +323,7 @@ buyer_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/reporter_details"
+  url <- "https://ne.washingtonpost.com/arcos/v1/reporter_details"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -385,7 +385,7 @@ reporter_addresses <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/county_population"
+  url <- "https://ne.washingtonpost.com/arcos/v1/county_population"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -445,7 +445,7 @@ county_population <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 state_population <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/state_population"
+  url <- "https://ne.washingtonpost.com/arcos/v1/state_population"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -496,7 +496,7 @@ state_population <- function(state = "WV", key="WaPo") {
 #' @export
 
 not_pharmacies <- function(key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/not_pharmacies"
+  url <- "https://ne.washingtonpost.com/arcos/v1/not_pharmacies"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)

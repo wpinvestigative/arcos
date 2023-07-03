@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.29</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/wpinvestigative/arcos/">
+  <a href="https://github.com/wpinvestigative/arcos/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,232 +87,247 @@
 
       
 
-      </header><script src="individual-drug-mapping_files/header-attrs-2.6/header-attrs.js"></script><script src="individual-drug-mapping_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="individual-drug-mapping_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="individual-drug-mapping_files/jquery-1.12.4/jquery.min.js"></script><link href="individual-drug-mapping_files/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+      </header><script src="individual-drug-mapping_files/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="individual-drug-mapping_files/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="individual-drug-mapping_files/leaflet-1.3.1/leaflet.js"></script><link href="individual-drug-mapping_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="individual-drug-mapping_files/Proj4Leaflet-1.0.1/proj4-compressed.js"></script><script src="individual-drug-mapping_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="individual-drug-mapping_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="individual-drug-mapping_files/leaflet-binding-2.0.3/leaflet.js"></script><script src="individual-drug-mapping_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="individual-drug-mapping_files/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script><div class="row">
+<script src="individual-drug-mapping_files/proj4-2.6.2/proj4.min.js"></script><script src="individual-drug-mapping_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="individual-drug-mapping_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="individual-drug-mapping_files/leaflet-binding-2.1.2/leaflet.js"></script><script src="individual-drug-mapping_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="individual-drug-mapping_files/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Individual drug mapping</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/master/vignettes/individual-drug-mapping.Rmd"><code>vignettes/individual-drug-mapping.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/HEAD/vignettes/individual-drug-mapping.Rmd" class="external-link"><code>vignettes/individual-drug-mapping.Rmd</code></a></small>
       <div class="hidden name"><code>individual-drug-mapping.Rmd</code></div>
 
     </div>
 
     
     
-<p>The Washington Post’s series <a href="https://www.washingtonpost.com/national/2019/07/20/opioid-files/?arc404=true">The Opioid Files</a> focused extensively on Oxycodone and Hydrocodone but the ARCOS database includes 12 other drugs that did not get as much attention.</p>
-<p>This is an exploratory analysis that highlights possibilities from drilling into ARCOS data inspired by <a href="https://apps.bostonglobe.com/graphics/2016/07/methadone-mile/">this story</a> from The Boston Globe about Methadone Mile, an area near the South End of Boston with many recovery clinics but plagued by the effects of drug use.</p>
-<p>First, let’s get a list of the types of drugs tracked in this ARCOS data.</p>
+<p>The Washington Post’s series <a href="https://www.washingtonpost.com/national/2019/07/20/opioid-files/?arc404=true" class="external-link">The
+Opioid Files</a> focused extensively on Oxycodone and Hydrocodone but
+the ARCOS database includes 12 other drugs that did not get as much
+attention.</p>
+<p>This is an exploratory analysis that highlights possibilities from
+drilling into ARCOS data inspired by <a href="https://apps.bostonglobe.com/graphics/2016/07/methadone-mile/" class="external-link">this
+story</a> from The Boston Globe about Methadone Mile, an area near the
+South End of Boston with many recovery clinics but plagued by the
+effects of drug use.</p>
+<p>First, let’s get a list of the types of drugs tracked in this ARCOS
+data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># what drugs are there</span>
-
-<span class="va">drugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/drug_list.html">drug_list</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="va">drugs</span></code></pre></div>
-<pre><code>#&gt;          DRUG_NAME
-#&gt; 1         FENTANYL
-#&gt; 2         MORPHINE
-#&gt; 3       MEPERIDINE
-#&gt; 4      HYDROCODONE
-#&gt; 5        OXYCODONE
-#&gt; 6          CODEINE
-#&gt; 7    HYDROMORPHONE
-#&gt; 8        METHADONE
-#&gt; 9    BUPRENORPHINE
-#&gt; 10     OXYMORPHONE
-#&gt; 11 OPIUM, POWDERED
-#&gt; 12      TAPENTADOL
-#&gt; 13     LEVORPHANOL
-#&gt; 14  DIHYDROCODEINE</code></pre>
-<p>We have 14 options, but let’s focus on methadone, which is used to treat narcotic drug addiction.</p>
-<p>And Boston is in Suffolk County in Massachusetts. Let’s pull that data.</p>
+<code class="sourceCode R"><span><span class="co"># what drugs are there</span></span>
+<span></span>
+<span><span class="va">drugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/drug_list.html">drug_list</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">drugs</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt;          DRUG_NAME</span></span>
+<span><span class="co">#&gt; 1         FENTANYL</span></span>
+<span><span class="co">#&gt; 2         MORPHINE</span></span>
+<span><span class="co">#&gt; 3       MEPERIDINE</span></span>
+<span><span class="co">#&gt; 4      HYDROCODONE</span></span>
+<span><span class="co">#&gt; 5        OXYCODONE</span></span>
+<span><span class="co">#&gt; 6          CODEINE</span></span>
+<span><span class="co">#&gt; 7    HYDROMORPHONE</span></span>
+<span><span class="co">#&gt; 8        METHADONE</span></span>
+<span><span class="co">#&gt; 9    BUPRENORPHINE</span></span>
+<span><span class="co">#&gt; 10     OXYMORPHONE</span></span>
+<span><span class="co">#&gt; 11 OPIUM, POWDERED</span></span>
+<span><span class="co">#&gt; 12      TAPENTADOL</span></span>
+<span><span class="co">#&gt; 13     LEVORPHANOL</span></span>
+<span><span class="co">#&gt; 14  DIHYDROCODEINE</span></span></code></pre>
+<p>We have 14 options, but let’s focus on methadone, which is used to
+treat narcotic drug addiction.</p>
+<p>And Boston is in Suffolk County in Massachusetts. Let’s pull that
+data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># okay, we want METHADONE from Suffolk County</span>
-
-<span class="va">methadone</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/drug_county_biz.html">drug_county_biz</a></span><span class="op">(</span>drug <span class="op">=</span> <span class="st">"METHADONE"</span>, county <span class="op">=</span> <span class="st">"Suffolk"</span>, state <span class="op">=</span> <span class="st">"MA"</span>, key <span class="op">=</span> <span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="co"># how big is this file</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">methadone</span><span class="op">)</span></code></pre></div>
-<pre><code>#&gt; [1] 37214</code></pre>
+<code class="sourceCode R"><span><span class="co"># okay, we want METHADONE from Suffolk County</span></span>
+<span></span>
+<span><span class="va">methadone</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/drug_county_biz.html">drug_county_biz</a></span><span class="op">(</span>drug <span class="op">=</span> <span class="st">"METHADONE"</span>, county <span class="op">=</span> <span class="st">"Suffolk"</span>, state <span class="op">=</span> <span class="st">"MA"</span>, key <span class="op">=</span> <span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># how big is this file</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">methadone</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; [1] 37214</span></span></code></pre>
 <p>That’s a lot of orders.</p>
 <p>Who’s been ordering methadone?</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># What type of buyers</span>
-
-<span class="va">methadone</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">BUYER_DEA_NO</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">count</span><span class="op">(</span><span class="va">BUYER_BUS_ACT</span><span class="op">)</span>
-<span class="co">#&gt;        BUYER_BUS_ACT   n</span>
-<span class="co">#&gt; 1     ANALYTICAL LAB   3</span>
-<span class="co">#&gt; 2     CHAIN PHARMACY 119</span>
-<span class="co">#&gt; 3   COMP/MAINT/DETOX   2</span>
-<span class="co">#&gt; 4     DETOXIFICATION   1</span>
-<span class="co">#&gt; 5     HOSP/CLINIC-VA   3</span>
-<span class="co">#&gt; 6    HOSPITAL/CLINIC  43</span>
-<span class="co">#&gt; 7      MAINT &amp; DETOX   9</span>
-<span class="co">#&gt; 8        MAINTENANCE   1</span>
-<span class="co">#&gt; 9       PRACTITIONER   1</span>
-<span class="co">#&gt; 10 RESEARCHER (II-V)   1</span>
-<span class="co">#&gt; 11   RETAIL PHARMACY  47</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># What type of buyers</span></span>
+<span></span>
+<span><span class="va">methadone</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">BUYER_DEA_NO</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">BUYER_BUS_ACT</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        BUYER_BUS_ACT   n</span></span>
+<span><span class="co">#&gt; 1     ANALYTICAL LAB   3</span></span>
+<span><span class="co">#&gt; 2     CHAIN PHARMACY 119</span></span>
+<span><span class="co">#&gt; 3   COMP/MAINT/DETOX   2</span></span>
+<span><span class="co">#&gt; 4     DETOXIFICATION   1</span></span>
+<span><span class="co">#&gt; 5     HOSP/CLINIC-VA   3</span></span>
+<span><span class="co">#&gt; 6    HOSPITAL/CLINIC  43</span></span>
+<span><span class="co">#&gt; 7      MAINT &amp; DETOX   9</span></span>
+<span><span class="co">#&gt; 8        MAINTENANCE   1</span></span>
+<span><span class="co">#&gt; 9       PRACTITIONER   1</span></span>
+<span><span class="co">#&gt; 10 RESEARCHER (II-V)   1</span></span>
+<span><span class="co">#&gt; 11   RETAIL PHARMACY  47</span></span></code></pre></div>
 <p>There are many clinics and pharmacies in Boston.</p>
 <p>Just curious, but which type of buyer orders the most methadone?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Clean up and consolidate the categories</span>
-
-<span class="va">methadone</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>type<span class="op">=</span><span class="fu">case_when</span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"PHARMACY"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"PHARMACY"</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"DETOX"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"DETOX/MAINTENANCE"</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"MAINT"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"DETOX/MAINTENANCE"</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"-VA"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"VA"</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"CLINIC"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"CLINIC"</span>,
-    <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">BUYER_BUS_ACT</span>
-  <span class="op">)</span><span class="op">)</span>
-
-<span class="co"># totals</span>
-<span class="va">methadone_summary</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op">%&gt;%</span> 
-  <span class="co"># focus only on purchase orders, which is transaction code S</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">TRANSACTION_CODE</span><span class="op">==</span><span class="st">"S"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">type</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="co"># calculate amount</span>
-  <span class="fu">mutate</span><span class="op">(</span>amount<span class="op">=</span><span class="va">CALC_BASE_WT_IN_GM</span><span class="op">*</span><span class="va">MME_Conversion_Factor</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>total<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">amount</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># chart it  </span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">methadone_summary</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">total</span>, y<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"Methadone dosages ordered by buyer type"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Clean up and consolidate the categories</span></span>
+<span></span>
+<span><span class="va">methadone</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>type<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"PHARMACY"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"PHARMACY"</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"DETOX"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"DETOX/MAINTENANCE"</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"MAINT"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"DETOX/MAINTENANCE"</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"-VA"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"VA"</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"CLINIC"</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span> <span class="op">~</span> <span class="st">"CLINIC"</span>,</span>
+<span>    <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">BUYER_BUS_ACT</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># totals</span></span>
+<span><span class="va">methadone_summary</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="co"># focus only on purchase orders, which is transaction code S</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">TRANSACTION_CODE</span><span class="op">==</span><span class="st">"S"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="co"># calculate amount</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>amount<span class="op">=</span><span class="va">CALC_BASE_WT_IN_GM</span><span class="op">*</span><span class="va">MME_Conversion_Factor</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>total<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">amount</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># chart it  </span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">methadone_summary</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">total</span>, y<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Methadone dosages ordered by buyer type"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="individual-drug-mapping_files/figure-html/cat-1.png" width="700"></p>
-<p>So even though there are only 14 detox and maintenance clinics in Suffolk County, they out-order everyone else when it comes to Methadone.</p>
-<div id="map" class="section level2">
-<h2 class="hasAnchor">
-<a href="#map" class="anchor"></a>Map</h2>
+<p>So even though there are only 14 detox and maintenance clinics in
+Suffolk County, they out-order everyone else when it comes to
+Methadone.</p>
+<div class="section level2">
+<h2 id="map">Map<a class="anchor" aria-label="anchor" href="#map"></a>
+</h2>
 <p>Alright, let’s map out where these orders are happening.</p>
 <p>We need to bring in a couple new data sets from ARCOS.</p>
-<p>Buyer details such as name and address of business using <code><a href="../reference/buyer_addresses.html">buyer_addresses()</a></code> as well as the available latitude and longitude data for pharmacies using <code><a href="../reference/pharm_latlon.html">pharm_latlon()</a></code>.</p>
+<p>Buyer details such as name and address of business using
+<code><a href="../reference/buyer_addresses.html">buyer_addresses()</a></code> as well as the available latitude and
+longitude data for pharmacies using <code><a href="../reference/pharm_latlon.html">pharm_latlon()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Let's calculate the amount of methadone purchased by every buyer in Suffolk County, MA</span>
-<span class="va">methadone_by_buyer</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">TRANSACTION_CODE</span><span class="op">==</span><span class="st">"S"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">BUYER_DEA_NO</span>, <span class="va">type</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>amount<span class="op">=</span><span class="va">CALC_BASE_WT_IN_GM</span><span class="op">*</span><span class="va">MME_Conversion_Factor</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>total<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">amount</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Saving the BUYER_DEA_NO of each purchaser from our data set so far</span>
-<span class="va">buyer_ids</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">BUYER_DEA_NO</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Download the addresses of buyers in Suffolk County, MA</span>
-<span class="va">buyer_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/buyer_addresses.html">buyer_addresses</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Suffolk"</span>, state <span class="op">=</span> <span class="st">"MA"</span>, key <span class="op">=</span> <span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">buyer_addresses</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 652</span>
-<span class="co">#&gt; Columns: 10</span>
-<span class="co">#&gt; $ BUYER_DEA_NO       &lt;chr&gt; "BB1832268", "AB2729789", "BG8631930", "BM3972747"…</span>
-<span class="co">#&gt; $ BUYER_BUS_ACT      &lt;chr&gt; "HOSPITAL/CLINIC", "RETAIL PHARMACY", "RETAIL PHAR…</span>
-<span class="co">#&gt; $ BUYER_NAME         &lt;chr&gt; "BOSTON UNIVERSITY GOLDMAN", "BROWN'S REXALL DRUG"…</span>
-<span class="co">#&gt; $ BUYER_ADDL_CO_INFO &lt;chr&gt; "SCHOOL OF DENTAL MEDICINE", NA, NA, NA, NA, NA, N…</span>
-<span class="co">#&gt; $ BUYER_ADDRESS1     &lt;chr&gt; "ORAL SURGERY CLINIC", "214 WINTHROP STREET", "186…</span>
-<span class="co">#&gt; $ BUYER_ADDRESS2     &lt;chr&gt; "100 E NEWTON ST G407", NA, NA, NA, NA, NA, "151 V…</span>
-<span class="co">#&gt; $ BUYER_CITY         &lt;chr&gt; "BOSTON", "WINTHROP", "WEST ROXBURY", "DORCHESTER"…</span>
-<span class="co">#&gt; $ BUYER_STATE        &lt;chr&gt; "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA", "M…</span>
-<span class="co">#&gt; $ BUYER_ZIP          &lt;int&gt; 2118, 2152, 2132, 2122, 2132, 2134, 2151, 2151, 21…</span>
-<span class="co">#&gt; $ BUYER_COUNTY       &lt;chr&gt; "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFO…</span>
-
-<span class="co"># We only care about the addresses of buyers who purchased methadone</span>
-<span class="va">buyers</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">buyer_ids</span>, <span class="va">buyer_addresses</span><span class="op">)</span>
-
-<span class="co"># Let's bring over the methadone order amounts</span>
-<span class="va">buyers</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">buyers</span>, <span class="va">methadone_by_buyer</span><span class="op">)</span>
-
-<span class="co"># Download the lat and lon of pharmacies in Suffolk County, MA</span>
-<span class="va">buyer_latlon</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pharm_latlon.html">pharm_latlon</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Suffolk"</span>, state <span class="op">=</span> <span class="st">"MA"</span>, key <span class="op">=</span> <span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">glimpse</span><span class="op">(</span><span class="va">buyer_latlon</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 181</span>
-<span class="co">#&gt; Columns: 5</span>
-<span class="co">#&gt; $ BUYER_DEA_NO &lt;chr&gt; "AB2729789", "AS6650027", "BC5456771", "FS4577586", "BT4…</span>
-<span class="co">#&gt; $ BUYER_STATE  &lt;chr&gt; "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA", "M…</span>
-<span class="co">#&gt; $ BUYER_COUNTY &lt;chr&gt; "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOLK", "…</span>
-<span class="co">#&gt; $ lat          &lt;dbl&gt; 42.3765, 42.3749, 42.3756, 42.4074, 42.4108, 42.3993, 42…</span>
-<span class="co">#&gt; $ lon          &lt;dbl&gt; -70.9841, -70.9867, -70.9878, -70.9945, -70.9950, -70.99…</span>
-
-<span class="co"># Let's just focus on pharmacies and detox/maintenence facilities</span>
-
-<span class="va">buyers_pharm</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span><span class="op">==</span><span class="st">"PHARMACY"</span><span class="op">)</span>
-<span class="va">buyers_detox</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span><span class="op">==</span><span class="st">"DETOX/MAINTENANCE"</span><span class="op">)</span>
-
-<span class="co"># We can easily join buyer_latlon because pharmacies are geolocated</span>
-<span class="va">buyers_pharm</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">buyers_pharm</span>, <span class="va">buyer_latlon</span><span class="op">)</span>
-
-<span class="co"># But non-pharmacies are not geolocated.</span>
-<span class="co"># So I'm going to geolocate these detox/maintenance locations by hand</span>
-<span class="co"># Here's the result</span>
-
-<span class="va">detox</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span>
-  <span class="op">~</span><span class="va">BUYER_DEA_NO</span>, <span class="op">~</span><span class="va">lat</span>,  <span class="op">~</span><span class="va">lon</span>,
-  <span class="st">"PV0130562"</span>,  <span class="fl">42.366429</span>,  <span class="op">-</span><span class="fl">71.058752</span>,
-  <span class="st">"PA0203024"</span>,  <span class="fl">42.327501</span>,  <span class="op">-</span><span class="fl">71.083288</span>,
-  <span class="st">"RB0192574"</span>,  <span class="fl">42.363672</span>,  <span class="op">-</span><span class="fl">71.05972</span>,
-  <span class="st">"RC0304395"</span>,  <span class="fl">42.319285</span>,  <span class="op">-</span><span class="fl">71.052785</span>,
-  <span class="st">"RH0102549"</span>,  <span class="fl">42.333502</span>,  <span class="op">-</span><span class="fl">71.066541</span>,
-  <span class="st">"RH0345783"</span>,  <span class="fl">42.333502</span>,  <span class="op">-</span><span class="fl">71.066541</span>,
-  <span class="st">"RC0252558"</span>,  <span class="fl">42.333435</span>,  <span class="op">-</span><span class="fl">71.073025</span>,
-  <span class="st">"RB0307480"</span>,  <span class="fl">42.334507</span>,  <span class="op">-</span><span class="fl">71.0741</span>,
-  <span class="st">"RC0441751"</span>,  <span class="fl">42.300033</span>,  <span class="op">-</span><span class="fl">71.101911</span>,
-  <span class="st">"RD0284581"</span>,  <span class="fl">42.319239</span>,  <span class="op">-</span><span class="fl">71.096921</span>,
-  <span class="st">"RR0198336"</span>,  <span class="fl">42.300033</span>,  <span class="op">-</span><span class="fl">71.101911</span>,
-  <span class="st">"RC0463327"</span>,  <span class="fl">42.333138</span>,  <span class="op">-</span><span class="fl">71.070542</span>
-<span class="op">)</span>
-  
-
-<span class="co"># okay, let's join the detox dataframe to this locations dataframe above</span>
-<span class="va">buyers_detox</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">buyers_detox</span>, <span class="va">detox</span><span class="op">)</span>
-
-<span class="co"># Now that buyers_pharm and buyers_detox both have lat and lon data, we can join them</span>
-<span class="va">buyers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">buyers_pharm</span>, <span class="va">buyers_detox</span><span class="op">)</span> 
-
-<span class="va">buyers</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">lon</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Just ordering the data frame for mapping purposes</span>
-<span class="va">buyers</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op">%&gt;%</span> 
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Setting up some color options</span>
-<span class="va">cof</span> <span class="op">&lt;-</span> <span class="fu">colorFactor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#ffa500"</span>, <span class="st">"#13ED3F"</span><span class="op">)</span>, domain<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"PHARMACY"</span>, <span class="st">"DETOX/MAINTENANCE"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># mapping with leaflet</span>
-<span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span><span class="va">buyers</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addProviderTiles</span><span class="op">(</span><span class="va">providers</span><span class="op">$</span><span class="va">CartoDB.DarkMatter</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">setView</span><span class="op">(</span><span class="op">-</span><span class="fl">71.091112</span>, <span class="fl">42.338827</span>, zoom <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">addCircleMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">lon</span>, <span class="op">~</span><span class="va">lat</span>, 
-                   popup<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">buyers</span><span class="op">$</span><span class="va">BUYER_NAME</span>, <span class="st">"&lt;br /&gt;"</span>,
-                                <span class="va">buyers</span><span class="op">$</span><span class="va">total</span>, <span class="st">" total methadone"</span><span class="op">)</span>,
-                   weight <span class="op">=</span> <span class="fl">3</span>,
-                   radius<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">buyers</span><span class="op">$</span><span class="va">total</span><span class="op">)</span><span class="op">/</span><span class="fl">30</span>, 
-                   color<span class="op">=</span><span class="op">~</span><span class="fu">cof</span><span class="op">(</span><span class="va">type</span><span class="op">)</span>,
-                   stroke <span class="op">=</span> <span class="cn">FALSE</span>, 
-                   fillOpacity <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op">%&gt;%</span> 
-  <span class="fu">addLegend</span><span class="op">(</span><span class="st">"bottomright"</span>, 
-            colors<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#ffa500"</span>, <span class="st">"#13ED3F"</span><span class="op">)</span>, 
-            labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Detox"</span>, <span class="st">"Pharmacy"</span><span class="op">)</span>, 
-            title<span class="op">=</span><span class="st">"Buyer type"</span><span class="op">)</span> 
-<span class="va">m</span></code></pre></div>
-<div id="htmlwidget-00ce67e1cf2519ee5738" style="width:864px;height:576px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-00ce67e1cf2519ee5738">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.DarkMatter",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[42.333502,42.319285,42.327501,42.300033,42.363672,42.366429,42.333502,42.300033,42.333138,42.3764,42.4276,42.3157,42.2865,42.4109,42.3364,42.4112,42.3441,42.4029,42.3486,42.291,42.3745,42.3759,42.334507,42.284,42.3494,42.3749,42.3387,42.2823,42.3424,42.2832,42.3862,42.3606,42.333435,42.284,42.3846,42.403,42.3383,42.2534,42.2974,42.3752,42.349,42.3157,42.3622,42.3924,42.3338,42.3442,42.319239,42.3119,42.3918,42.4297,42.3376,42.4294,42.4004,42.4109,42.3088,42.3115,42.2866,42.3334,42.3386,42.3505,42.3486,42.3631,42.3349,42.3293,42.3168,42.3399,42.4108,42.2675,42.3265,42.3846,42.3573,42.3541,42.3837,42.3846,42.3756,42.2707,42.3569,42.3307,42.3557,42.2755,42.3328,42.313,42.3386,42.3174,42.3444,42.3505,42.2851,42.365,42.3526,42.3132,42.3362,42.3319,42.2858,42.274,42.2755,42.3111,42.35,42.3487,42.2519,42.2894,42.3454,42.3471,42.3578,42.3541,42.2755,42.3194,42.3993,42.2419,42.3132,42.345,42.2558,42.2519,42.3187,42.2911,42.3957,42.3957,42.3038,42.2739,42.3359,42.2866,42.4297,42.3596,42.3505,42.3489,42.345,42.3362,42.3538,42.35,42.3175,42.2707,42.3038,42.2534,42.3415,42.3369,42.3927,42.2781,42.3538,42.3609,42.2858,42.3187,42.3495,42.283,42.2815,42.3566,42.3538,42.2698,42.2724,42.3697,42.2925,42.3526,42.331,42.3541,42.3044,42.3485,42.3609,42.4074,42.3022,42.3651,42.3472,42.2897,42.349,42.3505,42.3413,42.3573,42.3526,42.283,42.3511,42.3195,42.3415,42.3064,42.3526,42.3207,42.361],[-71.066541,-71.052785,-71.083288,-71.101911,-71.05972,-71.058752,-71.066541,-71.101911,-71.070542,-71.0634,-71.0123,-71.066,-71.1308,-71.0111,-71.0479,-71.0128,-71.0984,-71.0194,-71.0729,-71.063,-71.0384,-71.0655,-71.0741,-71.0447,-71.1564,-70.9867,-71.1072,-71.1581,-71.0741,-71.0475,-71.0075,-71.0705,-71.073025,-71.1576,-70.9992,-71.0235,-71.0751,-71.1256,-71.0498,-71.0408,-71.1325,-71.066,-71.0663,-71.0344,-71.0762,-71.0869,-71.096921,-71.0687,-71.0364,-71.0158,-71.1051,-71.0206,-71.0002,-71.0111,-71.0819,-71.114,-71.1308,-71.1047,-71.1083,-71.077,-71.0729,-71.0556,-71.0722,-71.0633,-71.0822,-71.1046,-70.995,-71.1198,-71.0651,-70.9992,-71.134,-71.0593,-71.0728,-70.9992,-70.9878,-71.0747,-71.0592,-71.0839,-71.1501,-71.139,-71.092,-71.0899,-71.1072,-71.0974,-71.1419,-71.1162,-71.1187,-71.0603,-71.063,-71.0566,-71.0365,-71.0819,-71.155,-71.0686,-71.139,-71.07,-71.153,-71.072,-71.126,-71.072,-71.0958,-71.0683,-71.0701,-71.1369,-71.139,-71.1121,-70.9991,-71.1269,-71.0566,-71.0978,-71.1237,-71.126,-71.0503,-71.0721,-71.0426,-71.0426,-71.0594,-71.1156,-71.149,-71.0441,-71.0158,-71.0601,-71.062,-71.0828,-71.0978,-71.0365,-71.1338,-71.153,-71.0654,-71.0747,-71.0713,-71.1256,-71.1452,-71.0482,-71.0343,-71.1633,-71.1338,-71.0622,-71.1548,-71.0503,-71.0819,-71.0547,-71.0878,-71.0588,-71.1338,-71.0941,-71.0679,-71.0395,-71.0487,-71.1235,-71.0568,-71.0584,-71.0594,-71.1358,-71.1375,-70.9945,-71.0853,-71.0529,-71.074,-71.072,-71.1545,-71.0561,-71.1464,-71.059,-71.1235,-71.0547,-71.1683,-71.0461,-71.1452,-71.067,-71.0623,-71.0998,-71.1375],[24.1361250687291,23.2092073683413,19.2472107762831,16.9584129498541,16.4277294028522,11.2815389021179,8.17201729480957,5.61450185778855,4.30764653455534,4.21037385513448,4.07849497023378,3.98108248819059,3.74310775515035,3.66301000999633,3.66253737182298,3.5935791041492,3.42192155244844,3.29815679163714,3.28851422040072,3.2591454912804,3.2429417372366,3.23975897594593,3.12085743203869,3.02337103982367,3.00788696596132,2.94087553100924,2.91644831563629,2.91357813616789,2.89381478329212,2.89102250269885,2.86506621990565,2.7992623830018,2.71145127192063,2.6622935809394,2.61385198934871,2.54615579518091,2.4886292523306,2.42583080842649,2.4125920592683,2.38699197038169,2.34805096480748,2.16027323374717,2.14798117103272,2.13094741579629,2.12560830508978,2.06793036633248,2.01069893873305,2.00508730760312,1.99077517007265,1.95653571395975,1.94795799064901,1.9297133926513,1.91722055764762,1.87445547648733,1.84434306280945,1.84339433292681,1.80457501922198,1.77434244471328,1.65239785362565,1.64789282957897,1.62464573916217,1.61951693758081,1.60495233574085,1.56713851050605,1.48395926868331,1.48277023019602,1.48266022180853,1.46344175756255,1.43574959128982,1.40273241290783,1.33911002784187,1.33058333072378,1.32751530646124,1.32701703916047,1.29577329978837,1.2703917156181,1.25236718080424,1.24030963875961,1.22742295526486,1.22661304230615,1.19542981577525,1.17784284935546,1.15490778852686,1.1487991798202,1.09299786520072,1.0918011621984,1.0886844252481,1.08747209415026,1.0756360392293,1.03886604847144,1.0359922779635,1.02967913017168,1.02299234275401,1.00812102448069,0.988337324331459,0.962256376093883,0.956971612257473,0.941514618993129,0.93728307119864,0.896087297334609,0.889338330820541,0.885138532785813,0.877158290542059,0.834053022561782,0.82927330972498,0.821949714601406,0.804949135729153,0.778592462217701,0.764068350636541,0.728476034838026,0.694964747307372,0.690661518642333,0.682021830865976,0.650653346858201,0.647806212450057,0.633629404480428,0.622286822043412,0.617763708872575,0.611991648454272,0.611277714663674,0.604872805729528,0.597679215335822,0.574426090400961,0.574399009593699,0.553133698927202,0.551653071332981,0.542363551708835,0.540277706369604,0.520862532514845,0.46882453481494,0.465462255302308,0.449529136368761,0.441339375588044,0.436812698228123,0.406161434790541,0.403091387487585,0.390990764312634,0.38340057381282,0.35595879911398,0.330629030116164,0.308873221025499,0.305638857331837,0.302369898560613,0.299891832351452,0.281961384274908,0.281961384274908,0.281961384274908,0.259955551756236,0.256131910459348,0.256104145482523,0.252193928907454,0.252055549433057,0.250540748515419,0.2249071413322,0.221689472511038,0.209108159147897,0.204300432370239,0.199376806853533,0.18914544668059,0.178328037304539,0.154436610512749,0.140980692137454,0.133124836984772,0.126096964453727,0.125436128058156,0.117952909624515,0.0996995486449161,0.0891640186522693,0.0891640186522693,0.0882269800004511,0.0630484822268634,0.0630484822268634,0.0445820093261346],null,null,{"interactive":true,"className":"","stroke":false,"color":["#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F"],"weight":3,"opacity":0.5,"fill":true,"fillColor":["#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F"],"fillOpacity":0.3},null,null,["HABIT OPCO, INC.<br />524297.28 total methadone","COMMUNITY HEALTH CARE, INC.<br />484800.576 total methadone","ADDICTION TRTMT CTR OF N E<br />333409.6104 total methadone","METHADONE ASSESSMENT AND TREATMENT OF<br />258828.9928 total methadone","BAY COVE SUBSTANCE ABUSE CTR<br />242883.264 total methadone","VET ADMIN OUTPATIENT CLINIC<br />114545.808 total methadone","HABIT MANAGEMENT INSTITUTE<br />60103.68 total methadone","COMMUNITY HEALTH CARE, INC.<br />28370.368 total methadone","COMMUNITY HEALTH CARE, INC.<br />16700.2368 total methadone","HIGH PHARMACY<br />15954.5232 total methadone","CVS PHARMACY, INC.<br />14970.7091 total methadone","D A W INC, DBA STRAND PHARMACY<br />14264.116 total methadone","SULLIVAN'S HEALTH CARE<br />12609.7701 total methadone","MAXI DRUG, INC.<br />12075.8781 total methadone","CVS PHARMACY, INC.<br />12072.762 total methadone","WALGREEN EASTERN CO., INC.<br />11622.4297 total methadone","FENWAY COMMUNITY HLTH CENTER<br />10538.5924 total methadone","WALGREEN EASTERN CO., INC.<br />9790.0544 total methadone","BIOSCRIP PHARMACY<br />9732.8932 total methadone","CRAWFORD DRUG STORE<br />9559.8264 total methadone","WALGREEN EASTERN CO., INC.<br />9465.004 total methadone","CVS PHARMACY, INC.<br />9446.4344 total methadone","BOSTON PUBLIC HEALTH COMM<br />8765.776 total methadone","WALGREEN EASTERN CO., INC.<br />8226.6952 total methadone","CVS PHARMACY, INC.<br />8142.6456 total methadone","SAMUELS PHARMACY<br />7783.874 total methadone","PROCARE PHARMACY, L.L.C.<br />7655.1037 total methadone","WALGREEN EASTERN CO., INC.<br />7640.0438 total methadone","TREMONT DRUG CO<br />7536.7476 total methadone","CVS PHARMACY, INC.<br />7522.21 total methadone","MAXI DRUG, INC.<br />7387.744 total methadone","CVS PHARMACY, INC.<br />7052.2829 total methadone","CAB HEALTH & RECOVERY SVS<br />6616.7712 total methadone","CVS PHARMACY, INC.<br />6379.0264 total methadone","CVS PHARMACY, INC.<br />6149 total methadone","CVS PHARMACY, INC.<br />5834.6184 total methadone","WALGREEN EASTERN CO., INC.<br />5573.948 total methadone","MAXI DRUG, INC.<br />5296.1896 total methadone","CVS PHARMACY, INC.<br />5238.5404 total methadone","CVS PHARMACY, INC.<br />5127.9576 total methadone","CVS PHARMACY, INC.<br />4962.009 total methadone","WALGREEN EASTERN CO. INC.<br />4200.1024 total methadone","CVS PHARMACY, INC.<br />4152.4408 total methadone","MARGOLIS PHARMACY INC<br />4086.8432 total methadone","CVS PHARMACY, INC.<br />4066.3896 total methadone","CVS PHARMACY, INC.<br />3848.7024 total methadone","DIMOCK COMMUNITY SERVICE CORP<br />3638.6192 total methadone","D A W INC<br />3618.3376 total methadone","CVS PHARMACY, INC.<br />3566.8672 total methadone","RITE AID PHARMACY #10167<br />3445.2288 total methadone","CVS PHARMACY, INC.<br />3415.0863 total methadone","THE STOP & SHOP SUPERMARKET<br />3351.4144 total methadone","TARGET STORES A DIV.OF TARGET CORP.<br />3308.1612 total methadone","MAXI DRUG, INC.<br />3162.225 total methadone","CVS PHARMACY, INC.<br />3061.4412 total methadone","CVS PHARMACY, INC.<br />3058.2924 total methadone","SULLIVAN'S PHARMACY INC<br />2930.8419 total methadone","WALGREEN EASTERN CO., INC.<br />2833.462 total methadone","WALGREEN EASTERN CO., INC.<br />2457.3768 total methadone","CVS PHARMACY, INC.<br />2443.9957 total methadone","WALGREEN EASTERN CO INC<br />2375.5264 total methadone","CVS PHARMACY, INC.<br />2360.5516 total methadone","BOSTON MEDICAL CENTER PHARMACY AT SHAPIRO<br />2318.2848 total methadone","TARGET STORES A DIV.OF TARGET CORP.<br />2210.3308 total methadone","WALGREEN EASTERN CO., INC.<br />1981.9216 total methadone","PROCARE PHCY OF BROOKLINE AVE<br />1978.7468 total methadone","THE STOP & SHOP SUPERMARKT CO<br />1978.4532 total methadone","CVS PHARMACY, INC.<br />1927.4956 total methadone","THE STOP& SHOP SUPERMARKET CO<br />1855.2392 total methadone","RITE AID PHARMACY #10153<br />1770.8924 total methadone","PELHAM HEALTH CARE SERVICES<br />1613.8941 total methadone","CVS PHARMACY, INC.<br />1593.4068 total methadone","TEAMSTERS LOCAL 25 HLTH SERV<br />1586.0672 total methadone","RITE AID PHARMACY #10153<br />1584.8768 total methadone","CVS PHARMACY, INC.<br />1511.1256 total methadone","MAXI DRUG, INC.<br />1452.5056 total methadone","CVS PHARMACY, INC.<br />1411.5812 total methadone","WALGREEN EASTERN CO., INC.<br />1384.5312 total methadone","CVS PHARMACY, INC.<br />1355.9104 total methadone","CVS PHARMACY, INC.<br />1354.1216 total methadone","WHITTIER HEALTH PHARMACY INC<br />1286.1472 total methadone","HRC CORP, INC<br />1248.5824 total methadone","CVS PHARMACY, INC.<br />1200.4308 total methadone","WALGREEN EASTERN CO., INC.<br />1187.7656 total methadone","NEWT'S PHARMACY INC<br />1075.1799 total methadone","CVS PHARMACY, INC.<br />1072.8268 total methadone","ROSLINDALE PHARMACY LIMITED<br />1066.7104 total methadone","CVS PHARMACY, INC.<br />1064.336 total methadone","CVS PHARMACY, INC.<br />1041.2936 total methadone","MAXI DRUG, INC.<br />971.3184 total methadone","MAXI DRUG, INC.<br />965.952 total methadone","KORNFIELD DRUG<br />954.2152 total methadone","WEST ROXBURY PHARMACY<br />941.862 total methadone","CVS PHARMACY, INC.<br />914.6772 total methadone","RITE AID PHARMACY #10154<br />879.1296 total methadone","EDLINE GROUP INC<br />833.3436 total methadone","RITE AID PHARMACY #10156<br />824.2152 total methadone","FENWAY PHARMACY AT SOUTH END ASSOCIATES<br />797.8048 total methadone","OSCO PHARMACY #7579<br />790.6496 total methadone","D.A.W., LLC.<br />722.6752 total methadone","CVS PHARMACY, INC.<br />711.8304 total methadone","CVS PHARMACY, INC.<br />705.1232 total methadone","GARY DRUG CO<br />692.466 total methadone","WALGREEN EASTERN CO., INC.<br />626.08 total methadone","RITE AID PHARMACY #10154<br />618.9248 total methadone","CVS PHARMACY, INC.<br />608.0412 total methadone","STOP AND SHOP SUPERMARKET COMPANY<br />583.1488 total methadone","WALGREEN EASTERN CO., INC.<br />545.5856 total methadone","MAXI DRUG, INC.<br />525.4204 total methadone","RITE AID PHARMACY #10175<br />477.6096 total methadone","QUALITY RX PHARMACY INC.<br />434.6784 total methadone","SHAWS SUPERMARKETS INC<br />429.312 total methadone","OSCO PHARMACY #7587<br />418.6384 total methadone","WALGREEN EASTERN CO., INC.<br />381.0148 total methadone","RITE AID PHARMACY #10165<br />377.6876 total methadone","RITE AID PHARMACY #10165<br />361.3376 total methadone","MAXIM PHARMACY<br />348.5168 total methadone","WALGREEN EASTERN CO., INC.<br />343.4688 total methadone","CVS PHARMACY, INC.<br />337.0804 total methadone","NEPONSET HEALTH CENTER PHARMACY<br />336.2944 total methadone","RITE AID PHARMACY #10167<br />329.284 total methadone","CVS PHARMACY, INC.<br />321.4984 total methadone","PROCARE PHARMACY, L.L.C.<br />296.9688 total methadone","WALGREEN EASTERN CO., INC.<br />296.9408 total methadone","RITE AID PHARMACY #10175<br />275.3612 total methadone","MAXI DRUG, INC.<br />273.889 total methadone","RITE AID PHARMACY #10155<br />264.7424 total methadone","RITE AID PHARMACY #10156<br />262.71 total methadone","CVS PHARMACY, INC.<br />244.168 total methadone","MAXI DRUG, INC.<br />197.8168 total methadone","WALGREEN EASTERN CO., INC.<br />194.9896 total methadone","MAXI DRUG, INC.<br />181.8688 total methadone","HEALTH FIRST PHARMACY, INC.<br />175.3024 total methadone","D.A.W., LLC.<br />171.7248 total methadone","CHELSEA PHARM, INC.<br />148.4704 total methadone","OSCO PHARMACY #7577<br />146.2344 total methadone","RITE AID PHARMACY #10155<br />137.5864 total methadone","MAXI DRUG, INC.<br />132.2964 total methadone","GREATER BOSTON LONG TERM CARE<br />114.036 total methadone","SHAWS SUPERMARKETS INC<br />98.384 total methadone","CVS PHARMACY, INC.<br />85.8624 total methadone","RITE AID PHARMACY #10149<br />84.0736 total methadone","WALGREEN EASTERN CO., INC.<br />82.2848 total methadone","WASHINGTON RETAILER, INC<br />80.9416 total methadone","CVS PHARMACY, INC.<br />71.552 total methadone","CVS PHARMACY, INC.<br />71.552 total methadone","VIETAZ INC. DBA CARING PHARMACY #2<br />71.552 total methadone","D.A.W., LLC.<br />60.8192 total methadone","THE STOP& SHOP SUPERMARKET CO LLC<br />59.0432 total methadone","SHAWS SUPERMARKETS INC<br />59.0304 total methadone","GALAXY PHARMACY<br />57.2416 total methadone","WALGREEEN CO<br />57.1788 total methadone","DORCHESTER HOUSE MULTI<br />56.4936 total methadone","CENTRAL PHARMACY OF BOSTON, INC.<br />45.5249 total methadone","OSCO PHARMACY 7572<br />44.2316 total methadone","SEASIDE PHARMACY INC.<br />39.3536 total methadone","GET WELL PHARMACY<br />37.5648 total methadone","GIANGREGORIO BROS INC<br />35.776 total methadone","CVS PHARMACY, INC.<br />32.1984 total methadone","ANJO ENTERPRISES INC<br />28.6208 total methadone","BRIGHTON PHARMACY<br />21.4656 total methadone","CVS PHARMACY, INC.<br />17.888 total methadone","SUTHERLAND PHARMACY LLC<br />15.95 total methadone","WALGREEN EASTERN CO., INC.<br />14.3104 total methadone","OSCO PHARMACY 7588<br />14.1608 total methadone","RITE AID PHARMACY #10149<br />12.5216 total methadone","COMMUNITY PHARMACY<br />8.946 total methadone","GEIGER GIBSON COMMUNITY HEALTH CENTER PHARMACY<br />7.1552 total methadone","DAISYS PHARMACY CORP<br />7.1552 total methadone","MEETINGHOUSE COMMUNITY PHARM INC.<br />7.0056 total methadone","WALGREEN EASTERN CO., INC.<br />3.5776 total methadone","WALGREEN EASTERN CO., INC.<br />3.5776 total methadone","SHAWS SUPERMARKETS INC<br />1.7888 total methadone"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#ffa500","#13ED3F"],"labels":["Detox","Pharmacy"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"unknown","title":"Buyer type","extra":null,"layerId":null,"className":"info legend","group":null}]}],"setView":[[42.338827,-71.091112],12,[]],"limits":{"lat":[42.2419,42.4297],"lng":[-71.1683,-70.9867]}},"evals":[],"jsHooks":[]}</script><p>Zoom into central Boston and you can see the cluster of 4-5 orange circles representing the methadone clinics.</p>
+<code class="sourceCode R"><span><span class="co"># Let's calculate the amount of methadone purchased by every buyer in Suffolk County, MA</span></span>
+<span><span class="va">methadone_by_buyer</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">TRANSACTION_CODE</span><span class="op">==</span><span class="st">"S"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">BUYER_DEA_NO</span>, <span class="va">type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>amount<span class="op">=</span><span class="va">CALC_BASE_WT_IN_GM</span><span class="op">*</span><span class="va">MME_Conversion_Factor</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>total<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">amount</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Saving the BUYER_DEA_NO of each purchaser from our data set so far</span></span>
+<span><span class="va">buyer_ids</span> <span class="op">&lt;-</span> <span class="va">methadone</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">BUYER_DEA_NO</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Download the addresses of buyers in Suffolk County, MA</span></span>
+<span><span class="va">buyer_addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/buyer_addresses.html">buyer_addresses</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Suffolk"</span>, state <span class="op">=</span> <span class="st">"MA"</span>, key <span class="op">=</span> <span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">buyer_addresses</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 652</span></span>
+<span><span class="co">#&gt; Columns: 10</span></span>
+<span><span class="co">#&gt; $ BUYER_DEA_NO       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BB1832268", "AB2729789", "BG8631930", "BM3972747",…</span></span>
+<span><span class="co">#&gt; $ BUYER_BUS_ACT      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HOSPITAL/CLINIC", "RETAIL PHARMACY", "RETAIL PHARM…</span></span>
+<span><span class="co">#&gt; $ BUYER_NAME         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BOSTON UNIVERSITY GOLDMAN", "BROWN'S REXALL DRUG",…</span></span>
+<span><span class="co">#&gt; $ BUYER_ADDL_CO_INFO <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "SCHOOL OF DENTAL MEDICINE", NA, NA, NA, NA, NA, NA…</span></span>
+<span><span class="co">#&gt; $ BUYER_ADDRESS1     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ORAL SURGERY CLINIC", "214 WINTHROP STREET", "1864…</span></span>
+<span><span class="co">#&gt; $ BUYER_ADDRESS2     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "100 E NEWTON ST G407", NA, NA, NA, NA, NA, "151 VF…</span></span>
+<span><span class="co">#&gt; $ BUYER_CITY         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "BOSTON", "WINTHROP", "WEST ROXBURY", "DORCHESTER",…</span></span>
+<span><span class="co">#&gt; $ BUYER_STATE        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA…</span></span>
+<span><span class="co">#&gt; $ BUYER_ZIP          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2118, 2152, 2132, 2122, 2132, 2134, 2151, 2151, 213…</span></span>
+<span><span class="co">#&gt; $ BUYER_COUNTY       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOL…</span></span>
+<span></span>
+<span><span class="co"># We only care about the addresses of buyers who purchased methadone</span></span>
+<span><span class="va">buyers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">buyer_ids</span>, <span class="va">buyer_addresses</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Let's bring over the methadone order amounts</span></span>
+<span><span class="va">buyers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">buyers</span>, <span class="va">methadone_by_buyer</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Download the lat and lon of pharmacies in Suffolk County, MA</span></span>
+<span><span class="va">buyer_latlon</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pharm_latlon.html">pharm_latlon</a></span><span class="op">(</span>county <span class="op">=</span> <span class="st">"Suffolk"</span>, state <span class="op">=</span> <span class="st">"MA"</span>, key <span class="op">=</span> <span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">buyer_latlon</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 181</span></span>
+<span><span class="co">#&gt; Columns: 5</span></span>
+<span><span class="co">#&gt; $ BUYER_DEA_NO <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AB2729789", "AS6650027", "BC5456771", "FS4577586", "BT49…</span></span>
+<span><span class="co">#&gt; $ BUYER_STATE  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA", "MA…</span></span>
+<span><span class="co">#&gt; $ BUYER_COUNTY <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOLK", "SUFFOLK", "S…</span></span>
+<span><span class="co">#&gt; $ lat          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 42.3765, 42.3749, 42.3756, 42.4074, 42.4108, 42.3993, 42.…</span></span>
+<span><span class="co">#&gt; $ lon          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -70.9841, -70.9867, -70.9878, -70.9945, -70.9950, -70.999…</span></span>
+<span></span>
+<span><span class="co"># Let's just focus on pharmacies and detox/maintenence facilities</span></span>
+<span></span>
+<span><span class="va">buyers_pharm</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span><span class="op">==</span><span class="st">"PHARMACY"</span><span class="op">)</span></span>
+<span><span class="va">buyers_detox</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span><span class="op">==</span><span class="st">"DETOX/MAINTENANCE"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># We can easily join buyer_latlon because pharmacies are geolocated</span></span>
+<span><span class="va">buyers_pharm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">buyers_pharm</span>, <span class="va">buyer_latlon</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># But non-pharmacies are not geolocated.</span></span>
+<span><span class="co"># So I'm going to geolocate these detox/maintenance locations by hand</span></span>
+<span><span class="co"># Here's the result</span></span>
+<span></span>
+<span><span class="va">detox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span><span class="va">BUYER_DEA_NO</span>, <span class="op">~</span><span class="va">lat</span>,  <span class="op">~</span><span class="va">lon</span>,</span>
+<span>  <span class="st">"PV0130562"</span>,  <span class="fl">42.366429</span>,  <span class="op">-</span><span class="fl">71.058752</span>,</span>
+<span>  <span class="st">"PA0203024"</span>,  <span class="fl">42.327501</span>,  <span class="op">-</span><span class="fl">71.083288</span>,</span>
+<span>  <span class="st">"RB0192574"</span>,  <span class="fl">42.363672</span>,  <span class="op">-</span><span class="fl">71.05972</span>,</span>
+<span>  <span class="st">"RC0304395"</span>,  <span class="fl">42.319285</span>,  <span class="op">-</span><span class="fl">71.052785</span>,</span>
+<span>  <span class="st">"RH0102549"</span>,  <span class="fl">42.333502</span>,  <span class="op">-</span><span class="fl">71.066541</span>,</span>
+<span>  <span class="st">"RH0345783"</span>,  <span class="fl">42.333502</span>,  <span class="op">-</span><span class="fl">71.066541</span>,</span>
+<span>  <span class="st">"RC0252558"</span>,  <span class="fl">42.333435</span>,  <span class="op">-</span><span class="fl">71.073025</span>,</span>
+<span>  <span class="st">"RB0307480"</span>,  <span class="fl">42.334507</span>,  <span class="op">-</span><span class="fl">71.0741</span>,</span>
+<span>  <span class="st">"RC0441751"</span>,  <span class="fl">42.300033</span>,  <span class="op">-</span><span class="fl">71.101911</span>,</span>
+<span>  <span class="st">"RD0284581"</span>,  <span class="fl">42.319239</span>,  <span class="op">-</span><span class="fl">71.096921</span>,</span>
+<span>  <span class="st">"RR0198336"</span>,  <span class="fl">42.300033</span>,  <span class="op">-</span><span class="fl">71.101911</span>,</span>
+<span>  <span class="st">"RC0463327"</span>,  <span class="fl">42.333138</span>,  <span class="op">-</span><span class="fl">71.070542</span></span>
+<span><span class="op">)</span></span>
+<span>  </span>
+<span></span>
+<span><span class="co"># okay, let's join the detox dataframe to this locations dataframe above</span></span>
+<span><span class="va">buyers_detox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">buyers_detox</span>, <span class="va">detox</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Now that buyers_pharm and buyers_detox both have lat and lon data, we can join them</span></span>
+<span><span class="va">buyers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">buyers_pharm</span>, <span class="va">buyers_detox</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">buyers</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">lon</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Just ordering the data frame for mapping purposes</span></span>
+<span><span class="va">buyers</span> <span class="op">&lt;-</span> <span class="va">buyers</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">total</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Setting up some color options</span></span>
+<span><span class="va">cof</span> <span class="op">&lt;-</span> <span class="fu">colorFactor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ffa500"</span>, <span class="st">"#13ED3F"</span><span class="op">)</span>, domain<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PHARMACY"</span>, <span class="st">"DETOX/MAINTENANCE"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># mapping with leaflet</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span><span class="va">buyers</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">addProviderTiles</span><span class="op">(</span><span class="va">providers</span><span class="op">$</span><span class="va">CartoDB.DarkMatter</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">setView</span><span class="op">(</span><span class="op">-</span><span class="fl">71.091112</span>, <span class="fl">42.338827</span>, zoom <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">addCircleMarkers</span><span class="op">(</span><span class="op">~</span><span class="va">lon</span>, <span class="op">~</span><span class="va">lat</span>, </span>
+<span>                   popup<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">buyers</span><span class="op">$</span><span class="va">BUYER_NAME</span>, <span class="st">"&lt;br /&gt;"</span>,</span>
+<span>                                <span class="va">buyers</span><span class="op">$</span><span class="va">total</span>, <span class="st">" total methadone"</span><span class="op">)</span>,</span>
+<span>                   weight <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>                   radius<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">buyers</span><span class="op">$</span><span class="va">total</span><span class="op">)</span><span class="op">/</span><span class="fl">30</span>, </span>
+<span>                   color<span class="op">=</span><span class="op">~</span><span class="fu">cof</span><span class="op">(</span><span class="va">type</span><span class="op">)</span>,</span>
+<span>                   stroke <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                   fillOpacity <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">addLegend</span><span class="op">(</span><span class="st">"bottomright"</span>, </span>
+<span>            colors<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ffa500"</span>, <span class="st">"#13ED3F"</span><span class="op">)</span>, </span>
+<span>            labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Detox"</span>, <span class="st">"Pharmacy"</span><span class="op">)</span>, </span>
+<span>            title<span class="op">=</span><span class="st">"Buyer type"</span><span class="op">)</span> </span>
+<span><span class="va">m</span></span></code></pre></div>
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9251203b3e1d20e1c905" style="width:864px;height:576px;"></div>
+<script type="application/json" data-for="htmlwidget-9251203b3e1d20e1c905">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.DarkMatter",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[42.333502,42.319285,42.327501,42.300033,42.363672,42.366429,42.333502,42.300033,42.333138,42.3764,42.4276,42.3157,42.2865,42.4109,42.3364,42.4112,42.3441,42.4029,42.3486,42.291,42.3745,42.3759,42.334507,42.284,42.3494,42.3749,42.3387,42.2823,42.3424,42.2832,42.3862,42.3606,42.333435,42.284,42.3846,42.403,42.3383,42.2534,42.2974,42.3752,42.349,42.3157,42.3622,42.3924,42.3338,42.3442,42.319239,42.3119,42.3918,42.4297,42.3376,42.4294,42.4004,42.4109,42.3088,42.3115,42.2866,42.3334,42.3386,42.3505,42.3486,42.3631,42.3349,42.3293,42.3168,42.3399,42.4108,42.2675,42.3265,42.3846,42.3573,42.3541,42.3837,42.3846,42.3756,42.2707,42.3569,42.3307,42.3557,42.2755,42.3328,42.313,42.3386,42.3174,42.3444,42.3505,42.2851,42.365,42.3526,42.3132,42.3362,42.3319,42.2858,42.274,42.2755,42.3111,42.35,42.3487,42.2519,42.2894,42.3454,42.3471,42.3578,42.3541,42.2755,42.3194,42.3993,42.2419,42.3132,42.345,42.2558,42.2519,42.3187,42.2911,42.3957,42.3957,42.3038,42.2739,42.3359,42.2866,42.4297,42.3596,42.3505,42.3489,42.345,42.3362,42.3538,42.35,42.3175,42.2707,42.3038,42.2534,42.3415,42.3369,42.3927,42.2781,42.3538,42.3609,42.2858,42.3187,42.3495,42.283,42.2815,42.3566,42.2698,42.3538,42.2724,42.3697,42.2925,42.3526,42.331,42.3541,42.3044,42.3485,42.3609,42.4074,42.3022,42.3651,42.3472,42.2897,42.349,42.3505,42.3413,42.3573,42.3526,42.283,42.3511,42.3195,42.3415,42.3064,42.3526,42.3207,42.361],[-71.066541,-71.052785,-71.083288,-71.101911,-71.05972,-71.058752,-71.066541,-71.101911,-71.070542,-71.0634,-71.0123,-71.066,-71.13079999999999,-71.0111,-71.0479,-71.0128,-71.0984,-71.0194,-71.0729,-71.063,-71.0384,-71.0655,-71.0741,-71.04470000000001,-71.1564,-70.9867,-71.10720000000001,-71.1581,-71.0741,-71.0475,-71.00749999999999,-71.0705,-71.073025,-71.1576,-70.9992,-71.0235,-71.07510000000001,-71.12560000000001,-71.0498,-71.0408,-71.13249999999999,-71.066,-71.0663,-71.03440000000001,-71.0762,-71.0869,-71.09692099999999,-71.06870000000001,-71.0364,-71.0158,-71.10509999999999,-71.0206,-71.00020000000001,-71.0111,-71.0819,-71.114,-71.13079999999999,-71.10469999999999,-71.1083,-71.077,-71.0729,-71.0556,-71.0722,-71.0633,-71.0822,-71.1046,-70.995,-71.1198,-71.0651,-70.9992,-71.134,-71.05929999999999,-71.0728,-70.9992,-70.98779999999999,-71.07470000000001,-71.0592,-71.0839,-71.15009999999999,-71.139,-71.092,-71.0899,-71.10720000000001,-71.09739999999999,-71.14190000000001,-71.11620000000001,-71.1187,-71.0603,-71.063,-71.0566,-71.0365,-71.0819,-71.155,-71.0686,-71.139,-71.06999999999999,-71.15300000000001,-71.072,-71.126,-71.072,-71.0958,-71.06829999999999,-71.0701,-71.1369,-71.139,-71.1121,-70.9991,-71.12690000000001,-71.0566,-71.09780000000001,-71.1237,-71.126,-71.05029999999999,-71.07210000000001,-71.04259999999999,-71.04259999999999,-71.0594,-71.1156,-71.149,-71.0441,-71.0158,-71.06010000000001,-71.062,-71.08280000000001,-71.09780000000001,-71.0365,-71.13379999999999,-71.15300000000001,-71.0654,-71.07470000000001,-71.07129999999999,-71.12560000000001,-71.1452,-71.04819999999999,-71.0343,-71.16330000000001,-71.13379999999999,-71.0622,-71.15479999999999,-71.05029999999999,-71.0819,-71.0547,-71.0878,-71.05880000000001,-71.0941,-71.13379999999999,-71.06789999999999,-71.0395,-71.0487,-71.12350000000001,-71.0568,-71.05840000000001,-71.0594,-71.1358,-71.1375,-70.9945,-71.0853,-71.05289999999999,-71.074,-71.072,-71.1545,-71.0561,-71.1464,-71.059,-71.12350000000001,-71.0547,-71.1683,-71.0461,-71.1452,-71.06699999999999,-71.06229999999999,-71.0998,-71.1375],[24.13612506872913,23.20920736834122,19.24721077628306,16.95841294985405,16.42772940285215,11.28153890211792,8.172017294809567,5.614501857788553,4.307646534555344,4.210373855134478,4.078494970233778,3.981082488190592,3.743107755150353,3.663010009996339,3.662537371822987,3.593579104149204,3.42192155244844,3.298156791637147,3.288514220400723,3.259145491280397,3.242941737236598,3.23975897594593,3.120857432038687,3.023371039823668,3.007886965961319,2.940875531009242,2.916448315636295,2.913578136167891,2.893814783292117,2.891022502698847,2.865066219905648,2.799262383001795,2.71145127192063,2.662293580939395,2.613851989348711,2.546155795180909,2.4886292523306,2.42583080842649,2.412592059268298,2.386991970381692,2.348050964807479,2.160273233747168,2.147981171032721,2.13094741579629,2.125608305089785,2.067930366332484,2.010698938733052,2.005087307603114,1.990775170072647,1.956535713959753,1.94795799064901,1.929713392651297,1.917220557647624,1.874455476487327,1.844343062809447,1.843394332926806,1.804575019221979,1.774342444713284,1.652397853625654,1.647892829578968,1.624645739162165,1.619516937580806,1.604952335740848,1.567138510506047,1.483959268683313,1.48277023019602,1.482660221808535,1.463441757562554,1.435749591289821,1.40273241290783,1.339110027841875,1.330583330723784,1.327515306461243,1.32701703916047,1.295773299788372,1.270391715618105,1.252367180804238,1.240309638759613,1.227422955264855,1.226613042306153,1.195429815775249,1.177842849355455,1.154907788526859,1.148799179820196,1.092997865200721,1.091801162198401,1.088684425248096,1.087472094150262,1.075636039229296,1.038866048471441,1.035992277963499,1.029679130171682,1.022992342754008,1.008121024480692,0.9883373243314586,0.9622563760938835,0.9569716122574726,0.9415146189931293,0.9372830711986403,0.8960872973346092,0.8893383308205414,0.8851385327858131,0.8771582905420586,0.8340530225617818,0.8292733097249798,0.8219497146014063,0.8049491357291533,0.7785924622177008,0.7640683506365412,0.7284760348380261,0.6949647473073721,0.6906615186423325,0.6820218308659758,0.6506533468582004,0.6478062124500572,0.6336294044804283,0.6222868220434118,0.6177637088725754,0.6119916484542723,0.6112777146636742,0.6048728057295277,0.5976792153358225,0.5744260904009612,0.5743990095936991,0.5531336989272023,0.551653071332981,0.542363551708835,0.540277706369604,0.5208625325148448,0.4688245348149395,0.4654622553023081,0.4495291363687613,0.4413393755880439,0.436812698228123,0.4061614347905412,0.4030913874875852,0.3909907643126341,0.3834005738128204,0.3559587991139798,0.3306290301161644,0.3088732210254988,0.3056388573318371,0.3023698985606132,0.2998918323514515,0.2819613842749078,0.2819613842749078,0.2819613842749078,0.2599555517562356,0.2561319104593482,0.256104145482523,0.2521939289074536,0.2520555494330565,0.2505407485154195,0.2249071413322001,0.2216894725110379,0.209108159147897,0.2043004323702391,0.1993768068535333,0.1891454466805902,0.1783280373045385,0.1544366105127494,0.1409806921374539,0.1331248369847724,0.1260969644537268,0.1254361280581565,0.1179529096245145,0.09969954864491615,0.08916401865226926,0.08916401865226926,0.08822698000045111,0.06304848222686341,0.06304848222686341,0.04458200932613463],null,null,{"interactive":true,"className":"","stroke":false,"color":["#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F"],"weight":3,"opacity":0.5,"fill":true,"fillColor":["#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#FFA500","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F","#13ED3F"],"fillOpacity":0.3},null,null,["HABIT OPCO, INC.<br />524297.280000001 total methadone","COMMUNITY HEALTH CARE, INC.<br />484800.575999998 total methadone","ADDICTION TRTMT CTR OF N E<br />333409.6104 total methadone","METHADONE ASSESSMENT AND TREATMENT OF<br />258828.9928 total methadone","BAY COVE SUBSTANCE ABUSE CTR<br />242883.264 total methadone","VET ADMIN OUTPATIENT CLINIC<br />114545.808 total methadone","HABIT MANAGEMENT INSTITUTE<br />60103.68 total methadone","COMMUNITY HEALTH CARE, INC.<br />28370.368 total methadone","COMMUNITY HEALTH CARE, INC.<br />16700.2368 total methadone","HIGH PHARMACY<br />15954.5232 total methadone","CVS PHARMACY, INC.<br />14970.7091 total methadone","D A W INC, DBA STRAND PHARMACY<br />14264.116 total methadone","SULLIVAN'S HEALTH CARE<br />12609.7701 total methadone","MAXI DRUG, INC.<br />12075.8781 total methadone","CVS PHARMACY, INC.<br />12072.762 total methadone","WALGREEN EASTERN CO., INC.<br />11622.4297 total methadone","FENWAY COMMUNITY HLTH CENTER<br />10538.5924 total methadone","WALGREEN EASTERN CO., INC.<br />9790.05440000001 total methadone","BIOSCRIP PHARMACY<br />9732.8932 total methadone","CRAWFORD DRUG STORE<br />9559.8264 total methadone","WALGREEN EASTERN CO., INC.<br />9465.00400000001 total methadone","CVS PHARMACY, INC.<br />9446.4344 total methadone","BOSTON PUBLIC HEALTH COMM<br />8765.776 total methadone","WALGREEN EASTERN CO., INC.<br />8226.6952 total methadone","CVS PHARMACY, INC.<br />8142.64559999999 total methadone","SAMUELS PHARMACY<br />7783.874 total methadone","PROCARE PHARMACY, L.L.C.<br />7655.1037 total methadone","WALGREEN EASTERN CO., INC.<br />7640.0438 total methadone","TREMONT DRUG CO<br />7536.7476 total methadone","CVS PHARMACY, INC.<br />7522.20999999999 total methadone","MAXI DRUG, INC.<br />7387.74399999999 total methadone","CVS PHARMACY, INC.<br />7052.2829 total methadone","CAB HEALTH & RECOVERY SVS<br />6616.7712 total methadone","CVS PHARMACY, INC.<br />6379.0264 total methadone","CVS PHARMACY, INC.<br />6149 total methadone","CVS PHARMACY, INC.<br />5834.6184 total methadone","WALGREEN EASTERN CO., INC.<br />5573.94800000001 total methadone","MAXI DRUG, INC.<br />5296.18960000001 total methadone","CVS PHARMACY, INC.<br />5238.5404 total methadone","CVS PHARMACY, INC.<br />5127.9576 total methadone","CVS PHARMACY, INC.<br />4962.009 total methadone","WALGREEN EASTERN CO. INC.<br />4200.1024 total methadone","CVS PHARMACY, INC.<br />4152.44079999999 total methadone","MARGOLIS PHARMACY INC<br />4086.8432 total methadone","CVS PHARMACY, INC.<br />4066.3896 total methadone","CVS PHARMACY, INC.<br />3848.7024 total methadone","DIMOCK COMMUNITY SERVICE CORP<br />3638.6192 total methadone","D A W INC<br />3618.3376 total methadone","CVS PHARMACY, INC.<br />3566.8672 total methadone","RITE AID PHARMACY #10167<br />3445.2288 total methadone","CVS PHARMACY, INC.<br />3415.0863 total methadone","THE STOP & SHOP SUPERMARKET<br />3351.4144 total methadone","TARGET STORES A DIV.OF TARGET CORP.<br />3308.1612 total methadone","MAXI DRUG, INC.<br />3162.225 total methadone","CVS PHARMACY, INC.<br />3061.4412 total methadone","CVS PHARMACY, INC.<br />3058.2924 total methadone","SULLIVAN'S PHARMACY INC<br />2930.84190000001 total methadone","WALGREEN EASTERN CO., INC.<br />2833.462 total methadone","WALGREEN EASTERN CO., INC.<br />2457.3768 total methadone","CVS PHARMACY, INC.<br />2443.9957 total methadone","WALGREEN EASTERN CO INC<br />2375.5264 total methadone","CVS PHARMACY, INC.<br />2360.5516 total methadone","BOSTON MEDICAL CENTER PHARMACY AT SHAPIRO<br />2318.2848 total methadone","TARGET STORES A DIV.OF TARGET CORP.<br />2210.3308 total methadone","WALGREEN EASTERN CO., INC.<br />1981.9216 total methadone","PROCARE PHCY OF BROOKLINE AVE<br />1978.7468 total methadone","THE STOP & SHOP SUPERMARKT CO<br />1978.4532 total methadone","CVS PHARMACY, INC.<br />1927.4956 total methadone","THE STOP& SHOP SUPERMARKET CO<br />1855.2392 total methadone","RITE AID PHARMACY #10153<br />1770.8924 total methadone","PELHAM HEALTH CARE SERVICES<br />1613.8941 total methadone","CVS PHARMACY, INC.<br />1593.4068 total methadone","TEAMSTERS LOCAL 25 HLTH SERV<br />1586.0672 total methadone","RITE AID PHARMACY #10153<br />1584.8768 total methadone","CVS PHARMACY, INC.<br />1511.1256 total methadone","MAXI DRUG, INC.<br />1452.5056 total methadone","CVS PHARMACY, INC.<br />1411.5812 total methadone","WALGREEN EASTERN CO., INC.<br />1384.5312 total methadone","CVS PHARMACY, INC.<br />1355.9104 total methadone","CVS PHARMACY, INC.<br />1354.1216 total methadone","WHITTIER HEALTH PHARMACY INC<br />1286.1472 total methadone","HRC CORP, INC<br />1248.5824 total methadone","CVS PHARMACY, INC.<br />1200.4308 total methadone","WALGREEN EASTERN CO., INC.<br />1187.7656 total methadone","NEWT'S PHARMACY INC<br />1075.1799 total methadone","CVS PHARMACY, INC.<br />1072.8268 total methadone","ROSLINDALE PHARMACY LIMITED<br />1066.7104 total methadone","CVS PHARMACY, INC.<br />1064.336 total methadone","CVS PHARMACY, INC.<br />1041.2936 total methadone","MAXI DRUG, INC.<br />971.318399999999 total methadone","MAXI DRUG, INC.<br />965.952 total methadone","KORNFIELD DRUG<br />954.2152 total methadone","WEST ROXBURY PHARMACY<br />941.862 total methadone","CVS PHARMACY, INC.<br />914.6772 total methadone","RITE AID PHARMACY #10154<br />879.1296 total methadone","EDLINE GROUP INC<br />833.3436 total methadone","RITE AID PHARMACY #10156<br />824.2152 total methadone","FENWAY PHARMACY AT SOUTH END ASSOCIATES<br />797.8048 total methadone","OSCO PHARMACY #7579<br />790.6496 total methadone","D.A.W., LLC.<br />722.6752 total methadone","CVS PHARMACY, INC.<br />711.8304 total methadone","CVS PHARMACY, INC.<br />705.1232 total methadone","GARY DRUG CO<br />692.466 total methadone","WALGREEN EASTERN CO., INC.<br />626.08 total methadone","RITE AID PHARMACY #10154<br />618.9248 total methadone","CVS PHARMACY, INC.<br />608.0412 total methadone","STOP AND SHOP SUPERMARKET COMPANY<br />583.1488 total methadone","WALGREEN EASTERN CO., INC.<br />545.5856 total methadone","MAXI DRUG, INC.<br />525.4204 total methadone","RITE AID PHARMACY #10175<br />477.6096 total methadone","QUALITY RX PHARMACY INC.<br />434.6784 total methadone","SHAWS SUPERMARKETS INC<br />429.312 total methadone","OSCO PHARMACY #7587<br />418.6384 total methadone","WALGREEN EASTERN CO., INC.<br />381.0148 total methadone","RITE AID PHARMACY #10165<br />377.6876 total methadone","RITE AID PHARMACY #10165<br />361.3376 total methadone","MAXIM PHARMACY<br />348.5168 total methadone","WALGREEN EASTERN CO., INC.<br />343.4688 total methadone","CVS PHARMACY, INC.<br />337.0804 total methadone","NEPONSET HEALTH CENTER PHARMACY<br />336.2944 total methadone","RITE AID PHARMACY #10167<br />329.284 total methadone","CVS PHARMACY, INC.<br />321.4984 total methadone","PROCARE PHARMACY, L.L.C.<br />296.9688 total methadone","WALGREEN EASTERN CO., INC.<br />296.9408 total methadone","RITE AID PHARMACY #10175<br />275.3612 total methadone","MAXI DRUG, INC.<br />273.889 total methadone","RITE AID PHARMACY #10155<br />264.7424 total methadone","RITE AID PHARMACY #10156<br />262.71 total methadone","CVS PHARMACY, INC.<br />244.168 total methadone","MAXI DRUG, INC.<br />197.8168 total methadone","WALGREEN EASTERN CO., INC.<br />194.9896 total methadone","MAXI DRUG, INC.<br />181.8688 total methadone","HEALTH FIRST PHARMACY, INC.<br />175.3024 total methadone","D.A.W., LLC.<br />171.7248 total methadone","CHELSEA PHARM, INC.<br />148.4704 total methadone","OSCO PHARMACY #7577<br />146.2344 total methadone","RITE AID PHARMACY #10155<br />137.5864 total methadone","MAXI DRUG, INC.<br />132.2964 total methadone","GREATER BOSTON LONG TERM CARE<br />114.036 total methadone","SHAWS SUPERMARKETS INC<br />98.384 total methadone","CVS PHARMACY, INC.<br />85.8624 total methadone","RITE AID PHARMACY #10149<br />84.0736 total methadone","WALGREEN EASTERN CO., INC.<br />82.2848 total methadone","WASHINGTON RETAILER, INC<br />80.9416 total methadone","CVS PHARMACY, INC.<br />71.552 total methadone","CVS PHARMACY, INC.<br />71.552 total methadone","VIETAZ INC. DBA CARING PHARMACY #2<br />71.552 total methadone","D.A.W., LLC.<br />60.8192 total methadone","THE STOP& SHOP SUPERMARKET CO LLC<br />59.0432 total methadone","SHAWS SUPERMARKETS INC<br />59.0304 total methadone","GALAXY PHARMACY<br />57.2416 total methadone","WALGREEEN CO<br />57.1788 total methadone","DORCHESTER HOUSE MULTI<br />56.4936 total methadone","CENTRAL PHARMACY OF BOSTON, INC.<br />45.5249 total methadone","OSCO PHARMACY 7572<br />44.2316 total methadone","SEASIDE PHARMACY INC.<br />39.3536 total methadone","GET WELL PHARMACY<br />37.5648 total methadone","GIANGREGORIO BROS INC<br />35.776 total methadone","CVS PHARMACY, INC.<br />32.1984 total methadone","ANJO ENTERPRISES INC<br />28.6208 total methadone","BRIGHTON PHARMACY<br />21.4656 total methadone","CVS PHARMACY, INC.<br />17.888 total methadone","SUTHERLAND PHARMACY LLC<br />15.95 total methadone","WALGREEN EASTERN CO., INC.<br />14.3104 total methadone","OSCO PHARMACY 7588<br />14.1608 total methadone","RITE AID PHARMACY #10149<br />12.5216 total methadone","COMMUNITY PHARMACY<br />8.946 total methadone","GEIGER GIBSON COMMUNITY HEALTH CENTER PHARMACY<br />7.1552 total methadone","DAISYS PHARMACY CORP<br />7.1552 total methadone","MEETINGHOUSE COMMUNITY PHARM INC.<br />7.0056 total methadone","WALGREEN EASTERN CO., INC.<br />3.5776 total methadone","WALGREEN EASTERN CO., INC.<br />3.5776 total methadone","SHAWS SUPERMARKETS INC<br />1.7888 total methadone"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#ffa500","#13ED3F"],"labels":["Detox","Pharmacy"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"unknown","title":"Buyer type","extra":null,"layerId":null,"className":"info legend","group":null}]}],"setView":[[42.338827,-71.091112],12,[]],"limits":{"lat":[42.2419,42.4297],"lng":[-71.1683,-70.9867]}},"evals":[],"jsHooks":[]}</script><p>Zoom into central Boston and you can see the cluster of 4-5 orange
+circles representing the methadone clinics.</p>
 <p>That’s Methadone Mile.</p>
 </div>
   </div>
@@ -332,11 +343,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
+  <p></p>
+<p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -344,6 +357,8 @@
 
   
 
+
+  
 
   </body>
 </html>

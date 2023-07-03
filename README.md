@@ -4,21 +4,21 @@
 
 The Washington Post [published](https://www.washingtonpost.com/graphics/2019/investigations/dea-pain-pill-database/#download-resources) a significant portion of a database that tracks the path of every opioid pain pill, from manufacturer to pharmacy, in the United States between 2006 and 2014. We have reported a [number of stories](https://www.washingtonpost.com/national/2019/07/20/opioid-files/) using this data set, but we believe there are more stories to be told.
 
-We are making this data accessible [as an API](https://arcos-api.ext.nile.works/__swagger__/) for everyone to download and [use in their reporting](https://www.washingtonpost.com/national/2019/08/12/post-released-deas-data-pain-pills-heres-what-local-journalists-are-using-it/) or research to promote a deeper understanding of the regional and local effects of the opioid crisis.
+We are making this data accessible [as an API](https://ne.washingtonpost.com/arcos/__docs__/) for everyone to download and [use in their reporting](https://www.washingtonpost.com/national/2019/08/12/post-released-deas-data-pain-pills-heres-what-local-journalists-are-using-it/) or research to promote a deeper understanding of the regional and local effects of the opioid crisis.
 
-This ARCOS package is a wrapper to utilize the [ARCOS API](https://arcos-api.ext.nile.works/__swagger__/). There is also a Python wrapper: [arcospy](https://pypi.org/project/arcospy/)
+This ARCOS package is a wrapper to utilize the [ARCOS API](https://ne.washingtonpost.com/arcos/__docs__/). There is also a Python wrapper: [arcospy](https://pypi.org/project/arcospy/)
 
 -------
 
 ## Installation
 
-Get the latest stable release from CRAN: 
+Get the latest stable release from CRAN (1.27): 
 
 ```R
 install.packages("arcos")
 ```
 
-To install the development version from GitHub: 
+To install the development version from GitHub (1.28): 
 
 ```R
 # install.packages("devtools")

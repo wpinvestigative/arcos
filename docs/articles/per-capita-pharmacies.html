@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.29</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/wpinvestigative/arcos/">
+  <a href="https://github.com/wpinvestigative/arcos/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,43 +87,46 @@
 
       
 
-      </header><script src="per-capita-pharmacies_files/header-attrs-2.6/header-attrs.js"></script><script src="per-capita-pharmacies_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Per capita pharmacies</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/master/vignettes/per-capita-pharmacies.Rmd"><code>vignettes/per-capita-pharmacies.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/HEAD/vignettes/per-capita-pharmacies.Rmd" class="external-link"><code>vignettes/per-capita-pharmacies.Rmd</code></a></small>
       <div class="hidden name"><code>per-capita-pharmacies.Rmd</code></div>
 
     </div>
 
     
     
-<p>Here’s our process for calculating pills per person within a county— figures that end up in many of our <a href="https://www.washingtonpost.com/investigations/the-opioid-crisis-15-percent-of-the-pharmacies-handled-nearly-half-of-the-pills/2019/08/12/b24bd4ee-b3c7-11e9-8f6c-7828e68cb15f_story.html">articles</a>.</p>
+<p>Here’s our process for calculating pills per person within a county—
+figures that end up in many of our <a href="https://www.washingtonpost.com/investigations/the-opioid-crisis-15-percent-of-the-pharmacies-handled-nearly-half-of-the-pills/2019/08/12/b24bd4ee-b3c7-11e9-8f6c-7828e68cb15f_story.html" class="external-link">articles</a>.</p>
 <p>First, let’s load up the packages we need.</p>
-<p>There’s a lot of new ones listed here so we can make fancy tables.</p>
-<pre><code><a href="https://github.com/wpinvestigative/arcos"># Uncomment and run the lines below to see if you have the packages required already installed
-# packages &lt;- c("dplyr", "jsonlite", "knitr", "geofacet", "scales")
-# if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
-#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
-
-library(arcos)
-library(dplyr)
-library(lubridate)
-library(data.table)
-library(formattable)
-library(vroom)
-library(stringr)
-library(scales)
-library(knitr)</a></code></pre>
-<p>Let’s look at all pharmacies in West Virginia and their total oxycodone and hydrocodone pill orders.</p>
+<p>There’s a lot of new ones listed here so we can make fancy
+tables.</p>
+<pre><code><span><span class="co"># Uncomment and run the lines below to see if you have the packages required already installed</span></span>
+<span><span class="co"># packages &lt;- c("dplyr", "jsonlite", "knitr", "geofacet", "scales")</span></span>
+<span><span class="co"># if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {</span></span>
+<span><span class="co">#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wpinvestigative/arcos" class="external-link">arcos</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://renkun-ken.github.io/formattable/" class="external-link">formattable</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vroom.r-lib.org" class="external-link">vroom</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org" class="external-link">scales</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span></code></pre>
+<p>Let’s look at all pharmacies in West Virginia and their total
+oxycodone and hydrocodone pill orders.</p>
 <p>And use the <code><a href="../reference/total_pharmacies_state.html">total_pharmacies_state()</a></code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">west_virginia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/total_pharmacies_state.html">total_pharmacies_state</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">west_virginia</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span><span class="va">west_virginia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/total_pharmacies_state.html">total_pharmacies_state</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">west_virginia</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="10%">
 <col width="11%">
@@ -203,14 +202,16 @@ library(knitr)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Looks nice. We’ve got total_dosage_unit and total_records. We can ignore total_records for this example.</p>
+<p>Looks nice. We’ve got total_dosage_unit and total_records. We can
+ignore total_records for this example.</p>
 <p>Each pharmacy is listed, as well as which county it resides in.</p>
-<p>To help normalize the number of pills ordered, we need to get each county’s population in West Virginia.</p>
+<p>To help normalize the number of pills ordered, we need to get each
+county’s population in West Virginia.</p>
 <p>We can use the <code><a href="../reference/county_population.html">county_population()</a></code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/county_population.html">county_population</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/county_population.html">county_population</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="10%">
@@ -312,23 +313,25 @@ library(knitr)</a></code></pre>
 </tbody>
 </table>
 <p>Alright, we have population tables but they’re annual figures.</p>
-<p>We have one number for dosage per pharmacy. We don’t need seven years of population data.</p>
+<p>We have one number for dosage per pharmacy. We don’t need seven years
+of population data.</p>
 <p>So we’ll average it out.</p>
 <p>And then join it to the pharmacy list.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">population</span> <span class="op">&lt;-</span> <span class="va">population</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">BUYER_COUNTY</span>, <span class="va">BUYER_STATE</span>, <span class="va">countyfips</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="co"># Figure out the average population between available years</span>
-  <span class="fu">summarize</span><span class="op">(</span>average_population<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">population</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="co">## Have to quickly rename these columns to make them lower case so they'll join easily to the other data frame</span>
-  <span class="fu">rename</span><span class="op">(</span>buyer_county<span class="op">=</span><span class="va">BUYER_COUNTY</span>, buyer_state<span class="op">=</span><span class="va">BUYER_STATE</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` regrouping output by 'BUYER_COUNTY', 'BUYER_STATE' (override with `.groups` argument)</span>
-
-<span class="co">## Join the data</span>
-<span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">west_virginia</span>, <span class="va">population</span><span class="op">)</span>
-<span class="co">#&gt; Joining, by = c("buyer_state", "buyer_county")</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">wv_joined</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">population</span> <span class="op">&lt;-</span> <span class="va">population</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">BUYER_COUNTY</span>, <span class="va">BUYER_STATE</span>, <span class="va">countyfips</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="co"># Figure out the average population between available years</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>average_population<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">population</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="co">## Have to quickly rename these columns to make them lower case so they'll join easily to the other data frame</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>buyer_county<span class="op">=</span><span class="va">BUYER_COUNTY</span>, buyer_state<span class="op">=</span><span class="va">BUYER_STATE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'BUYER_COUNTY', 'BUYER_STATE'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span></span>
+<span><span class="co">## Join the data</span></span>
+<span><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">west_virginia</span>, <span class="va">population</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(buyer_state, buyer_county)`</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wv_joined</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="8%">
@@ -421,13 +424,14 @@ library(knitr)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Now that we’ve joined the county population data to each pharmacy, we can do some math to figure out the pills per person per year.</p>
+<p>Now that we’ve joined the county population data to each pharmacy, we
+can do some math to figure out the pills per person per year.</p>
 <p>That’s pills / average population / 7</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>per_person<span class="op">=</span><span class="va">total_dosage_unit</span><span class="op">/</span><span class="va">average_population</span><span class="op">/</span><span class="fl">7</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">wv_joined</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>per_person<span class="op">=</span><span class="va">total_dosage_unit</span><span class="op">/</span><span class="va">average_population</span><span class="op">/</span><span class="fl">7</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">wv_joined</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="7%">
@@ -528,55 +532,57 @@ library(knitr)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Let’s make sure we’re only dealing with chain and retail pharmacies.</p>
-<p>This requires some supplemental data from <code><a href="../reference/buyer_addresses.html">buyer_addresses()</a></code> and <code><a href="../reference/not_pharmacies.html">not_pharmacies()</a></code></p>
+<p>Let’s make sure we’re only dealing with chain and retail
+pharmacies.</p>
+<p>This requires some supplemental data from
+<code><a href="../reference/buyer_addresses.html">buyer_addresses()</a></code> and <code><a href="../reference/not_pharmacies.html">not_pharmacies()</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co">## Get a list of addresses because it includes BUYER_BUS_ACT information</span>
-<span class="va">pharmacy_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/buyer_addresses.html">buyer_addresses</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="co"># We just want the BUYER_BUS_ACT to tell if these are practitioners are retail pharmacies</span>
-<span class="co"># This will help us filter out the appropriate pharmacies</span>
-
-<span class="va">pharmacy_list</span> <span class="op">&lt;-</span> <span class="va">pharmacy_list</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span>buyer_dea_no<span class="op">=</span><span class="va">BUYER_DEA_NO</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span>
-
-<span class="co"># Join to the original data set</span>
-<span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">wv_joined</span>, <span class="va">pharmacy_list</span><span class="op">)</span>
-
-<span class="co"># Filter the data so we only have retail and chain pharmacies</span>
-<span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">BUYER_BUS_ACT</span><span class="op">==</span><span class="st">"RETAIL PHARMACY"</span> <span class="op">|</span> <span class="va">BUYER_BUS_ACT</span><span class="op">==</span><span class="st">"CHAIN PHARMACY"</span><span class="op">)</span>
-
-<span class="co"># Just in case, let's get the BUYER_DEA_NO of pharmacies that aren't really pharmacies</span>
-<span class="va">not_pharms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/not_pharmacies.html">not_pharmacies</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">BUYER_DEA_NO</span><span class="op">)</span>
-
-<span class="co"># Filter those out, too, if they're in there</span>
-<span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">buyer_dea_no</span> <span class="op">%in%</span> <span class="va">not_pharms</span><span class="op">)</span>
-
-<span class="co"># clean up column names so we can make a pretty table</span>
-<span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span>Pharmacy<span class="op">=</span><span class="va">buyer_name</span>, City<span class="op">=</span><span class="va">buyer_city</span>, County<span class="op">=</span><span class="va">buyer_county</span>, `County population`<span class="op">=</span><span class="va">average_population</span>,
-         Pills<span class="op">=</span><span class="va">total_dosage_unit</span>, `Pills per person`<span class="op">=</span><span class="va">per_person</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>`County population`<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">`County population`</span><span class="op">)</span>,
-         `Pills per person`<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">`Pills per person`</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">`Pills per person`</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span>
-
-<span class="co"># Create some custome colors</span>
-<span class="va">customGreen0</span> <span class="op">=</span> <span class="st">"#DeF7E9"</span>
-<span class="va">customGreen</span> <span class="op">=</span> <span class="st">"#71CA97"</span>
-<span class="va">customRed</span> <span class="op">=</span> <span class="st">"#ff7f7f"</span>
-
-<span class="co"># produce a table</span>
-<span class="va">wv_joined</span> <span class="op">%&gt;%</span> 
-  <span class="fu">formattable</span><span class="op">(</span>align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span>,
-              <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Pharmacy <span class="op">=</span> <span class="fu">formatter</span><span class="op">(</span><span class="st">"span"</span>, style <span class="op">=</span> <span class="op">~</span> <span class="fu">style</span><span class="op">(</span>color<span class="op">=</span><span class="st">"grey"</span>, font.weight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span>,
-                   Pills<span class="op">=</span><span class="fu">color_tile</span><span class="op">(</span><span class="va">customGreen0</span>, <span class="va">customGreen</span><span class="op">)</span>,
-                   `Pills per person` <span class="op">=</span> <span class="fu">normalize_bar</span><span class="op">(</span><span class="va">customRed</span><span class="op">)</span>
-                   <span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>#&gt; Joining, by = "buyer_dea_no"</code></pre>
+<code class="sourceCode R"><span></span>
+<span><span class="co">## Get a list of addresses because it includes BUYER_BUS_ACT information</span></span>
+<span><span class="va">pharmacy_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/buyer_addresses.html">buyer_addresses</a></span><span class="op">(</span>state<span class="op">=</span><span class="st">"WV"</span>, key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># We just want the BUYER_BUS_ACT to tell if these are practitioners are retail pharmacies</span></span>
+<span><span class="co"># This will help us filter out the appropriate pharmacies</span></span>
+<span></span>
+<span><span class="va">pharmacy_list</span> <span class="op">&lt;-</span> <span class="va">pharmacy_list</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>buyer_dea_no<span class="op">=</span><span class="va">BUYER_DEA_NO</span>, <span class="va">BUYER_BUS_ACT</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Join to the original data set</span></span>
+<span><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">wv_joined</span>, <span class="va">pharmacy_list</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filter the data so we only have retail and chain pharmacies</span></span>
+<span><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">BUYER_BUS_ACT</span><span class="op">==</span><span class="st">"RETAIL PHARMACY"</span> <span class="op">|</span> <span class="va">BUYER_BUS_ACT</span><span class="op">==</span><span class="st">"CHAIN PHARMACY"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Just in case, let's get the BUYER_DEA_NO of pharmacies that aren't really pharmacies</span></span>
+<span><span class="va">not_pharms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/not_pharmacies.html">not_pharmacies</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">BUYER_DEA_NO</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filter those out, too, if they're in there</span></span>
+<span><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">buyer_dea_no</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">not_pharms</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># clean up column names so we can make a pretty table</span></span>
+<span><span class="va">wv_joined</span> <span class="op">&lt;-</span> <span class="va">wv_joined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>Pharmacy<span class="op">=</span><span class="va">buyer_name</span>, City<span class="op">=</span><span class="va">buyer_city</span>, County<span class="op">=</span><span class="va">buyer_county</span>, `County population`<span class="op">=</span><span class="va">average_population</span>,</span>
+<span>         Pills<span class="op">=</span><span class="va">total_dosage_unit</span>, `Pills per person`<span class="op">=</span><span class="va">per_person</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>`County population`<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">`County population`</span><span class="op">)</span>,</span>
+<span>         `Pills per person`<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">`Pills per person`</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">`Pills per person`</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create some custome colors</span></span>
+<span><span class="va">customGreen0</span> <span class="op">=</span> <span class="st">"#DeF7E9"</span></span>
+<span><span class="va">customGreen</span> <span class="op">=</span> <span class="st">"#71CA97"</span></span>
+<span><span class="va">customRed</span> <span class="op">=</span> <span class="st">"#ff7f7f"</span></span>
+<span></span>
+<span><span class="co"># produce a table</span></span>
+<span><span class="va">wv_joined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">formattable</span><span class="op">(</span>align<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"r"</span>, <span class="st">"r"</span>, <span class="st">"r"</span><span class="op">)</span>,</span>
+<span>              <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Pharmacy <span class="op">=</span> <span class="fu">formatter</span><span class="op">(</span><span class="st">"span"</span>, style <span class="op">=</span> <span class="op">~</span> <span class="fu">style</span><span class="op">(</span>color<span class="op">=</span><span class="st">"grey"</span>, font.weight <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   Pills<span class="op">=</span><span class="fu">color_tile</span><span class="op">(</span><span class="va">customGreen0</span>, <span class="va">customGreen</span><span class="op">)</span>,</span>
+<span>                   `Pills per person` <span class="op">=</span> <span class="fu">normalize_bar</span><span class="op">(</span><span class="va">customRed</span><span class="op">)</span></span>
+<span>                   <span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; Joining with `by = join_by(buyer_dea_no)`</span></span></code></pre>
 <table class="table table table-condensed">
 <thead><tr>
 <th style="text-align:left;">
@@ -616,12 +622,13 @@ MINGO
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #71ca97">13168350</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 100.00%">70.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 100.00%">70.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FAMILY DISCOUNT PHARMACY INC </span>
+<span style="color: grey; font-weight: bold">FAMILY DISCOUNT PHARMACY
+INC </span>
 </td>
 <td style="text-align:left;">
 MOUNT GAY
@@ -636,12 +643,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #73cb99">12849040</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 67.43%">50.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 67.43%">50.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">HURLEY DRUG COMPANY INC </span>
+<span style="color: grey; font-weight: bold">HURLEY DRUG COMPANY INC
+</span>
 </td>
 <td style="text-align:left;">
 WILLIAMSON
@@ -656,12 +664,13 @@ MINGO
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #95d9b2">8890370</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 62.50%">47.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 62.50%">47.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">TUG VALLEY PHARMACY, LLC </span>
+<span style="color: grey; font-weight: bold">TUG VALLEY PHARMACY, LLC
+</span>
 </td>
 <td style="text-align:left;">
 WILLIAMSON
@@ -676,12 +685,13 @@ MINGO
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #96d9b2">8827860</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 61.84%">47.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 61.84%">47.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">LARRY’S DRIVE-IN PHARMACY INC </span>
+<span style="color: grey; font-weight: bold">LARRY’S DRIVE-IN PHARMACY
+INC </span>
 </td>
 <td style="text-align:left;">
 MADISON
@@ -696,7 +706,7 @@ BOONE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a3debd">7227600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 52.96%">41.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 52.96%">41.7</span>
 </td>
 </tr>
 <tr>
@@ -716,7 +726,7 @@ MASON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a2debc">7317220</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 48.36%">38.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 48.36%">38.9</span>
 </td>
 </tr>
 <tr>
@@ -736,7 +746,7 @@ MORGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #bfead2">3939400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.83%">32.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.83%">32.5</span>
 </td>
 </tr>
 <tr>
@@ -756,7 +766,7 @@ WYOMING
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b3e5c9">5353990</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.17%">32.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 37.17%">32.1</span>
 </td>
 </tr>
 <tr>
@@ -776,7 +786,7 @@ BARBOUR
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c2ebd4">3612930</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.68%">31.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.68%">31.8</span>
 </td>
 </tr>
 <tr>
@@ -796,12 +806,13 @@ PLEASANTS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e0">1686260</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.35%">31.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 36.35%">31.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FRITZ’S PHARMACY AND WELLNESS </span>
+<span style="color: grey; font-weight: bold">FRITZ’S PHARMACY AND
+WELLNESS </span>
 </td>
 <td style="text-align:left;">
 RONCEVERTE
@@ -816,7 +827,7 @@ GREENBRIER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a1ddbb">7528100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 34.38%">30.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 34.38%">30.4</span>
 </td>
 </tr>
 <tr>
@@ -836,12 +847,13 @@ WEBSTER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1df">1946520</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 33.88%">30.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 33.88%">30.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">BIG FOUR DRUG STORE INC </span>
+<span style="color: grey; font-weight: bold">BIG FOUR DRUG STORE INC
+</span>
 </td>
 <td style="text-align:left;">
 HINTON
@@ -856,7 +868,7 @@ SUMMERS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2664450</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.93%">27.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.93%">27.7</span>
 </td>
 </tr>
 <tr>
@@ -876,7 +888,7 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a5dfbe">7032640</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.77%">27.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.77%">27.6</span>
 </td>
 </tr>
 <tr>
@@ -896,12 +908,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a5dfbe">7032640</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.77%">27.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.77%">27.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 NEW MARTINSVILLE
@@ -916,12 +929,13 @@ WETZEL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c6edd7">3168780</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.28%">27.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 29.28%">27.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">JUDY’S DRUG STORE INC </span>
+<span style="color: grey; font-weight: bold">JUDY’S DRUG STORE INC
+</span>
 </td>
 <td style="text-align:left;">
 PETERSBURG
@@ -936,12 +950,13 @@ GRANT
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2207400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 27.96%">26.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 27.96%">26.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 ST MARYS
@@ -956,7 +971,7 @@ PLEASANTS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1281320</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 23.85%">24.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 23.85%">24.0</span>
 </td>
 </tr>
 <tr>
@@ -976,12 +991,13 @@ BROOKE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead2">3899940</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 22.37%">23.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 22.37%">23.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">BATJAC OF SOUTH CAROLINA </span>
+<span style="color: grey; font-weight: bold">BATJAC OF SOUTH CAROLINA
+</span>
 </td>
 <td style="text-align:left;">
 MARLINTON
@@ -996,7 +1012,7 @@ POCAHONTAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5f3e2">1397320</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.88%">22.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.88%">22.8</span>
 </td>
 </tr>
 <tr>
@@ -1016,12 +1032,13 @@ GILMER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1320859</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.88%">22.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 21.88%">22.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FLAT IRON DRUG STORE INC </span>
+<span style="color: grey; font-weight: bold">FLAT IRON DRUG STORE INC
+</span>
 </td>
 <td style="text-align:left;">
 WELCH
@@ -1036,7 +1053,7 @@ MCDOWELL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3431120</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.39%">21.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.39%">21.9</span>
 </td>
 </tr>
 <tr>
@@ -1056,12 +1073,13 @@ ROANE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2308890</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.39%">21.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 20.39%">21.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2684 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2684
+</span>
 </td>
 <td style="text-align:left;">
 NEW MARTINSVILLE
@@ -1076,12 +1094,13 @@ WETZEL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdb">2426050</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.75%">20.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.75%">20.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 PT PLEASANT
@@ -1096,12 +1115,13 @@ MASON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead2">3912290</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.59%">20.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 18.59%">20.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 GRAFTON
@@ -1116,12 +1136,13 @@ TAYLOR
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2349790</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 17.43%">20.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 17.43%">20.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 CLAY
@@ -1136,12 +1157,13 @@ CLAY
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1280300</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.79%">19.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.79%">19.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">BEST CARE PHARMACY INC </span>
+<span style="color: grey; font-weight: bold">BEST CARE PHARMACY INC
+</span>
 </td>
 <td style="text-align:left;">
 WESTON
@@ -1156,12 +1178,13 @@ LEWIS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2180940</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.46%">18.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.46%">18.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">NICHOLAS PHARMACY, INC </span>
+<span style="color: grey; font-weight: bold">NICHOLAS PHARMACY, INC
+</span>
 </td>
 <td style="text-align:left;">
 SUMMERSVILLE
@@ -1176,12 +1199,13 @@ NICHOLAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3439100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.30%">18.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 15.30%">18.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 GASSAWAY
@@ -1196,12 +1220,13 @@ BRAXTON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d1f1df">1878800</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.64%">18.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.64%">18.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 FRANKLIN
@@ -1216,12 +1241,13 @@ PENDLETON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">993310</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.64%">18.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 14.64%">18.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">BLACK DIAMOND PHARMACY </span>
+<span style="color: grey; font-weight: bold">BLACK DIAMOND PHARMACY
+</span>
 </td>
 <td style="text-align:left;">
 NORTHFORK
@@ -1236,7 +1262,7 @@ MCDOWELL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c9eed9">2755760</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 13.32%">17.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 13.32%">17.6</span>
 </td>
 </tr>
 <tr>
@@ -1256,7 +1282,7 @@ DODDRIDGE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d9f5e5">961790</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.66%">17.2</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.66%">17.2</span>
 </td>
 </tr>
 <tr>
@@ -1276,7 +1302,7 @@ TYLER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1105230</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.50%">17.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 12.50%">17.1</span>
 </td>
 </tr>
 <tr>
@@ -1296,12 +1322,13 @@ HANCOCK
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c3ebd4">3539710</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.51%">16.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.51%">16.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FOUR SEASONS PHARMACY INC </span>
+<span style="color: grey; font-weight: bold">FOUR SEASONS PHARMACY INC
+</span>
 </td>
 <td style="text-align:left;">
 PRINCETON
@@ -1316,12 +1343,13 @@ MERCER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a4dfbd">7099410</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.35%">16.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.35%">16.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">MOUNDSVILLE PHARMACY </span>
+<span style="color: grey; font-weight: bold">MOUNDSVILLE PHARMACY
+</span>
 </td>
 <td style="text-align:left;">
 MOUNDSVILLE
@@ -1336,12 +1364,13 @@ MARSHALL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c0ead3">3808030</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.35%">16.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 11.35%">16.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2849 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2849
+</span>
 </td>
 <td style="text-align:left;">
 MASON
@@ -1356,12 +1385,13 @@ MASON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c7edd8">3010650</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.69%">16.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.69%">16.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 HARRISVILLE
@@ -1376,12 +1406,13 @@ RITCHIE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1165930</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.69%">16.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.69%">16.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">CARL WALKER’S DRUG STORE </span>
+<span style="color: grey; font-weight: bold">CARL WALKER’S DRUG STORE
+</span>
 </td>
 <td style="text-align:left;">
 GASSAWAY
@@ -1396,7 +1427,7 @@ BRAXTON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e1">1623340</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.53%">15.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.53%">15.9</span>
 </td>
 </tr>
 <tr>
@@ -1416,12 +1447,13 @@ POCAHONTAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d9f4e5">977390</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.53%">15.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 10.53%">15.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 WESTON
@@ -1436,12 +1468,13 @@ LEWIS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1793260</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.87%">15.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.87%">15.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">DENNIS’, PHARMACY LLC </span>
+<span style="color: grey; font-weight: bold">DENNIS’, PHARMACY LLC
+</span>
 </td>
 <td style="text-align:left;">
 HAMLIN
@@ -1456,12 +1489,13 @@ LINCOLN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2349260</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.70%">15.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.70%">15.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 MOUNDSVILLE
@@ -1476,12 +1510,13 @@ MARSHALL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c3ebd4">3551300</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">UNITED PHARMACY GROUP </span>
+<span style="color: grey; font-weight: bold">UNITED PHARMACY GROUP
+</span>
 </td>
 <td style="text-align:left;">
 OCEANA
@@ -1496,12 +1531,13 @@ WYOMING
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cbefdb">2552680</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2810 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2810
+</span>
 </td>
 <td style="text-align:left;">
 SPENCER
@@ -1516,12 +1552,13 @@ ROANE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d3f2e1">1612830</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.54%">15.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">CLAY FOODLAND PHARMACY </span>
+<span style="color: grey; font-weight: bold">CLAY FOODLAND PHARMACY
+</span>
 </td>
 <td style="text-align:left;">
 CLAY
@@ -1536,12 +1573,13 @@ CLAY
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">1003280</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.05%">15.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 9.05%">15.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 ROMNEY
@@ -1556,12 +1594,13 @@ HAMPSHIRE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdc">2419200</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.55%">14.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.55%">14.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 BRANCHLAND
@@ -1576,12 +1615,13 @@ LINCOLN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2218910</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.22%">14.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 8.22%">14.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">MOUNTAIN LAKE PHARMACY </span>
+<span style="color: grey; font-weight: bold">MOUNTAIN LAKE PHARMACY
+</span>
 </td>
 <td style="text-align:left;">
 SUMMERSVILLE
@@ -1596,7 +1636,7 @@ NICHOLAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cbefda">2617790</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.89%">14.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.89%">14.3</span>
 </td>
 </tr>
 <tr>
@@ -1616,12 +1656,13 @@ BOONE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdb">2483700</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.89%">14.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.89%">14.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 MOOREFIELD
@@ -1636,7 +1677,7 @@ HARDY
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1331100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.07%">13.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 7.07%">13.8</span>
 </td>
 </tr>
 <tr>
@@ -1656,7 +1697,7 @@ WYOMING
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2262020</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.74%">13.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.74%">13.6</span>
 </td>
 </tr>
 <tr>
@@ -1676,12 +1717,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c4ecd5">3441400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.58%">13.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.58%">13.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 WEBSTER SPRINGS
@@ -1696,12 +1738,13 @@ WEBSTER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #daf5e6">857680</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.25%">13.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.25%">13.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">PETERSTOWN PHARMACY, LLC </span>
+<span style="color: grey; font-weight: bold">PETERSTOWN PHARMACY, LLC
+</span>
 </td>
 <td style="text-align:left;">
 PETERSTOWN
@@ -1716,12 +1759,13 @@ MONROE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f3e3">1253120</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.09%">13.2</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.09%">13.2</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 GRANTSVILLE
@@ -1736,12 +1780,13 @@ CALHOUN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e7">697330</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.09%">13.2</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 6.09%">13.2</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 KEYSER
@@ -1756,12 +1801,13 @@ MINERAL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cbefdb">2541900</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.92%">13.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.92%">13.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2610 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2610
+</span>
 </td>
 <td style="text-align:left;">
 LOGAN
@@ -1776,12 +1822,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c5ecd6">3251160</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.43%">12.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.43%">12.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1477 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1477
+</span>
 </td>
 <td style="text-align:left;">
 SUMMERSVILLE
@@ -1796,12 +1843,13 @@ NICHOLAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2329350</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.26%">12.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 5.26%">12.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 GLENVILLE
@@ -1816,7 +1864,7 @@ GILMER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e6">716400</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.77%">12.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.77%">12.4</span>
 </td>
 </tr>
 <tr>
@@ -1836,12 +1884,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c7edd7">3055510</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1653 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1653
+</span>
 </td>
 <td style="text-align:left;">
 WESTON
@@ -1856,12 +1905,13 @@ LEWIS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d5f3e2">1388800</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 SUTTON
@@ -1876,7 +1926,7 @@ BRAXTON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d6f4e3">1222140</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 4.11%">12.0</span>
 </td>
 </tr>
 <tr>
@@ -1896,12 +1946,13 @@ RALEIGH
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #a9e1c1">6550590</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.95%">11.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.95%">11.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">CRAB ORCHARD PHARMACY, INC. </span>
+<span style="color: grey; font-weight: bold">CRAB ORCHARD PHARMACY, INC.
+</span>
 </td>
 <td style="text-align:left;">
 CRAB ORCHARD
@@ -1916,12 +1967,13 @@ RALEIGH
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #aae1c1">6477420</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.78%">11.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.78%">11.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2696 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2696
+</span>
 </td>
 <td style="text-align:left;">
 MOOREFIELD
@@ -1936,12 +1988,13 @@ HARDY
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1125820</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.62%">11.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.62%">11.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY, L.L.C. </span>
+<span style="color: grey; font-weight: bold">WEST VIRGINIA CVS PHARMACY,
+L.L.C. </span>
 </td>
 <td style="text-align:left;">
 SUMMERSVILLE
@@ -1956,12 +2009,13 @@ NICHOLAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cff0dd">2121460</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.45%">11.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.45%">11.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 DANVILLE
@@ -1976,7 +2030,7 @@ BOONE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1de">2015250</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.45%">11.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.45%">11.6</span>
 </td>
 </tr>
 <tr>
@@ -1996,12 +2050,13 @@ MCDOWELL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1790640</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.13%">11.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 3.13%">11.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">HARTS PHARMACY, INC. </span>
+<span style="color: grey; font-weight: bold">HARTS PHARMACY, INC.
+</span>
 </td>
 <td style="text-align:left;">
 HARTS
@@ -2016,12 +2071,13 @@ LINCOLN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1736300</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.96%">11.3</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.96%">11.3</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1522 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1522
+</span>
 </td>
 <td style="text-align:left;">
 ELKINS
@@ -2036,12 +2092,13 @@ RANDOLPH
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2220600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">STAATS PHCY &amp; HLTH CARE </span>
+<span style="color: grey; font-weight: bold">STAATS PHCY &amp; HLTH CARE
+</span>
 </td>
 <td style="text-align:left;">
 SPENCER
@@ -2056,12 +2113,13 @@ ROANE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1145830</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">BURNSVILLE DRUG STORE </span>
+<span style="color: grey; font-weight: bold">BURNSVILLE DRUG STORE
+</span>
 </td>
 <td style="text-align:left;">
 BURNSVILLE
@@ -2076,12 +2134,13 @@ BRAXTON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1112100</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.30%">10.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">T AND J ENTERPRISES INC </span>
+<span style="color: grey; font-weight: bold">T AND J ENTERPRISES INC
+</span>
 </td>
 <td style="text-align:left;">
 HUNTINGTON
@@ -2096,7 +2155,7 @@ WAYNE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c6edd6">3210690</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.14%">10.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.14%">10.8</span>
 </td>
 </tr>
 <tr>
@@ -2116,7 +2175,7 @@ JACKSON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2192823</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.14%">10.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 2.14%">10.8</span>
 </td>
 </tr>
 <tr>
@@ -2136,12 +2195,13 @@ HANCOCK
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cdf0dc">2296230</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.97%">10.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.97%">10.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">GREENBRIER MEDICAL ARTS PHARMACY INC </span>
+<span style="color: grey; font-weight: bold">GREENBRIER MEDICAL ARTS
+PHARMACY INC </span>
 </td>
 <td style="text-align:left;">
 UNION
@@ -2156,12 +2216,13 @@ MONROE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">1013090</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.97%">10.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.97%">10.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 CRAIGSVILLE
@@ -2176,12 +2237,13 @@ NICHOLAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1df">1945700</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.81%">10.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.81%">10.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">MEADOW RIVER HEALTH CARE ASSOCIATES, INC.</span>
+<span style="color: grey; font-weight: bold">MEADOW RIVER HEALTH CARE
+ASSOCIATES, INC.</span>
 </td>
 <td style="text-align:left;">
 CRAIGSVILLE
@@ -2196,12 +2258,13 @@ NICHOLAS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1df">1944600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.81%">10.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.81%">10.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 HINTON
@@ -2216,12 +2279,13 @@ SUMMERS
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d8f4e5">1011540</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.64%">10.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.64%">10.5</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">ARACOMA DRUG CO OF CHAPMANVIL </span>
+<span style="color: grey; font-weight: bold">ARACOMA DRUG CO OF
+CHAPMANVIL </span>
 </td>
 <td style="text-align:left;">
 CHAPMANVILLE
@@ -2236,12 +2300,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2656020</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FAM DISCNT PHCY OF STOLLINGS </span>
+<span style="color: grey; font-weight: bold">FAM DISCNT PHCY OF
+STOLLINGS </span>
 </td>
 <td style="text-align:left;">
 LOGAN
@@ -2256,12 +2321,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2639720</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">FAM DISCNT PHCY OF STOLLINGS </span>
+<span style="color: grey; font-weight: bold">FAM DISCNT PHCY OF
+STOLLINGS </span>
 </td>
 <td style="text-align:left;">
 LOGAN
@@ -2276,12 +2342,13 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #caefda">2639720</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">CHARLIE’S PHARMACY OF MULLENS, LLC </span>
+<span style="color: grey; font-weight: bold">CHARLIE’S PHARMACY OF
+MULLENS, LLC </span>
 </td>
 <td style="text-align:left;">
 MULLENS
@@ -2296,7 +2363,7 @@ WYOMING
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1737920</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 1.48%">10.4</span>
 </td>
 </tr>
 <tr>
@@ -2316,7 +2383,7 @@ WETZEL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1176480</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.99%">10.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.99%">10.1</span>
 </td>
 </tr>
 <tr>
@@ -2336,12 +2403,13 @@ WIRT
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ddf6e8">409160</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.99%">10.1</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.99%">10.1</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2833 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-2833
+</span>
 </td>
 <td style="text-align:left;">
 GRAFTON
@@ -2356,12 +2424,13 @@ TAYLOR
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1164600</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.82%">10.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.82%">10.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">HAYES PROFESSIONAL SERVICE, LLC </span>
+<span style="color: grey; font-weight: bold">HAYES PROFESSIONAL SERVICE,
+LLC </span>
 </td>
 <td style="text-align:left;">
 SISTERSVILLE
@@ -2376,12 +2445,13 @@ TYLER
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf6e7">647810</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.82%">10.0</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.82%">10.0</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">PENNSBORO FAMILY PHARMACY </span>
+<span style="color: grey; font-weight: bold">PENNSBORO FAMILY PHARMACY
+</span>
 </td>
 <td style="text-align:left;">
 PENNSBORO
@@ -2396,7 +2466,7 @@ RITCHIE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #dbf5e6">721220</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.66%">9.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.66%">9.9</span>
 </td>
 </tr>
 <tr>
@@ -2416,12 +2486,13 @@ WIRT
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #def7e9">399420</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.66%">9.9</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.66%">9.9</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 WHEELING
@@ -2436,7 +2507,7 @@ OHIO
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #c7edd7">3053760</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
 </td>
 </tr>
 <tr>
@@ -2456,12 +2527,13 @@ HANCOCK
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cff0de">2107570</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 RAVENSWOOD
@@ -2476,12 +2548,13 @@ JACKSON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d0f1de">1980740</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.49%">9.8</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1544 </span>
+<span style="color: grey; font-weight: bold">WAL-MART PHARMACY 10-1544
+</span>
 </td>
 <td style="text-align:left;">
 CLARKSBURG
@@ -2496,12 +2569,13 @@ HARRISON
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #b9e7cd">4659700</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.33%">9.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.33%">9.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">MEDICINE STOP PHARMACY </span>
+<span style="color: grey; font-weight: bold">MEDICINE STOP PHARMACY
+</span>
 </td>
 <td style="text-align:left;">
 UNEEDA
@@ -2516,12 +2590,13 @@ BOONE
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d2f2e0">1689590</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.33%">9.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.33%">9.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 PETERSBURG
@@ -2536,12 +2611,13 @@ GRANT
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #daf5e6">806970</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.33%">9.7</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.33%">9.7</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 BENWOOD
@@ -2556,12 +2632,13 @@ MARSHALL
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #cef0dd">2225690</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.16%">9.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.16%">9.6</span>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA, INC. </span>
+<span style="color: grey; font-weight: bold">RITE AID OF WEST VIRGINIA,
+INC. </span>
 </td>
 <td style="text-align:left;">
 BERKELEY SPRINGS
@@ -2576,7 +2653,7 @@ MORGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #d7f4e4">1156910</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.16%">9.6</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.16%">9.6</span>
 </td>
 </tr>
 <tr>
@@ -2596,7 +2673,7 @@ LOGAN
 <span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #ccefdc">2420280</span>
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.00%">9.5</span>
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: #ff7f7f; width: 0.00%">9.5</span>
 </td>
 </tr>
 </tbody>
@@ -2612,11 +2689,13 @@ LOGAN
 
 
       <footer><div class="copyright">
-  <p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
+  <p></p>
+<p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -2624,6 +2703,8 @@ LOGAN
 
   
 
+
+  
 
   </body>
 </html>

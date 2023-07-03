@@ -7,7 +7,7 @@
 drug_fips_biz(
   drug = "Fentanyl",
   fips = "01001",
-  buyer_bus_act = "Chain Retail",
+  buyer_bus_act = "CHAIN PHARMACY",
   key = "WaPo"
 )
 }
@@ -27,7 +27,7 @@ Data from from non-contiguous states not yet processed and available.
 \donttest{
 library(arcos)
 
-autauga_al <- drug_fips_biz(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Retail", key="WaPo")
+autauga_al <- drug_fips_biz(drug="Fentanyl", fips="01001", buyer_bus_act="CHAIN PHARMACY", key="WaPo")
 
 head(autauga_al)
 }

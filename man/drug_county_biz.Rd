@@ -8,7 +8,7 @@ drug_county_biz(
   drug = "Fentanyl",
   county = "Laurens",
   state = "GA",
-  buyer_bus_act = "Chain Retail",
+  buyer_bus_act = "CHAIN PHARMACY",
   key = "WaPo"
 )
 }
@@ -30,10 +30,10 @@ Data from from non-contiguous states not yet processed and available.
 \donttest{
 library(arcos)
 
-bronx <- drug_county_biz(drug="Fentanyl", county = "Laurens", state = "GA",
-                         buyer_bus_act = "Chain Retail", key="WaPo")
+laurens <- drug_county_biz(drug="Fentanyl", county = "Laurens", state = "GA",
+                         buyer_bus_act = "CHAIN PHARMACY", key="WaPo")
 
-head(bronx)
+head(laurens)
 }
 }
 \seealso{

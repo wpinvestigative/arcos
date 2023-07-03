@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">arcos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.29</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/wpinvestigative/arcos/">
+  <a href="https://github.com/wpinvestigative/arcos/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,13 +87,13 @@
 
       
 
-      </header><script src="annual-maps_files/header-attrs-2.6/header-attrs.js"></script><script src="annual-maps_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Annual maps</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/master/vignettes/annual-maps.Rmd"><code>vignettes/annual-maps.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/wpinvestigative/arcos/blob/HEAD/vignettes/annual-maps.Rmd" class="external-link"><code>vignettes/annual-maps.Rmd</code></a></small>
       <div class="hidden name"><code>annual-maps.Rmd</code></div>
 
     </div>
@@ -106,25 +102,33 @@
     
 <p>How to make some quick maps with the ARCOS api.</p>
 <p>First, let’s load some packages.</p>
-<pre><code><a href="https://dplyr.tidyverse.org"># Uncomment and run the lines below to see if you have the packages required already installed
-# packages &lt;- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")
-# if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {
-#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }
-
-# These are all the packages you'll need to run everything below 
-
-library(dplyr)
-library(ggplot2)
-library(arcos)
-library(jsonlite)
-library(knitr)
-library(geofacet)
-library(scales)</a></code></pre>
+<pre><code><span><span class="co"># Uncomment and run the lines below to see if you have the packages required already installed</span></span>
+<span><span class="co"># packages &lt;- c("dplyr", "ggplot2", "jsonlite", "knitr", "geofacet", "scales")</span></span>
+<span><span class="co"># if (length(setdiff(packages, rownames(installed.packages()))) &gt; 0) {</span></span>
+<span><span class="co">#   install.packages(setdiff(packages, rownames(installed.packages())), repos = "http://cran.us.r-project.org") # }</span></span>
+<span></span>
+<span><span class="co"># These are all the packages you'll need to run everything below </span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wpinvestigative/arcos" class="external-link">arcos</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805" class="external-link">jsonlite</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hafen/geofacet" class="external-link">geofacet</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org" class="external-link">scales</a></span><span class="op">)</span></span></code></pre>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/combined_buyer_annual.html">combined_buyer_annual</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">states</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">states</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/combined_buyer_annual.html">combined_buyer_annual</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">states</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="18%">
+<col width="22%">
+<col width="18%">
+<col width="16%">
+<col width="7%">
+<col width="16%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">BUYER_DEA_NO</th>
 <th align="left">BUYER_BUS_ACT</th>
@@ -184,16 +188,18 @@ library(scales)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>We’ve pulled every pharmacy across the country and how many pills they sold per year.</p>
+<p>We’ve pulled every pharmacy across the country and how many pills
+they sold per year.</p>
 <p>Let’s aggregate and combine by states and year.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">annual_states</span> <span class="op">&lt;-</span> <span class="va">states</span> <span class="op">%&gt;%</span> 
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">BUYER_STATE</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">summarize</span><span class="op">(</span>pills<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">DOSAGE_UNIT</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">BUYER_STATE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` regrouping output by 'BUYER_STATE' (override with `.groups` argument)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">annual_states</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">annual_states</span> <span class="op">&lt;-</span> <span class="va">states</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">BUYER_STATE</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>pills<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">DOSAGE_UNIT</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">BUYER_STATE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'BUYER_STATE'. You can override using the</span></span>
+<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">annual_states</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -233,26 +239,29 @@ library(scales)</a></code></pre>
 </tr>
 </tbody>
 </table>
-<p>Looks good. Let’s use the geofacet package to map out the annual pill trends.</p>
+<p>Looks good. Let’s use the geofacet package to map out the annual pill
+trends.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">annual_states</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">year</span>, <span class="va">pills</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_geo</span><span class="op">(</span><span class="op">~</span> <span class="va">BUYER_STATE</span>, grid <span class="op">=</span> <span class="st">"us_state_grid2"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">scale_x_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"'"</span>, <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Annual oxycodone and hydrocodone pills by state"</span>,
-    caption <span class="op">=</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,
-    x <span class="op">=</span> <span class="st">""</span>,
-    y <span class="op">=</span> <span class="st">"Dosage units"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">annual_states</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">year</span>, <span class="va">pills</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_geo</span><span class="op">(</span><span class="op">~</span> <span class="va">BUYER_STATE</span>, grid <span class="op">=</span> <span class="st">"us_state_grid2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_x_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"'"</span>, <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Annual oxycodone and hydrocodone pills by state"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">""</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Dosage units"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="annual-maps_files/figure-html/map_real-1.png" width="864"></p>
-<p>This is nice but Florida, California, and Texas stand out because of their higher population.</p>
+<p>This is nice but Florida, California, and Texas stand out because of
+their higher population.</p>
 <p>We should normalize this with population.</p>
-<p>Get the annual state population with <code><a href="../reference/state_population.html">state_population()</a></code>.</p>
+<p>Get the annual state population with
+<code><a href="../reference/state_population.html">state_population()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/state_population.html">state_population</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/state_population.html">state_population</a></span><span class="op">(</span>key<span class="op">=</span><span class="st">"WaPo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -295,11 +304,11 @@ library(scales)</a></code></pre>
 <p>Now, we join the two data sets.</p>
 <p><strong>Adjust for population</strong>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">annual_states_joined</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">annual_states</span>, <span class="va">population</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Joining, by = c("BUYER_STATE", "year")</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">annual_states_joined</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">annual_states_joined</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">annual_states</span>, <span class="va">population</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">population</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(BUYER_STATE, year)`</span></span>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">annual_states_joined</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -348,10 +357,10 @@ library(scales)</a></code></pre>
 </table>
 <p>Do some math…</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">annual_states_joined</span> <span class="op">&lt;-</span> <span class="va">annual_states_joined</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>pills_per<span class="op">=</span><span class="va">pills</span><span class="op">/</span><span class="va">population</span><span class="op">)</span>
-
-<span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">annual_states_joined</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">annual_states_joined</span> <span class="op">&lt;-</span> <span class="va">annual_states_joined</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>pills_per<span class="op">=</span><span class="va">pills</span><span class="op">/</span><span class="va">population</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">annual_states_joined</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">BUYER_STATE</th>
@@ -407,17 +416,17 @@ library(scales)</a></code></pre>
 </table>
 <p>Map it out again this time per capita.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">annual_states_joined</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">year</span>, <span class="va">pills_per</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_geo</span><span class="op">(</span><span class="op">~</span> <span class="va">BUYER_STATE</span>, grid <span class="op">=</span> <span class="st">"us_state_grid2"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu">scale_x_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"'"</span>, <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Annual oxycodone and hydrocodone pills per person by state"</span>,
-    caption <span class="op">=</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,
-    x <span class="op">=</span> <span class="st">""</span>,
-    y <span class="op">=</span> <span class="st">"Dosage units"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">annual_states_joined</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">year</span>, <span class="va">pills_per</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_geo</span><span class="op">(</span><span class="op">~</span> <span class="va">BUYER_STATE</span>, grid <span class="op">=</span> <span class="st">"us_state_grid2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">scale_x_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"'"</span>, <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>label<span class="op">=</span><span class="va">comma</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Annual oxycodone and hydrocodone pills per person by state"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: The Washington Post, ARCOS"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">""</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Dosage units"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="annual-maps_files/figure-html/map2-1.png" width="864"></p>
   </div>
 
@@ -430,11 +439,13 @@ library(scales)</a></code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
+  <p></p>
+<p>Developed by Steven Rich, Andrew Ba Tran, Aaron Williams.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -442,6 +453,8 @@ library(scales)</a></code></pre>
 
   
 
+
+  
 
   </body>
 </html>

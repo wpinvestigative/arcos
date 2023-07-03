@@ -16,7 +16,7 @@
 #' @export
 
 summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/combined_county_annual"
+  url <- "https://ne.washingtonpost.com/arcos/v1/combined_county_annual"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -75,7 +75,7 @@ summarized_county_annual <- function(county = "Mingo", state = "WV", key="WaPo")
 #' @export
 
 summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/combined_county_monthly"
+  url <- "https://ne.washingtonpost.com/arcos/v1/combined_county_monthly"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -136,7 +136,7 @@ summarized_county_monthly <- function(county = "Mingo", state = "WV", key="WaPo"
 #' @export
 
 buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/buyer_details"
+  url <- "https://ne.washingtonpost.com/arcos/v1/buyer_details"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -197,7 +197,7 @@ buyer_details <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/total_pharmacies_county"
+  url <- "https://ne.washingtonpost.com/arcos/v1/total_pharmacies_county"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -259,7 +259,7 @@ total_pharmacies_county <- function(county = "Mingo", state = "WV", key="WaPo") 
 #' @export
 
 total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/total_manufacturers_county"
+  url <- "https://ne.washingtonpost.com/arcos/v1/total_manufacturers_county"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -319,7 +319,7 @@ total_manufacturers_county <- function(county = "Mingo", state = "WV", key="WaPo
 #' @export
 
 total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/total_distributors_county"
+  url <- "https://ne.washingtonpost.com/arcos/v1/total_distributors_county"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -380,7 +380,7 @@ total_distributors_county <- function(county = "Mingo", state = "WV", key="WaPo"
 #' @export
 
 total_pharmacies_state <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/total_pharmacies_state"
+  url <- "https://ne.washingtonpost.com/arcos/v1/total_pharmacies_state"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -435,7 +435,7 @@ total_pharmacies_state <- function(state = "WV", key="WaPo") {
 #' @export
 
 total_manufacturers_state <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/total_manufacturers_state"
+  url <- "https://ne.washingtonpost.com/arcos/v1/total_manufacturers_state"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -488,7 +488,7 @@ total_manufacturers_state <- function(state = "WV", key="WaPo") {
 #' @export
 
 total_distributors_state <- function(state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/total_distributors_state"
+  url <- "https://ne.washingtonpost.com/arcos/v1/total_distributors_state"
 
   if (!missing(state)) {
     url <- param_set(url, key = "state", value = state)
@@ -541,7 +541,7 @@ total_distributors_state <- function(state = "WV", key="WaPo") {
 #' @export
 
 combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/combined_buyer_annual"
+  url <- "https://ne.washingtonpost.com/arcos/v1/combined_buyer_annual"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -600,7 +600,7 @@ combined_buyer_annual <- function(county = "Mingo", state = "WV", key="WaPo") {
 #' @export
 
 combined_buyer_monthly <- function(county = "Mingo", state = "WV", year=2012, key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/combined_buyer_monthly"
+  url <- "https://ne.washingtonpost.com/arcos/v1/combined_buyer_monthly"
 
 
   if (!missing(year)) {

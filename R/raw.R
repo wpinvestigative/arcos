@@ -20,7 +20,7 @@
 county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 
-  url <- "https://arcos-api.ext.nile.works/v1/county_data"
+  url <- "https://ne.washingtonpost.com/arcos//v1/county_data"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -81,7 +81,7 @@ county_raw <- function(county = "Mingo", state = "WV", key="WaPo") {
 
 county_raw_fips <- function(fips="01001", key="WaPo") {
 
-  url <- "https://arcos-api.ext.nile.works/v1/county_fips_data"
+  url <- "https://ne.washingtonpost.com/arcos//v1/county_fips_data"
 
   if (missing(key)) {
     message("Error: API key needed.")
@@ -137,7 +137,7 @@ county_raw_fips <- function(fips="01001", key="WaPo") {
 
 pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
 
-  url <- "https://arcos-api.ext.nile.works/v1/pharmacy_data"
+  url <- "https://ne.washingtonpost.com/arcos//v1/pharmacy_data"
 
   if (missing(key)) {
     message("Error: API key needed.")
@@ -189,16 +189,16 @@ pharmacy_raw <- function(buyer_dea_no="AB0454176", key="WaPo") {
 #' @examples \donttest{
 #' library(arcos)
 #'
-#' bronx <- drug_county_biz(drug="Fentanyl", county = "Laurens", state = "GA",
-#'                          buyer_bus_act = "Chain Retail", key="WaPo")
+#' laurens <- drug_county_biz(drug="Fentanyl", county = "Laurens", state = "GA",
+#'                          buyer_bus_act = "CHAIN PHARMACY", key="WaPo")
 #'
-#' head(bronx)
+#' head(laurens)
 #' }
 #' @export
 
-drug_county_biz <- function(drug="Fentanyl", county = "Laurens", state = "GA", buyer_bus_act = "Chain Retail", key="WaPo") {
+drug_county_biz <- function(drug="Fentanyl", county = "Laurens", state = "GA", buyer_bus_act = "CHAIN PHARMACY", key="WaPo") {
 
-  url <- "https://arcos-api.ext.nile.works/v1/county_data_drug"
+  url <- "https://ne.washingtonpost.com/arcos//v1/county_data_drug"
 
   if (!missing(county)) {
     county_name <- str_to_upper(county)
@@ -227,6 +227,9 @@ drug_county_biz <- function(drug="Fentanyl", county = "Laurens", state = "GA", b
       for (i in 1:10) {
         tryCatch({
           df <- fromJSON(url)
+          if (!missing(buyer_bus_act)) {
+            df <- filter(df, buyer_bus_act==str_to_upper(buyer_bus_act))
+          }
           return(df)
           break
         }, error=function(e) {
@@ -260,15 +263,15 @@ drug_county_biz <- function(drug="Fentanyl", county = "Laurens", state = "GA", b
 #' @examples \donttest{
 #' library(arcos)
 #'
-#' autauga_al <- drug_fips_biz(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Retail", key="WaPo")
+#' autauga_al <- drug_fips_biz(drug="Fentanyl", fips="01001", buyer_bus_act="CHAIN PHARMACY", key="WaPo")
 #'
 #' head(autauga_al)
 #' }
 #' @export
 
-drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Retail", key="WaPo") {
+drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="CHAIN PHARMACY", key="WaPo") {
 
-  url <- "https://arcos-api.ext.nile.works/v1/county_fips_data_drug"
+  url <- "https://ne.washingtonpost.com/arcos//v1/county_fips_data_drug"
 
   if (missing(key)) {
     message("Error: API key needed.")
@@ -287,6 +290,9 @@ drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Re
           for (i in 1:10) {
           tryCatch({
             df <- fromJSON(url)
+            if (!missing(buyer_bus_act)) {
+              df <- filter(df, buyer_bus_act==str_to_upper(buyer_bus_act))
+            }
             return(df)
             break
           }, error=function(e) {
@@ -324,7 +330,7 @@ drug_fips_biz <- function(drug="Fentanyl", fips="01001", buyer_bus_act="Chain Re
 #' @export
 
 buyer_list <- function(key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/buyer_list"
+  url <- "https://ne.washingtonpost.com/arcos//v1/buyer_list"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
@@ -368,7 +374,7 @@ buyer_list <- function(key="WaPo") {
 #' @export
 
 drug_list <- function(key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/drug_list"
+  url <- "https://ne.washingtonpost.com/arcos//v1/drug_list"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
@@ -414,7 +420,7 @@ drug_list <- function(key="WaPo") {
 #' @export
 
 county_list <- function(key="WaPo") {
-  url <- "https://arcos-api.ext.nile.works/v1/county_list"
+  url <- "https://ne.washingtonpost.com/arcos//v1/county_list"
 
   if (!missing(key)) {
     url <- param_set(url, key = "key", value = key)
@@ -454,7 +460,7 @@ county_list <- function(key="WaPo") {
 raw_data <- function(key="WaPo") {
 
 
-  #url <- "https://arcos-api.ext.nile.works/v1/all_the_data"
+  #url <- "https://ne.washingtonpost.com/arcos//v1/all_the_data"
   url <- "https://d2ty8gaf6rmowa.cloudfront.net/dea-pain-pill-database/bulk/arcos_all_washpost.tsv.gz"
 
   if (missing(key)) {

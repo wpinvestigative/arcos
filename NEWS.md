@@ -1,3 +1,13 @@
+arcos 1.29
+-------------------------------------------------------
+
+* ARCOS api moved from https://arcos-api.ext.nile.works/ to https://ne.washingtonpost.com/arcos/ requiring a fix to import scripts
+
+arcos 1.28
+-------------------------------------------------------
+
+* Fixed some incorrect variable example names in drug_county_biz() readme.
+
 arcos 1.27
 -------------------------------------------------------
 
